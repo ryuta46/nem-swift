@@ -123,6 +123,8 @@
 		3EDE9A051FD12FF10046A05B /* MosaicDefinitionMetaDataPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE9A041FD12FF10046A05B /* MosaicDefinitionMetaDataPair.swift */; };
 		3EDE9A071FD1302C0046A05B /* MosaicMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE9A061FD1302C0046A05B /* MosaicMetaData.swift */; };
 		3EDE9A091FD130FE0046A05B /* MosaicLevy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE9A081FD130FE0046A05B /* MosaicLevy.swift */; };
+		5F4F51A5204E7E1F00EE4F2C /* NISAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */; };
+		5F4F51A7204E7ED700EE4F2C /* TestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +214,8 @@
 		3EDE9A041FD12FF10046A05B /* MosaicDefinitionMetaDataPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicDefinitionMetaDataPair.swift; sourceTree = "<group>"; };
 		3EDE9A061FD1302C0046A05B /* MosaicMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicMetaData.swift; sourceTree = "<group>"; };
 		3EDE9A081FD130FE0046A05B /* MosaicLevy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicLevy.swift; sourceTree = "<group>"; };
+		5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NISAPITest.swift; sourceTree = "<group>"; };
+		5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,7 @@
 		3E0E79AA1FD1599900181D31 /* NemSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
+				5F4F51A2204E7E0400EE4F2C /* Sources */,
 				3E0E79AB1FD1599900181D31 /* NemSwiftTests.swift */,
 				3E0E79AD1FD1599900181D31 /* Info.plist */,
 			);
@@ -442,6 +447,23 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
+		5F4F51A2204E7E0400EE4F2C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5F4F51A3204E7E0400EE4F2C /* client */,
+				5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		5F4F51A3204E7E0400EE4F2C /* client */ = {
+			isa = PBXGroup;
+			children = (
+				5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */,
+			);
+			path = client;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -607,6 +629,7 @@
 				3E0E79D21FD15A3E00181D31 /* NISErrorResponse.swift in Sources */,
 				3E0E79C31FD15A0C00181D31 /* MosaicDefinition.swift in Sources */,
 				3E0E79D71FD15A6200181D31 /* add_scalar.c in Sources */,
+				5F4F51A5204E7E1F00EE4F2C /* NISAPITest.swift in Sources */,
 				3E0E79BF1FD159FE00181D31 /* TransactionMetaData.swift in Sources */,
 				3E0E79BD1FD159F800181D31 /* AccountMetaData.swift in Sources */,
 				3E0E79AC1FD1599900181D31 /* NemSwiftTests.swift in Sources */,
@@ -621,6 +644,7 @@
 				3E0E79BB1FD159F100181D31 /* Account.swift in Sources */,
 				3E0E79D61FD15A4D00181D31 /* UInt32+CircularShift.swift in Sources */,
 				3E0E79C21FD15A0900181D31 /* MosaicMetaData.swift in Sources */,
+				5F4F51A7204E7ED700EE4F2C /* TestSettings.swift in Sources */,
 				3E0E79B71FD159DE00181D31 /* NISAPI.swift in Sources */,
 				3E0E79BC1FD159F500181D31 /* AccountInfo.swift in Sources */,
 				3E0E79C61FD15A1600181D31 /* MosaicLevy.swift in Sources */,
@@ -734,7 +758,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46946JQQ95;
+				DEVELOPMENT_TEAM = CK945B6495;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -760,7 +784,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46946JQQ95;
+				DEVELOPMENT_TEAM = CK945B6495;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -891,7 +915,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46946JQQ95;
+				DEVELOPMENT_TEAM = CK945B6495;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -917,7 +941,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46946JQQ95;
+				DEVELOPMENT_TEAM = CK945B6495;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
