@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0E79AC1FD1599900181D31 /* NemSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0E79AB1FD1599900181D31 /* NemSwiftTests.swift */; };
 		3E0E79B31FD159D000181D31 /* TransferTransactionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BE51FC574A800D5DCD3 /* TransferTransactionHelper.swift */; };
 		3E0E79B41FD159D300181D31 /* TransactionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BE31FC568D800D5DCD3 /* TransactionHelper.swift */; };
 		3E0E79B51FD159D600181D31 /* NISRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CA6A51FC2D9440096808F /* NISRequest.swift */; };
@@ -125,6 +124,8 @@
 		3EDE9A091FD130FE0046A05B /* MosaicLevy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE9A081FD130FE0046A05B /* MosaicLevy.swift */; };
 		5F4F51A5204E7E1F00EE4F2C /* NISAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */; };
 		5F4F51A7204E7ED700EE4F2C /* TestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */; };
+		5F4F51AD2053C31C00EE4F2C /* ParameterizedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */; };
+		5F4F51AF20547ACA00EE4F2C /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,7 +140,6 @@
 
 /* Begin PBXFileReference section */
 		3E0E79A91FD1599900181D31 /* NemSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NemSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E0E79AB1FD1599900181D31 /* NemSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NemSwiftTests.swift; sourceTree = "<group>"; };
 		3E0E79AD1FD1599900181D31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E1000ED1FC51C090011F194 /* TransactionMetaDataPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMetaDataPair.swift; sourceTree = "<group>"; };
 		3E1AE8F51FBD3D81008A4BC1 /* ripemd-160.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ripemd-160.h"; sourceTree = "<group>"; };
@@ -216,6 +216,8 @@
 		3EDE9A081FD130FE0046A05B /* MosaicLevy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicLevy.swift; sourceTree = "<group>"; };
 		5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NISAPITest.swift; sourceTree = "<group>"; };
 		5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettings.swift; sourceTree = "<group>"; };
+		5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterizedTest.swift; sourceTree = "<group>"; };
+		5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,7 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				5F4F51A2204E7E0400EE4F2C /* Sources */,
-				3E0E79AB1FD1599900181D31 /* NemSwiftTests.swift */,
 				3E0E79AD1FD1599900181D31 /* Info.plist */,
 			);
 			path = NemSwiftTests;
@@ -450,8 +451,10 @@
 		5F4F51A2204E7E0400EE4F2C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */,
 				5F4F51A3204E7E0400EE4F2C /* client */,
 				5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */,
+				5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -611,11 +614,13 @@
 				3E0E79EA1FD15AA900181D31 /* ripemd-160.c in Sources */,
 				3E0E79EC1FD15AA900181D31 /* byte_order.c in Sources */,
 				3E0E79EE1FD15AA900181D31 /* sha3.c in Sources */,
+				5F4F51AD2053C31C00EE4F2C /* ParameterizedTest.swift in Sources */,
 				3E0E79E81FD15AA100181D31 /* ed25519_sha3_512.c in Sources */,
 				3E0E79D91FD15A7200181D31 /* fe.c in Sources */,
 				3E0E79DC1FD15A7200181D31 /* ge.c in Sources */,
 				3E0E79DE1FD15A7200181D31 /* key_exchange.c in Sources */,
 				3E0E79DF1FD15A7200181D31 /* keypair.c in Sources */,
+				5F4F51AF20547ACA00EE4F2C /* TestUtils.swift in Sources */,
 				3E0E79E11FD15A7200181D31 /* sc.c in Sources */,
 				3E0E79E31FD15A7200181D31 /* seed.c in Sources */,
 				3E0E79E41FD15A7200181D31 /* sha512.c in Sources */,
@@ -632,7 +637,6 @@
 				5F4F51A5204E7E1F00EE4F2C /* NISAPITest.swift in Sources */,
 				3E0E79BF1FD159FE00181D31 /* TransactionMetaData.swift in Sources */,
 				3E0E79BD1FD159F800181D31 /* AccountMetaData.swift in Sources */,
-				3E0E79AC1FD1599900181D31 /* NemSwiftTests.swift in Sources */,
 				3E0E79CD1FD15A2D00181D31 /* Importance.swift in Sources */,
 				3E0E79D01FD15A3800181D31 /* NemAnnounceResult.swift in Sources */,
 				3E0E79CF1FD15A3400181D31 /* RequestAnnounce.swift in Sources */,

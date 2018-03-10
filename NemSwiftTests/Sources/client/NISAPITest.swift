@@ -41,7 +41,7 @@ func printModel<T : Encodable>(model: T) {
     let encoder = JSONEncoder()
     encoder.outputFormatting = .prettyPrinted
     let data = try! encoder.encode(model)
-    print(String(data: data, encoding: .utf8))
+    print(String(data: data, encoding: .utf8)!)
 }
 
 class NISAPITest: XCTestCase {
@@ -143,24 +143,21 @@ class NISAPITest: XCTestCase {
         }
     }
 
-    /*
-    @Test
-    fun accountUnconfirmedTransactions() {
-    transferTransactionAnnounce(getTransferTransactionAnnounceFixture()[2])
-    val result = client.accountUnconfirmedTransactions(Settings.ADDRESS)
-    printModel(result)
+    func testAccountUnconfirmedTransactions() {
+        testTransferTransaction(fixture: TransferTransactionTestFixture(0))
 
-    if (Settings.PRIVATE_KEY.isEmpty()) {
-    assertTrue(result.isEmpty())
-    } else {
-    assertTrue(result.isNotEmpty())
-    result.forEach {
-    assertEquals(Settings.PUBLIC_KEY, it.transaction.signer)
+        guard let response = Session.sendSyncWithTest(NISAPI.AccountUnconfirmedTransactions(address: TestSettings.ADDRESS)) else { return }
+        print("\(response)")
 
+        if TestSettings.PRIVATE_KEY.isEmpty {
+            XCTAssertTrue(response.data.isEmpty)
+        } else {
+            XCTAssertFalse(response.data.isEmpty)
+            response.data.forEach { metaDataPair in
+                XCTAssertEqual(TestSettings.PUBLIC_KEY, metaDataPair.transaction.signer)
+            }
+        }
     }
-    }
-    }
-    */
 
     func testAccountHarvests() {
         guard let response = Session.sendSyncWithTest(NISAPI.AccountHarvests(address: TestSettings.ADDRESS, hash: "")) else { return }
@@ -204,4 +201,103 @@ class NISAPITest: XCTestCase {
         XCTAssertFalse(response.data.isEmpty)
     }
 
+    func testNamespaceMosaicDefinitionPage() {
+        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefintionPage(namespace: "ttech", id: nil, pagesize: nil )) else { return }
+        print("\(response)")
+
+        XCTAssertFalse(response.data.isEmpty)
+
+        response.data.forEach { metaDataPair in
+            XCTAssertEqual(TestSettings.RECEIVER_PUBLIC, metaDataPair.mosaic.creator)
+        }
+    }
+
+
 }
+
+
+class TransferTransactionTestFixture {
+    let xem: UInt64
+    let message: String
+    let messageType: TransferTransactionHelper.MessageType
+    let mosaics: [TransferMosaic]
+
+    init(_ xem: UInt64, _ message: String = "", _ messageType: TransferTransactionHelper.MessageType = TransferTransactionHelper.MessageType.Plain, _ mosaics: [TransferMosaic] = []) {
+        self.xem = xem
+        self.message = message
+        self.messageType = messageType
+        self.mosaics = mosaics
+    }
+}
+
+func testTransferTransaction(fixture: TransferTransactionTestFixture) {
+    let account: Account
+    if !TestSettings.PRIVATE_KEY.isEmpty {
+        account = Account.repairAccount(TestSettings.PRIVATE_KEY, network: .testnet)
+    } else {
+        account = Account.generteAccount(network: .testnet)
+    }
+
+    XCTAssertEqual(TestSettings.ADDRESS, account.address.value)
+
+    let announce: [UInt8]
+
+    if fixture.mosaics.isEmpty {
+        announce = TransferTransactionHelper.generateTransferRequestAnnounce(
+            publicKey: account.keyPair.publicKey,
+            network: .testnet,
+            recepientAddress: TestSettings.RECEIVER,
+            amount: fixture.xem,
+            messageTyep: fixture.messageType,
+            message: fixture.message)
+    } else {
+        announce = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
+            publicKey: account.keyPair.publicKey,
+            network: .testnet,
+            recepientAddress: TestSettings.RECEIVER,
+            mosaics: fixture.mosaics,
+            messageType: fixture.messageType,
+            message: fixture.message)
+    }
+
+    let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: announce, keyPair: account.keyPair)
+
+    guard let response = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(data: requestAnnounce.data, signature: requestAnnounce.signature)) else { return }
+    print("\(response)")
+
+    if !TestSettings.PRIVATE_KEY.isEmpty {
+        TestUtils.checkResult(result: response)
+    } else {
+        TestUtils.checkResultIsInsufficientBalance(result: response)
+    }
+}
+
+
+
+
+
+class TransferTransactionTest : ParameterizedTest {
+    override class func createTestCases() -> [ParameterizedTest] {
+        return self.testInvocations.map { TransferTransactionTest(invocation: $0) }
+    }
+
+    override class var fixtures: [Any] {
+        get {
+            return [
+                TransferTransactionTestFixture(1),
+                TransferTransactionTestFixture(0, "Message test", TransferTransactionHelper.MessageType.Plain),
+                TransferTransactionTestFixture(0, "", TransferTransactionHelper.MessageType.Plain,
+                                               [TransferMosaic(namespace: "nem", mosaic: "xem", quantity: 1)]),
+
+            ]
+        }
+    }
+
+    // Don't run test method. Run test class instead.
+    func testTransfer() {
+        let fixture = self.fixture as! TransferTransactionTestFixture
+        testTransferTransaction(fixture: fixture)
+    }
+}
+
+
