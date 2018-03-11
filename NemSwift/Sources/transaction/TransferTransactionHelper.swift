@@ -27,8 +27,8 @@ class TransferTransactionHelper: TransactionHelper {
     let message: String
     let mosaics: [TransferMosaic]?
     
-    init(publicKey: [UInt8], network: Network, receipentAddress: String, amount: UInt64, messageType: MessageType, message: String, mosaics: [TransferMosaic]?) {
-        self.recipientAddress = receipentAddress
+    init(publicKey: [UInt8], network: Network, recipientAddress: String, amount: UInt64, messageType: MessageType, message: String, mosaics: [TransferMosaic]?) {
+        self.recipientAddress = recipientAddress
         self.amount = amount
         self.messageType = messageType
         self.message = message
@@ -37,18 +37,18 @@ class TransferTransactionHelper: TransactionHelper {
         super.init(type: .Transfer, publicKey: publicKey, network: network)
     }
     
-    static func generateTransferRequestAnnounce(publicKey: [UInt8], network: Network, recepientAddress: String, amount: UInt64, messageTyep: MessageType, message: String) -> [UInt8] {
+    static func generateTransferRequestAnnounce(publicKey: [UInt8], network: Network, recipientAddress: String, amount: UInt64, messageType: MessageType, message: String) -> [UInt8] {
         let announce = TransferTransactionHelper(publicKey: publicKey, network: network,
-                                                 receipentAddress: recepientAddress, amount: amount,
-                                                 messageType: messageTyep, message: message, mosaics: nil)
+                                                 recipientAddress: recipientAddress, amount: amount,
+                                                 messageType: messageType, message: message, mosaics: nil)
         return announce.generateRequestAnnounce()
     }
     
-    static func generateMosaicTransferRequestAnnounce(publicKey: [UInt8], network: Network, recepientAddress: String, mosaics: [TransferMosaic], messageType: MessageType, message: String) -> [UInt8] {
+    static func generateMosaicTransferRequestAnnounce(publicKey: [UInt8], network: Network, recipientAddress: String, mosaics: [TransferMosaic], messageType: MessageType, message: String) -> [UInt8] {
         
         let amount = (UInt64)(1_000_000)
         
-        let announce = TransferTransactionHelper(publicKey: publicKey, network: network, receipentAddress: recepientAddress, amount: amount, messageType: messageType, message: message, mosaics: mosaics)
+        let announce = TransferTransactionHelper(publicKey: publicKey, network: network, recipientAddress: recipientAddress, amount: amount, messageType: messageType, message: message, mosaics: mosaics)
         
         return announce.generateRequestAnnounce()
     }

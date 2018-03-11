@@ -93,7 +93,7 @@ final class NISAPI {
         let id: String?
     }
     
-    struct AccountTransfersOutgoin: NISRequest {
+    struct AccountTransfersOutgoing: NISRequest {
         typealias Response = TransactionMetaDataPairs
         let method: HTTPMethod = .get
         let path: String = "/account/transfers/outgoing"

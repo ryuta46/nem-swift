@@ -120,7 +120,7 @@ class NISAPITest: XCTestCase {
     }
 
     func testAccountTransfersOutgoing() {
-        guard let response = Session.sendSyncWithTest(NISAPI.AccountTransfersOutgoin(address: TestSettings.ADDRESS, hash: nil, id: nil )) else { return }
+        guard let response = Session.sendSyncWithTest(NISAPI.AccountTransfersOutgoing(address: TestSettings.ADDRESS, hash: nil, id: nil )) else { return }
         print("\(response)")
         XCTAssertFalse(response.data.isEmpty)
 
@@ -246,15 +246,15 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
         announce = TransferTransactionHelper.generateTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: .testnet,
-            recepientAddress: TestSettings.RECEIVER,
+            recipientAddress: TestSettings.RECEIVER,
             amount: fixture.xem,
-            messageTyep: fixture.messageType,
+            messageType: fixture.messageType,
             message: fixture.message)
     } else {
         announce = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: .testnet,
-            recepientAddress: TestSettings.RECEIVER,
+            recipientAddress: TestSettings.RECEIVER,
             mosaics: fixture.mosaics,
             messageType: fixture.messageType,
             message: fixture.message)

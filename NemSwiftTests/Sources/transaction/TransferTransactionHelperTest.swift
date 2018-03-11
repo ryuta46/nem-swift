@@ -58,9 +58,9 @@ class XemTransferFeeTest : ParameterizedTest {
         let transactionBytes = TransferTransactionHelper.generateTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: .testnet,
-            recepientAddress: TestSettings.RECEIVER,
+            recipientAddress: TestSettings.RECEIVER,
             amount: fixture.microNem,
-            messageTyep: .Plain,
+            messageType: .Plain,
             message: "")
 
         XCTAssertEqual(fixture.expected, extractTransactionFee(transactionBytes))
@@ -103,9 +103,9 @@ class MessageTransferFeeTest : ParameterizedTest {
         let transactionBytes = TransferTransactionHelper.generateTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: .testnet,
-            recepientAddress: TestSettings.RECEIVER,
+            recipientAddress: TestSettings.RECEIVER,
             amount: 0,
-            messageTyep: .Plain,
+            messageType: .Plain,
             message: fixture.message)
 
         // 50_000 is transfer fee of 0 xem.
@@ -152,7 +152,7 @@ class MosaicTransferFeeTest : ParameterizedTest {
         let transactionBytes = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: .testnet,
-            recepientAddress: TestSettings.RECEIVER,
+            recipientAddress: TestSettings.RECEIVER,
             mosaics: fixture.mosaics,
             messageType: .Plain,
             message: "")
