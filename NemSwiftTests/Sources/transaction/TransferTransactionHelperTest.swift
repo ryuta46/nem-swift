@@ -133,13 +133,21 @@ class MosaicTransferFeeTest : ParameterizedTest {
     override class var fixtures: [Any] {
         get {
             return [
-                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 1)], 50_000),
-                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 1)], 50_000),
-                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 23)], 100_000),
-                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 24)], 150_000),
-                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 25)], 200_000),
-                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 28)], 350_000),
-                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 29)], 350_000)
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 1, supply: 1_000, divisibility: 0)], 50_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 1, supply: 1_000_000, divisibility: 0)], 50_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 23, supply: 1_000_000, divisibility: 0)], 100_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 24, supply: 1_000_000, divisibility: 0)], 150_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 25, supply: 1_000_000, divisibility: 0)], 200_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 28, supply: 1_000_000, divisibility: 0)], 350_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ttech", mosaic: "ryuta", quantity: 29, supply: 1_000_000, divisibility: 0)], 350_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:0, supply: 8_999_999_999, divisibility: 6)], 50_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:10_000_000_000, supply: 8_999_999_999, divisibility: 6)], 50_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:19_999_999_999, supply: 8_999_999_999, divisibility: 6)], 50_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:20_000_000_000, supply: 8_999_999_999, divisibility: 6)], 100_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:249_999_999_999, supply: 8_999_999_999, divisibility: 6)], 1_200_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:250_000_000_000, supply: 8_999_999_999, divisibility: 6)], 1_250_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:250_000_000_001, supply: 8_999_999_999, divisibility: 6)], 1_250_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:1_000_000_000_000, supply: 8_999_999_999, divisibility: 6)], 1_250_000),
             ]
         }
     }

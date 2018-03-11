@@ -287,7 +287,7 @@ class TransferTransactionTest : ParameterizedTest {
                 TransferTransactionTestFixture(1),
                 TransferTransactionTestFixture(0, "Message test", TransferTransactionHelper.MessageType.Plain),
                 TransferTransactionTestFixture(0, "", TransferTransactionHelper.MessageType.Plain,
-                                               [TransferMosaic(namespace: "nem", mosaic: "xem", quantity: 1)]),
+                                               [TransferMosaic(namespace: "nem", mosaic: "xem", quantity: 1, supply: 8_999_999_999, divisibility: 6)]),
 
             ]
         }
