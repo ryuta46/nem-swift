@@ -103,7 +103,7 @@ class NISAPITest: XCTestCase {
         XCTAssertEqual("LOCKED", response.status)
         XCTAssertEqual("INACTIVE", response.remoteStatus)
         XCTAssertFalse(response.cosignatoryOf.isEmpty)
-        XCTAssertFalse(response.cosignatories.isEmpty)
+        XCTAssertTrue(response.cosignatories.isEmpty)
     }
 
 

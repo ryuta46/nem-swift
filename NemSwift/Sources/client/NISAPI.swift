@@ -64,7 +64,7 @@ final class NISAPI {
     struct AccountStatus: NISRequest {
         typealias Response = AccountMetaData
         let method: HTTPMethod = .get
-        let path: String = "/account/get/forwarded"
+        let path: String = "/account/status"
         var parameters: Any? {
             return ["address": address]
         }
