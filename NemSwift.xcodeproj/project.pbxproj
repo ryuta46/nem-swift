@@ -128,6 +128,7 @@
 		5F4F51AF20547ACA00EE4F2C /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */; };
 		5F4F51B2205482F100EE4F2C /* AddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B1205482F100EE4F2C /* AddressTest.swift */; };
 		5F4F51B4205485A400EE4F2C /* AccountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B3205485A400EE4F2C /* AccountTest.swift */; };
+		5F4F51B72054E6DC00EE4F2C /* TransferTransactionHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B62054E6DC00EE4F2C /* TransferTransactionHelperTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +223,7 @@
 		5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		5F4F51B1205482F100EE4F2C /* AddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTest.swift; sourceTree = "<group>"; };
 		5F4F51B3205485A400EE4F2C /* AccountTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTest.swift; sourceTree = "<group>"; };
+		5F4F51B62054E6DC00EE4F2C /* TransferTransactionHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTransactionHelperTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +457,7 @@
 		5F4F51A2204E7E0400EE4F2C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5F4F51B52054E6C600EE4F2C /* transaction */,
 				5F4F51B0205482E200EE4F2C /* account */,
 				5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */,
 				5F4F51A3204E7E0400EE4F2C /* client */,
@@ -479,6 +482,14 @@
 				5F4F51B3205485A400EE4F2C /* AccountTest.swift */,
 			);
 			path = account;
+			sourceTree = "<group>";
+		};
+		5F4F51B52054E6C600EE4F2C /* transaction */ = {
+			isa = PBXGroup;
+			children = (
+				5F4F51B62054E6DC00EE4F2C /* TransferTransactionHelperTest.swift */,
+			);
+			path = transaction;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -655,6 +666,7 @@
 				3E0E79D01FD15A3800181D31 /* NemAnnounceResult.swift in Sources */,
 				5F4F51B2205482F100EE4F2C /* AddressTest.swift in Sources */,
 				3E0E79CF1FD15A3400181D31 /* RequestAnnounce.swift in Sources */,
+				5F4F51B72054E6DC00EE4F2C /* TransferTransactionHelperTest.swift in Sources */,
 				3E0E79CC1FD15A2900181D31 /* Harvest.swift in Sources */,
 				5F4F51B4205485A400EE4F2C /* AccountTest.swift in Sources */,
 				3E0E79B81FD159E300181D31 /* ConvertUtil.swift in Sources */,
