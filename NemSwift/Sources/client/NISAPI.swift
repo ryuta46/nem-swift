@@ -74,7 +74,7 @@ final class NISAPI {
             super.init(baseURL: baseURL, path: "/account/status", parameters: ["address": address])
         }
     }
-    
+
     // 3.1.5 Requesting transaction data for an account
     class AccountTransfersIncoming: NISGetRequest<TransactionMetaDataPairs> {
         init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: String? = nil) {

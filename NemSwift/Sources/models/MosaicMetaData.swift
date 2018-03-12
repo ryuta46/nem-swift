@@ -9,5 +9,5 @@
 import Foundation
 
 struct MosaicMetaData: Decodable {
-    let id: String
+    let id: Int
 }
