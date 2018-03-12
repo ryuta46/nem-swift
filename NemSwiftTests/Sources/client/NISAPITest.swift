@@ -30,25 +30,20 @@ extension Session {
         case .success(let response):
             return response
         case .failure(let error):
-            XCTFail("Communication Error \(error.localizedDescription)")
+            XCTFail("Communication Error \(error)")
         }
         return nil
         //fatalError("Nerver execute")
     }
 
 }
-func printModel<T : Encodable>(model: T) {
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = .prettyPrinted
-    let data = try! encoder.encode(model)
-    print(String(data: data, encoding: .utf8)!)
-}
 
 class NISAPITest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        NISAPI.defaultBaseURL = TestSettings.TEST_HOST
+        NemSwiftConfiguration.defaultBaseURL = TestSettings.TEST_HOST
+        NemSwiftConfiguration.logLevel = .debug
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     

@@ -44,9 +44,9 @@ struct NISError: Error, Codable {
 
 extension NISRequest {
     func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
-        print(urlResponse.statusCode)
+        Logger.i("Response code: \(urlResponse.statusCode)")
         let res = String(data: object as! Data, encoding: .utf8)!
-        print(res)
+        Logger.i("Response body: \(res)")
         
         guard 200..<300 ~= urlResponse.statusCode else {
             throw NISError(object: object)

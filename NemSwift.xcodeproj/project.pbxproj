@@ -129,6 +129,10 @@
 		5F4F51B2205482F100EE4F2C /* AddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B1205482F100EE4F2C /* AddressTest.swift */; };
 		5F4F51B4205485A400EE4F2C /* AccountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B3205485A400EE4F2C /* AccountTest.swift */; };
 		5F4F51B72054E6DC00EE4F2C /* TransferTransactionHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B62054E6DC00EE4F2C /* TransferTransactionHelperTest.swift */; };
+		5F4F51B92055BC6300EE4F2C /* NemSwiftConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */; };
+		5F4F51BB20571C6D00EE4F2C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51BA20571C6D00EE4F2C /* Logger.swift */; };
+		5F4F51BC2057254100EE4F2C /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51BA20571C6D00EE4F2C /* Logger.swift */; };
+		5F4F51BD2057256200EE4F2C /* NemSwiftConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +228,8 @@
 		5F4F51B1205482F100EE4F2C /* AddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTest.swift; sourceTree = "<group>"; };
 		5F4F51B3205485A400EE4F2C /* AccountTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTest.swift; sourceTree = "<group>"; };
 		5F4F51B62054E6DC00EE4F2C /* TransferTransactionHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTransactionHelperTest.swift; sourceTree = "<group>"; };
+		5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NemSwiftConfiguration.swift; sourceTree = "<group>"; };
+		5F4F51BA20571C6D00EE4F2C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +324,7 @@
 				3E31CFD61FBC18D8006CFB33 /* RHash */,
 				3E31D1231FBC2119006CFB33 /* ed25519_sha3_512.c */,
 				3E31D1241FBC2119006CFB33 /* ed25519_sha3_512.h */,
+				5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -410,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				3E31D1311FBC2B5C006CFB33 /* ConvertUtil.swift */,
+				5F4F51BA20571C6D00EE4F2C /* Logger.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -634,6 +642,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F4F51BD2057256200EE4F2C /* NemSwiftConfiguration.swift in Sources */,
+				5F4F51BC2057254100EE4F2C /* Logger.swift in Sources */,
 				3E0E79F01FD15AD200181D31 /* AppDelegate.swift in Sources */,
 				3E0E79F11FD15AD200181D31 /* ViewController.swift in Sources */,
 				3E0E79EA1FD15AA900181D31 /* ripemd-160.c in Sources */,
@@ -731,6 +741,7 @@
 				3E31D0A01FBC18D8006CFB33 /* ge.c in Sources */,
 				3E31D1251FBC2119006CFB33 /* ed25519_sha3_512.c in Sources */,
 				3ECF78821FC3C7D9001AA416 /* AccountMetaDataPair.swift in Sources */,
+				5F4F51BB20571C6D00EE4F2C /* Logger.swift in Sources */,
 				3E1000EE1FC51C090011F194 /* TransactionMetaDataPair.swift in Sources */,
 				3ECF788E1FC42D9F001AA416 /* TransactionMessage.swift in Sources */,
 				3E2E26451FBD600E004D4425 /* UInt32+CircularShift.swift in Sources */,
@@ -746,6 +757,7 @@
 				3EB4304E1FCD115E003A2C98 /* TransactionHash.swift in Sources */,
 				3E31D0A51FBC18D8006CFB33 /* sha512.c in Sources */,
 				3ECF78841FC42700001AA416 /* TransactionMetaData.swift in Sources */,
+				5F4F51B92055BC6300EE4F2C /* NemSwiftConfiguration.swift in Sources */,
 				3E633BE61FC574A800D5DCD3 /* TransferTransactionHelper.swift in Sources */,
 				3EDE9A091FD130FE0046A05B /* MosaicLevy.swift in Sources */,
 				3E633BE81FC57DD800D5DCD3 /* RequestAnnounce.swift in Sources */,

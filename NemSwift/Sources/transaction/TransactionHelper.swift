@@ -86,7 +86,7 @@ class TransactionHelper {
     
     func generateCommonTransactionField(transactionFee: UInt64) -> [UInt8] {
         let now = Date()
-        print(now)
+        Logger.d("Now: \(now)")
         
         return ConvertUtil.toByteArrayWithLittleEndian(type.transactionTypeBytes()) +
             ConvertUtil.toByteArrayWithLittleEndian(network.rawValue + type.versionBytes()) +

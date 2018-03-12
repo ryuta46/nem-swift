@@ -14,12 +14,8 @@ struct RequestAnnounce: Codable {
     
     public func toJsonString() -> String {
         let data = try! JSONEncoder().encode(self)
-        let json = try! JSONSerialization.jsonObject(with: data, options: [])
-        
         let jsonStr = String(data: data, encoding: .utf8)
-        
-        print(">>> json: \(jsonStr!)")
-        
+
         return jsonStr!
     }
     
