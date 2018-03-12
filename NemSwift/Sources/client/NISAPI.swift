@@ -22,7 +22,10 @@ final class NISAPI {
         fileprivate init(baseURL: URL, path: String, parameters: Dictionary<String, Any?> = [:]) {
             self.baseURL = baseURL
             self.path = path
-            self.parameters = parameters.filter({ (key, value) -> Bool in value != nil })
+            let filteredParameters = parameters
+                .filter({ (key, value) -> Bool in value != nil }) // remove nil parameters
+                .map({ (key, value) in (key, value!) }) // unwrap
+            self.parameters = Dictionary<String, Any>(uniqueKeysWithValues: filteredParameters)
         }
     }
 
@@ -36,7 +39,10 @@ final class NISAPI {
         fileprivate init(baseURL: URL, path: String, parameters: Dictionary<String, Any?> = [:]) {
             self.baseURL = baseURL
             self.path = path
-            self.parameters = parameters.filter({ (key, value) -> Bool in value != nil })
+            let filteredParameters = parameters
+                .filter({ (key, value) -> Bool in value != nil }) // remove nil parameters
+                .map({ (key, value) in (key, value!) }) // unwrap
+            self.parameters = Dictionary<String, Any>(uniqueKeysWithValues: filteredParameters)
         }
     }
 
@@ -77,21 +83,21 @@ final class NISAPI {
 
     // 3.1.5 Requesting transaction data for an account
     class AccountTransfersIncoming: NISGetRequest<TransactionMetaDataPairs> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: String? = nil) {
+        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
             super.init(baseURL: baseURL, path: "/account/transfers/incoming",
                        parameters: ["address": address, "hash": hash, "id": id])
         }
     }
     
     class AccountTransfersOutgoing: NISGetRequest<TransactionMetaDataPairs> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: String? = nil) {
+        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
             super.init(baseURL: baseURL, path: "/account/transfers/outgoing",
                        parameters: ["address": address, "hash": hash, "id": id])
         }
     }
     
     class AccountTransfersAll: NISGetRequest<TransactionMetaDataPairs> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: String? = nil) {
+        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
             super.init(baseURL: baseURL, path: "/account/transfers/all",
                        parameters: ["address": address, "hash": hash, "id": id])
         }

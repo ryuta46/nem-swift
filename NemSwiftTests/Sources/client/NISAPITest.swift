@@ -118,6 +118,26 @@ class NISAPITest: XCTestCase {
             }
         }
     }
+    func testAccountTransfersIncomingId() {
+        var id: Int? = nil
+
+        var response = Session.sendSyncWithTest(NISAPI.AccountTransfersIncoming(address: TestSettings.ADDRESS, id: id ))!
+        var hashes: [String] = []
+        while(!response.data.isEmpty) {
+            print("\(response)")
+
+            response.data.forEach { metaDataPair in
+                let hash = metaDataPair.meta.hash.data!
+                // All hash is differ
+                XCTAssertFalse(hashes.contains(hash))
+                hashes.append(hash)
+            }
+
+            id = response.data.last!.meta.id
+            response = Session.sendSyncWithTest(NISAPI.AccountTransfersIncoming(address: TestSettings.ADDRESS, id: id ))!
+        }
+    }
+
 
     func testAccountTransfersOutgoing() {
         guard let response = Session.sendSyncWithTest(NISAPI.AccountTransfersOutgoing(address: TestSettings.ADDRESS, hash: nil, id: nil )) else { return }
@@ -130,8 +150,28 @@ class NISAPITest: XCTestCase {
             }
         }
     }
+    func testAccountTransfersOutgoingId() {
+        var id: Int? = nil
 
-    func testUccountTransfersAll() {
+        var response = Session.sendSyncWithTest(NISAPI.AccountTransfersOutgoing(address: TestSettings.ADDRESS, id: id ))!
+        var hashes: [String] = []
+        while(!response.data.isEmpty) {
+            print("\(response)")
+
+            response.data.forEach { metaDataPair in
+                let hash = metaDataPair.meta.hash.data!
+                // All hash is differ
+                XCTAssertFalse(hashes.contains(hash))
+                hashes.append(hash)
+            }
+
+            id = response.data.last!.meta.id
+            response = Session.sendSyncWithTest(NISAPI.AccountTransfersOutgoing(address: TestSettings.ADDRESS, id: id ))!
+        }
+    }
+
+
+    func testAccountTransfersAll() {
         guard let response = Session.sendSyncWithTest(NISAPI.AccountTransfersAll(address: TestSettings.ADDRESS, hash: nil, id: nil )) else { return }
         print("\(response)")
         XCTAssertFalse(response.data.isEmpty)
@@ -143,7 +183,70 @@ class NISAPITest: XCTestCase {
         }
     }
 
+    func testAccountTransfersAllId() {
+        var id: Int? = nil
+
+        var response = Session.sendSyncWithTest(NISAPI.AccountTransfersAll(address: TestSettings.ADDRESS, id: id ))!
+        var hashes: [String] = []
+        while(!response.data.isEmpty) {
+            print("\(response)")
+
+            response.data.forEach { metaDataPair in
+                let hash = metaDataPair.meta.hash.data!
+                // All hash is differ
+                XCTAssertFalse(hashes.contains(hash))
+                hashes.append(hash)
+            }
+
+            id = response.data.last!.meta.id
+            response = Session.sendSyncWithTest(NISAPI.AccountTransfersAll(address: TestSettings.ADDRESS, id: id ))!
+        }
+    }
+
+    /*
+     // This test is not execute because multisig transactions when the recipient and sender is same counts twice.
+    func testAccountTransfersAllHashId() {
+        var allHashes: [String] = []
+        var id: Int? = nil
+        var response = Session.sendSyncWithTest(NISAPI.AccountTransfersAll(address: TestSettings.ADDRESS, id: id ))!
+        while(!response.data.isEmpty) {
+            response.data.forEach { metaDataPair in  allHashes.append(metaDataPair.meta.hash.data!) }
+            id = response.data.last!.meta.id
+            response = Session.sendSyncWithTest(NISAPI.AccountTransfersAll(address: TestSettings.ADDRESS, id: id ))!
+        }
+
+        id = nil
+        response = Session.sendSyncWithTest(NISAPI.AccountTransfersIncoming(address: TestSettings.ADDRESS, id: id ))!
+        while(!response.data.isEmpty) {
+            response.data.forEach { metaDataPair in
+                let hash = metaDataPair.meta.hash.data!
+                XCTAssertTrue(allHashes.contains(hash), "No hash \(hash)")
+                allHashes.remove(at: allHashes.index(of: hash)!)
+            }
+            id = response.data.last!.meta.id
+            response = Session.sendSyncWithTest(NISAPI.AccountTransfersIncoming(address: TestSettings.ADDRESS, id: id ))!
+        }
+
+        id = nil
+        response = Session.sendSyncWithTest(NISAPI.AccountTransfersOutgoing(address: TestSettings.ADDRESS, id: id ))!
+        while(!response.data.isEmpty) {
+            response.data.forEach { metaDataPair in
+                let hash = metaDataPair.meta.hash.data!
+                XCTAssertTrue(allHashes.contains(hash), "No hash \(hash)")
+                allHashes.remove(at: allHashes.index(of: hash)!)
+            }
+            id = response.data.last!.meta.id
+            response = Session.sendSyncWithTest(NISAPI.AccountTransfersOutgoing(address: TestSettings.ADDRESS, id: id ))!
+        }
+        XCTAssertTrue(allHashes.isEmpty)
+    }
+    */
+
+
     func testAccountUnconfirmedTransactions() {
+        if TestSettings.PRIVATE_KEY.isEmpty {
+            return
+        }
         testTransferTransaction(fixture: TransferTransactionTestFixture(0))
 
         guard let response = Session.sendSyncWithTest(NISAPI.AccountUnconfirmedTransactions(address: TestSettings.ADDRESS)) else { return }

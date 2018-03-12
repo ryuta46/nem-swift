@@ -43,6 +43,11 @@ struct NISError: Error, Codable {
 }
 
 extension NISRequest {
+    func intercept(urlRequest: URLRequest) throws -> URLRequest {
+        Logger.i("Request: \(urlRequest.description)")
+        return urlRequest
+    }
+
     func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
         Logger.i("Response code: \(urlResponse.statusCode)")
         let res = String(data: object as! Data, encoding: .utf8)!
