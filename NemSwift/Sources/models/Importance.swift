@@ -9,11 +9,15 @@
 import Foundation
 
 struct Importances: Decodable {
-    let data: [Importance]
+    let data: [AccountImportance]
+}
+
+struct AccountImportance: Decodable {
+    let address: String
+    let importance: Importance
 }
 
 struct Importance: Decodable {
-    let address: String
     let isSet: Int
     let score: Double?
     let ev: Double?

@@ -202,9 +202,7 @@ class NISAPITest: XCTestCase {
     }
 
     func testNamespaceMosaicDefinitionPage() {
-        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefintionPage(
-            baseURL: TestSettings.MAIN_HOST,
-            namespace: "ttech")) else { return }
+        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefintionPage(namespace: "ttech")) else { return }
         print("\(response)")
 
         XCTAssertFalse(response.data.isEmpty)
