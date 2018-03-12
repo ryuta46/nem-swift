@@ -13,12 +13,6 @@ protocol NISRequest: Request {
     
 }
 
-extension NISRequest {
-    var baseURL: URL {
-        return URL(string: "http://104.128.226.60:7890/")!
-    }
-}
-
 extension NISRequest where Response: Decodable {
     var dataParser: DataParser {
         return DecodableDataParser()

@@ -3,14 +3,14 @@
 //  NemSwiftTests
 //
 //  Created by Taizo Kusuda on 2018/03/06.
-//  Copyright © 2018年 OpenApostille. All rights reserved.
+//  Copyright © 2018年 ryuta46. All rights reserved.
 //
 
 import Foundation
 
 class TestSettings {
-    static let MAIN_HOST = "http://www.ttechdev.com:7890"
-    static let TEST_HOST = "http://www.ttechdev.com:7880"
+    static let MAIN_HOST = URL(string: "http://www.ttechdev.com:7890")!
+    static let TEST_HOST = URL(string: "http://www.ttechdev.com:7880")!
 
     static let TEST_WEB_SOCKET = "http://www.ttechdev.com:7768"
 

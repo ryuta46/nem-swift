@@ -105,7 +105,8 @@ class TransferTransactionHelper: TransactionHelper {
                 let totalMosaicQuantity = Double(mosaic.supply) * pow(10.0, Double(mosaic.divisibility))
                 let supplyRelatedAdjustment = Int64(floor(0.8 * log(Double(maxMosaicQuantity) / totalMosaicQuantity)))
 
-                let xemEquivalent = NSDecimalNumber(value: 8_999_999_999).multiplying(by: NSDecimalNumber(value: mosaic.quantity)).dividing(by: NSDecimalNumber(value: totalMosaicQuantity))
+
+                let xemEquivalent = NSDecimalNumber(value: 8_999_999_999 as Int64).multiplying(by: NSDecimalNumber(value: mosaic.quantity)).dividing(by: NSDecimalNumber(value: totalMosaicQuantity))
 
                 let microNemEquivalent = Int64(xemEquivalent.multiplying(by: NSDecimalNumber(value: pow(10.0, 6.0))).doubleValue)
                 let microNemEquivalentFee =  Int64(max(50_000, min(((microNemEquivalent / 10_000_000_000) * 50_000), Int64(TransactionHelper.maximumXemTransferFee))))

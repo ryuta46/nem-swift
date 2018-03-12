@@ -11,232 +11,141 @@ import APIKit
 
 final class NISAPI {
     private init() {}
-    
-    // 3.1.2 Requesting the account data
-    struct AccountGet: NISRequest {
-        typealias Response = AccountMetaDataPair
+
+    static var defaultBaseURL: URL = URL(string: "http://localhost:7890")!
+
+    class NISGetRequest<T: Decodable>: NISRequest {
+        typealias Response = T
+        let baseURL: URL
         let method: HTTPMethod = .get
-        let path: String = "/account/get"
-        var parameters: Any? {
-            return ["address": address]
+        let path: String
+        let parameters: Any?
+
+        fileprivate init(baseURL: URL, path: String, parameters: Dictionary<String, Any?> = [:]) {
+            self.baseURL = baseURL
+            self.path = path
+            self.parameters = parameters.filter({ (key, value) -> Bool in value != nil })
         }
-        
-        let address: String
     }
-    
-    // 3.1.2 Requesting the account data from public key
-    struct AccountGetFromPublicKey: NISRequest {
-        typealias Response = AccountMetaDataPair
-        let method: HTTPMethod = .get
-        let path: String = "/account/get/from-public-key"
-        var parameters: Any? {
-            return ["publicKey": publicKey]
+
+    class NISPostRequest<T: Decodable>: NISRequest {
+        typealias Response = T
+        let baseURL: URL
+        let method: HTTPMethod = .post
+        let path: String
+        let parameters: Any?
+
+        fileprivate init(baseURL: URL, path: String, parameters: Dictionary<String, Any?> = [:]) {
+            self.baseURL = baseURL
+            self.path = path
+            self.parameters = parameters.filter({ (key, value) -> Bool in value != nil })
         }
-        
-        let publicKey: String
+    }
+
+    // 3.1.2 Requesting the account data
+    class AccountGet: NISGetRequest<AccountMetaDataPair> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String) {
+            super.init(baseURL: baseURL, path: "/account/get", parameters: ["address": address])
+        }
+    }
+
+    // 3.1.2 Requesting the account data from public key
+    class AccountGetFromPublicKey: NISGetRequest<AccountMetaDataPair> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, publicKey: String) {
+            super.init(baseURL: baseURL, path: "/account/get/from-public-key", parameters: ["publicKey": publicKey])
+        }
     }
     
     // 3.1.3 Requesting the original account data for a delegate account
-    struct AccountGetForwarded: NISRequest {
-        typealias Response = AccountMetaDataPair
-        let method: HTTPMethod = .get
-        let path: String = "/account/get/forwarded"
-        var parameters: Any? {
-            return ["address": address]
+    class AccountGetForwarded: NISGetRequest<AccountMetaDataPair> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String) {
+            super.init(baseURL: baseURL, path: "/account/get/forwarded", parameters: ["address": address])
         }
-        
-        let address: String
     }
     
     // 3.1.3 Requesting the original account data for a delegate account from public key
-    struct AccountGetForwardedFromPublicKey: NISRequest {
-        typealias Response = AccountMetaDataPair
-        let method: HTTPMethod = .get
-        let path: String = "/account/get/from-public-key"
-        var parameters: Any? {
-            return ["publicKey": publicKey]
+    class AccountGetForwardedFromPublicKey: NISGetRequest<AccountMetaDataPair> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, publicKey: String) {
+            super.init(baseURL: baseURL, path: "/account/get/forwarded/from-public-key", parameters: ["publicKey": publicKey])
         }
-        
-        let publicKey: String
     }
     
     // 3.1.4 Requesting the account status
-    struct AccountStatus: NISRequest {
-        typealias Response = AccountMetaData
-        let method: HTTPMethod = .get
-        let path: String = "/account/status"
-        var parameters: Any? {
-            return ["address": address]
+    class AccountStatus: NISGetRequest<AccountMetaData> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String) {
+            super.init(baseURL: baseURL, path: "/account/status", parameters: ["address": address])
         }
-        
-        let address: String
     }
     
     // 3.1.5 Requesting transaction data for an account
-    struct AccountTransfersIncoming: NISRequest {
-        typealias Response = TransactionMetaDataPairs
-        let method: HTTPMethod = .get
-        let path: String = "/account/transfers/incoming"
-        var parameters: Any? {
-            var params = ["address": address]
-            if let hash = hash {
-                params["hash"] = hash
-            }
-            if let id = id {
-                params["id"] = id
-            }
-            return params
+    class AccountTransfersIncoming: NISGetRequest<TransactionMetaDataPairs> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String, hash: String? = nil, id: String? = nil) {
+            super.init(baseURL: baseURL, path: "/account/transfers/incoming",
+                       parameters: ["address": address, "hash": hash, "id": id])
         }
-        
-        let address: String
-        let hash: String?
-        let id: String?
     }
     
-    struct AccountTransfersOutgoing: NISRequest {
-        typealias Response = TransactionMetaDataPairs
-        let method: HTTPMethod = .get
-        let path: String = "/account/transfers/outgoing"
-        var parameters: Any? {
-            var params = ["address": address]
-            if let hash = hash {
-                params["hash"] = hash
-            }
-            if let id = id {
-                params["id"] = id
-            }
-            return params
+    class AccountTransfersOutgoing: NISGetRequest<TransactionMetaDataPairs> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String, hash: String? = nil, id: String? = nil) {
+            super.init(baseURL: baseURL, path: "/account/transfers/outgoing",
+                       parameters: ["address": address, "hash": hash, "id": id])
         }
-        
-        let address: String
-        let hash: String?
-        let id: String?
     }
     
-    struct AccountTransfersAll: NISRequest {
-        typealias Response = TransactionMetaDataPairs
-        let method: HTTPMethod = .get
-        let path: String = "/account/transfers/all"
-        var parameters: Any? {
-            var params = ["address": address]
-            if let hash = hash {
-                params["hash"] = hash
-            }
-            if let id = id {
-                params["id"] = id
-            }
-            return params
+    class AccountTransfersAll: NISGetRequest<TransactionMetaDataPairs> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String, hash: String? = nil, id: String? = nil) {
+            super.init(baseURL: baseURL, path: "/account/transfers/all",
+                       parameters: ["address": address, "hash": hash, "id": id])
         }
-        
-        let address: String
-        let hash: String?
-        let id: String?
     }
     
-    struct AccountUnconfirmedTransactions: NISRequest {
-        typealias Response = UnconfirmedTransactionMetaDataPairs
-        let method: HTTPMethod = .get
-        let path: String = "/account/unconfirmedTransactions"
-        var parameters: Any? {
-            return ["address": address]
+    class AccountUnconfirmedTransactions: NISGetRequest<UnconfirmedTransactionMetaDataPairs> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String) {
+            super.init(baseURL: baseURL, path: "/account/unconfirmedTransactions", parameters: ["address": address])
         }
-        
-        let address: String
     }
     
     // 3.1.7 Requesting harvest info data for an account
-    struct AccountHarvests: NISRequest {
-        typealias Response = Harvests
-        let method: HTTPMethod = .get
-        let path: String = "/account/harvests"
-        var parameters: Any? {
-            return ["address": address, "hash": hash]
+    class AccountHarvests: NISGetRequest<Harvests> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String, hash: String? = nil) {
+            super.init(baseURL: baseURL, path: "/account/harvests",
+                       parameters: ["address": address, "hash": hash])
         }
-        
-        let address: String
-        let hash: String
     }
     
     // 3.1.8 Retrieving account importances for accounts
-    struct AccountImportances: NISRequest {
-        typealias Response = Importances
-        let method: HTTPMethod = .get
-        let path: String = "/account/importances"
+    class AccountImportances: NISGetRequest<Importances> {
+        init(baseURL: URL = NISAPI.defaultBaseURL) {
+            super.init(baseURL: baseURL, path: "/account/importances")
+        }
     }
     
     // 3.1.9 Retrieving namespaces that an account owns
-    struct AccountNamespacePage: NISRequest {
-        typealias Response = Namespaces
-        let method: HTTPMethod = .get
-        let path: String = "/account/namespace/page"
-        
-        var parameters: Any? {
-            var params = ["address": address]
-            if let parent = parent {
-                params["parent"] = parent
-            }
-            if let id = id {
-                params["id"] = id
-            }
-            if let pageSize = pageSize {
-                params["pageSize"] = pageSize
-            }
-            
-            return params
+    class AccountNamespacePage: NISGetRequest<Namespaces> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String, parent: String? = nil, id: Int? = nil, pageSize: Int? = nil) {
+            super.init(baseURL: baseURL, path: "/account/namespace/page",
+                       parameters: ["address": address, "parent": parent, "id": id, "pageSize": pageSize])
         }
-        
-        let address: String
-        let parent: String?
-        let id: String?
-        let pageSize: String?
     }
     
-    struct NamespaceMosaicDefintionPage: NISRequest {
-        typealias Response = MosaicDefinitionMetaDataPairs
-        let method: HTTPMethod = .get
-        let path: String = "/namespace/mosaic/definition/page"
-        
-        var parameters: Any? {
-            var params = ["namespace": namespace]
-            if let id = id {
-                params = ["id": id]
-            }
-            if let pagesize = pagesize {
-                params["pagesize"] = pagesize
-            }
-            
-            return params
+    class NamespaceMosaicDefintionPage: NISGetRequest<MosaicDefinitionMetaDataPairs> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, namespace: String, id: Int? = nil, pageSize: Int? = nil) {
+            super.init(baseURL: baseURL, path: "/namespace/mosaic/definition/page",
+                       parameters: ["namespace": namespace, "id": id, "pagesize": pageSize])
         }
-        
-        let namespace: String
-        let id: String?
-        let pagesize: String?
     }
     
     // Retrieving mosaics that an account owns
-    struct AccountMosaicOwned: NISRequest {
-        typealias Response = Mosaics
-        let method: HTTPMethod = .get
-        let path: String = "/account/mosaic/owned"
-        
-        var parameters: Any? {
-            return ["address": address]
+    class AccountMosaicOwned: NISGetRequest<Mosaics> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, address: String) {
+            super.init(baseURL: baseURL, path: "/account/mosaic/owned", parameters: ["address": address])
         }
-        
-        let address: String
     }
     
     // 7.9.2 Sending the data to NIS
-    struct TransactionAnnounce: NISRequest {
-        typealias Response =  NemAnnounceResult
-        let method: HTTPMethod = .post
-        let path = "/transaction/announce"
-        
-        var parameters: Any? {
-            return ["data": data, "signature": signature]
+    class TransactionAnnounce: NISPostRequest<NemAnnounceResult> {
+        init(baseURL: URL = NISAPI.defaultBaseURL, data: String, signature: String) {
+            super.init(baseURL: baseURL, path: "/transaction/announce", parameters: ["data": data, "signature": signature])
         }
-        
-        let data: String
-        let signature: String
     }
 }

@@ -48,6 +48,7 @@ class NISAPITest: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        NISAPI.defaultBaseURL = TestSettings.TEST_HOST
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -72,7 +73,9 @@ class NISAPITest: XCTestCase {
 
     func testAccountGetForwarded() {
         // API Document sample request.
-        guard let response = Session.sendSyncWithTest(NISAPI.AccountGetForwarded(address: "NC2ZQKEFQIL3JZEOB2OZPWXWPOR6LKYHIROCR7PK")) else { return }
+        guard let response = Session.sendSyncWithTest(NISAPI.AccountGetForwarded(
+            baseURL: TestSettings.MAIN_HOST,
+            address: "NC2ZQKEFQIL3JZEOB2OZPWXWPOR6LKYHIROCR7PK")) else { return }
         print("\(response)")
         XCTAssertEqual("NALICE2A73DLYTP4365GNFCURAUP3XVBFO7YNYOW", response.account.address)
     }
@@ -84,7 +87,9 @@ class NISAPITest: XCTestCase {
     }
 
     func testAccountGetForwardedFromPublicKey() {
-        guard let response = Session.sendSyncWithTest(NISAPI.AccountGetForwardedFromPublicKey(publicKey: "bdd8dd702acb3d88daf188be8d6d9c54b3a29a32561a068b25d2261b2b2b7f02")) else { return }
+        guard let response = Session.sendSyncWithTest(NISAPI.AccountGetForwardedFromPublicKey(
+            baseURL: TestSettings.MAIN_HOST,
+            publicKey: "bdd8dd702acb3d88daf188be8d6d9c54b3a29a32561a068b25d2261b2b2b7f02")) else { return }
         print("\(response)")
         XCTAssertEqual("NALICE2A73DLYTP4365GNFCURAUP3XVBFO7YNYOW", response.account.address)
     }
@@ -202,7 +207,9 @@ class NISAPITest: XCTestCase {
     }
 
     func testNamespaceMosaicDefinitionPage() {
-        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefintionPage(namespace: "ttech", id: nil, pagesize: nil )) else { return }
+        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefintionPage(
+            baseURL: TestSettings.MAIN_HOST,
+            namespace: "ttech")) else { return }
         print("\(response)")
 
         XCTAssertFalse(response.data.isEmpty)
