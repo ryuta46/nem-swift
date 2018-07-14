@@ -16,7 +16,7 @@ class TestSettings {
 
     // Test main account
     static let ADDRESS = "TDDYOPCS46Z5STBF3F5OI5PA2JE52JO6XVXICZIR"
-    static let PRIVATE_KEY = ""
+    static let PRIVATE_KEY = "9d8b283798878b1db64eb05e06f55318376e529398b9ce93325831fe0633f766"
     static let PUBLIC_KEY = "7dde4bc3e7be43fc42c9579c0425da8528552e8d5f19a2533611b589e576f15f"
 
     // Multisig account
