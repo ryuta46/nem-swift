@@ -14,10 +14,6 @@ protocol NISRequest: Request {
 }
 
 extension NISRequest where Response: Decodable {
-    var dataParser: DataParser {
-        return DecodableDataParser()
-    }
-    
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
         guard let data = object as? Data else {
             throw ResponseError.unexpectedObject(object)

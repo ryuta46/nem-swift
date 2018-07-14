@@ -9,8 +9,8 @@
 import Foundation
 
 class TestSettings {
-    static let MAIN_HOST = URL(string: "http://www.ttechdev.com:7890")!
-    static let TEST_HOST = URL(string: "http://www.ttechdev.com:7880")!
+    static let MAIN_HOST = URL(string: "http://nismain.ttechdev.com:7890")!
+    static let TEST_HOST = URL(string: "http://nistest.ttechdev.com:7890")!
 
     static let TEST_WEB_SOCKET = "http://www.ttechdev.com:7768"
 

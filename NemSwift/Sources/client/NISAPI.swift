@@ -19,6 +19,10 @@ final class NISAPI {
         let path: String
         let parameters: Any?
 
+        var dataParser: DataParser {
+            return DecodableDataParser()
+        }
+
         fileprivate init(baseURL: URL, path: String, parameters: Dictionary<String, Any?> = [:]) {
             self.baseURL = baseURL
             self.path = path
@@ -36,6 +40,10 @@ final class NISAPI {
         let path: String
         let parameters: Any?
 
+        var dataParser: DataParser {
+            return DecodableDataParser()
+        }
+
         fileprivate init(baseURL: URL, path: String, parameters: Dictionary<String, Any?> = [:]) {
             self.baseURL = baseURL
             self.path = path
@@ -45,6 +53,7 @@ final class NISAPI {
             self.parameters = Dictionary<String, Any>(uniqueKeysWithValues: filteredParameters)
         }
     }
+
 
     // 3.1.2 Requesting the account data
     class AccountGet: NISGetRequest<AccountMetaDataPair> {
@@ -153,3 +162,4 @@ final class NISAPI {
         }
     }
 }
+
