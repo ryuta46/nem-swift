@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0E79F01FD15AD200181D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */; };
-		3E0E79F11FD15AD200181D31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFA91FBC112D006CFB33 /* ViewController.swift */; };
-		3E0E79F21FD15B0800181D31 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A01FC2D6A30096808F /* APIKit.framework */; };
-		3E0E79F31FD15B0800181D31 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2E26461FBD7B0C004D4425 /* Base32.framework */; };
-		3E0E79F41FD15B0800181D31 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */; };
-		3E0E79F51FD15B0800181D31 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A31FC2D7420096808F /* Result.framework */; };
 		3E31CFA81FBC112D006CFB33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */; };
 		3E31CFAA1FBC112D006CFB33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFA91FBC112D006CFB33 /* ViewController.swift */; };
 		3E31CFAD1FBC112D006CFB33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E31CFAB1FBC112D006CFB33 /* Main.storyboard */; };
@@ -95,13 +89,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3E0E79AE1FD1599900181D31 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E31CF9C1FBC112D006CFB33 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E31CFA31FBC112D006CFB33;
-			remoteInfo = NemSwift;
-		};
 		5F37B04120FAABE4002315C1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E31CF9C1FBC112D006CFB33 /* Project object */;
@@ -140,7 +127,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3E0E79A91FD1599900181D31 /* NemSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NemSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0E79AD1FD1599900181D31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E1000ED1FC51C090011F194 /* TransactionMetaDataPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMetaDataPair.swift; sourceTree = "<group>"; };
 		3E1AE8F51FBD3D81008A4BC1 /* ripemd-160.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ripemd-160.h"; sourceTree = "<group>"; };
@@ -151,7 +137,7 @@
 		3E2E26411FBD600E004D4425 /* UInt32+CircularShift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt32+CircularShift.swift"; sourceTree = "<group>"; };
 		3E2E26461FBD7B0C004D4425 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
 		3E2E26481FBD852F004D4425 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		3E31CFA41FBC112D006CFB33 /* NemSwiftApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NemSwiftApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E31CFA41FBC112D006CFB33 /* NemSwiftTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NemSwiftTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E31CFA91FBC112D006CFB33 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3E31CFAC1FBC112D006CFB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -231,17 +217,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3E0E79A61FD1599900181D31 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E0E79F21FD15B0800181D31 /* APIKit.framework in Frameworks */,
-				3E0E79F31FD15B0800181D31 /* Base32.framework in Frameworks */,
-				3E0E79F41FD15B0800181D31 /* CryptoSwift.framework in Frameworks */,
-				3E0E79F51FD15B0800181D31 /* Result.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3E31CFA11FBC112D006CFB33 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,8 +285,7 @@
 		3E31CFA51FBC112D006CFB33 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E31CFA41FBC112D006CFB33 /* NemSwiftApp.app */,
-				3E0E79A91FD1599900181D31 /* NemSwiftTests.xctest */,
+				3E31CFA41FBC112D006CFB33 /* NemSwiftTestHost.app */,
 				5F37B03720FAABE4002315C1 /* NemSwift.framework */,
 				5F37B03F20FAABE4002315C1 /* NemSwiftTests.xctest */,
 			);
@@ -547,28 +521,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3E0E79A81FD1599900181D31 /* NemSwiftTests */ = {
+		3E31CFA31FBC112D006CFB33 /* NemSwiftTestHost */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E0E79B01FD1599900181D31 /* Build configuration list for PBXNativeTarget "NemSwiftTests" */;
-			buildPhases = (
-				3E0E79A51FD1599900181D31 /* Sources */,
-				3E0E79A61FD1599900181D31 /* Frameworks */,
-				3E0E79A71FD1599900181D31 /* Resources */,
-				3E0E79F61FD15B0D00181D31 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3E0E79AF1FD1599900181D31 /* PBXTargetDependency */,
-			);
-			name = NemSwiftTests;
-			productName = NemSwiftTests;
-			productReference = 3E0E79A91FD1599900181D31 /* NemSwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3E31CFA31FBC112D006CFB33 /* NemSwiftApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3E31CFB61FBC112D006CFB33 /* Build configuration list for PBXNativeTarget "NemSwiftApp" */;
+			buildConfigurationList = 3E31CFB61FBC112D006CFB33 /* Build configuration list for PBXNativeTarget "NemSwiftTestHost" */;
 			buildPhases = (
 				3E31CFA01FBC112D006CFB33 /* Sources */,
 				3E31CFA11FBC112D006CFB33 /* Frameworks */,
@@ -581,9 +536,9 @@
 			dependencies = (
 				5F37B0DD20FBE2EB002315C1 /* PBXTargetDependency */,
 			);
-			name = NemSwiftApp;
+			name = NemSwiftTestHost;
 			productName = NemSwift;
-			productReference = 3E31CFA41FBC112D006CFB33 /* NemSwiftApp.app */;
+			productReference = 3E31CFA41FBC112D006CFB33 /* NemSwiftTestHost.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5F37B03620FAABE4002315C1 /* NemSwift */ = {
@@ -633,11 +588,6 @@
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = OpenApostille;
 				TargetAttributes = {
-					3E0E79A81FD1599900181D31 = {
-						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 3E31CFA31FBC112D006CFB33;
-					};
 					3E31CFA31FBC112D006CFB33 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
@@ -666,8 +616,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3E31CFA31FBC112D006CFB33 /* NemSwiftApp */,
-				3E0E79A81FD1599900181D31 /* NemSwiftTests */,
+				3E31CFA31FBC112D006CFB33 /* NemSwiftTestHost */,
 				5F37B03620FAABE4002315C1 /* NemSwift */,
 				5F37B03E20FAABE4002315C1 /* NemSwiftTests */,
 			);
@@ -675,13 +624,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3E0E79A71FD1599900181D31 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3E31CFA21FBC112D006CFB33 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -709,23 +651,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3E0E79F61FD15B0D00181D31 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Base32.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/APIKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		3E31D13A1FBC4537006CFB33 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -746,15 +671,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3E0E79A51FD1599900181D31 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E0E79F01FD15AD200181D31 /* AppDelegate.swift in Sources */,
-				3E0E79F11FD15AD200181D31 /* ViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3E31CFA01FBC112D006CFB33 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -840,11 +756,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3E0E79AF1FD1599900181D31 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E31CFA31FBC112D006CFB33 /* NemSwiftApp */;
-			targetProxy = 3E0E79AE1FD1599900181D31 /* PBXContainerItemProxy */;
-		};
 		5F37B04220FAABE4002315C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5F37B03620FAABE4002315C1 /* NemSwift */;
@@ -852,7 +763,7 @@
 		};
 		5F37B04420FAABE4002315C1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3E31CFA31FBC112D006CFB33 /* NemSwiftApp */;
+			target = 3E31CFA31FBC112D006CFB33 /* NemSwiftTestHost */;
 			targetProxy = 5F37B04320FAABE4002315C1 /* PBXContainerItemProxy */;
 		};
 		5F37B0DD20FBE2EB002315C1 /* PBXTargetDependency */ = {
@@ -882,52 +793,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3E0E79B11FD1599900181D31 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CK945B6495;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					USE_KECCAK,
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = NemSwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.openapostille.NemSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NemSwift.app/NemSwift";
-			};
-			name = Debug;
-		};
-		3E0E79B21FD1599900181D31 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CK945B6495;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = USE_KECCAK;
-				INFOPLIST_FILE = NemSwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.openapostille.NemSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NemSwift.app/NemSwift";
-			};
-			name = Release;
-		};
 		3E31CFB41FBC112D006CFB33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1174,7 +1039,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NemSwiftApp.app/NemSwiftApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NemSwiftTestHost.app/NemSwiftTestHost";
 			};
 			name = Debug;
 		};
@@ -1197,22 +1062,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NemSwiftApp.app/NemSwiftApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NemSwiftTestHost.app/NemSwiftTestHost";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E0E79B01FD1599900181D31 /* Build configuration list for PBXNativeTarget "NemSwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3E0E79B11FD1599900181D31 /* Debug */,
-				3E0E79B21FD1599900181D31 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3E31CF9F1FBC112D006CFB33 /* Build configuration list for PBXProject "NemSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1222,7 +1078,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E31CFB61FBC112D006CFB33 /* Build configuration list for PBXNativeTarget "NemSwiftApp" */ = {
+		3E31CFB61FBC112D006CFB33 /* Build configuration list for PBXNativeTarget "NemSwiftTestHost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E31CFB71FBC112D006CFB33 /* Debug */,
