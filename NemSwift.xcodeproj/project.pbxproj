@@ -7,11 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E31CFA81FBC112D006CFB33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */; };
-		3E31CFAA1FBC112D006CFB33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFA91FBC112D006CFB33 /* ViewController.swift */; };
-		3E31CFAD1FBC112D006CFB33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E31CFAB1FBC112D006CFB33 /* Main.storyboard */; };
-		3E31CFAF1FBC112D006CFB33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E31CFAE1FBC112D006CFB33 /* Assets.xcassets */; };
-		3E31CFB21FBC112D006CFB33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E31CFB01FBC112D006CFB33 /* LaunchScreen.storyboard */; };
 		5F37B04020FAABE4002315C1 /* NemSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F37B03720FAABE4002315C1 /* NemSwift.framework */; };
 		5F37B04920FAABE4002315C1 /* NemSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F37B03920FAABE4002315C1 /* NemSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5F37B05520FAAC30002315C1 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */; };
@@ -67,7 +62,6 @@
 		5F37B0B620FAAD05002315C1 /* sha3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31D0661FBC18D8006CFB33 /* sha3.c */; };
 		5F37B0B720FAAD05002315C1 /* ed25519_sha3_512.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31D1231FBC2119006CFB33 /* ed25519_sha3_512.c */; };
 		5F37B0B820FAAD05002315C1 /* NemSwiftConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */; };
-		5F37B0BE20FAADCD002315C1 /* NemSwift-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E31D12C1FBC2464006CFB33 /* NemSwift-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5F37B0BF20FAAE76002315C1 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A01FC2D6A30096808F /* APIKit.framework */; };
 		5F37B0C020FAAE76002315C1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A31FC2D7420096808F /* Result.framework */; };
 		5F37B0C120FAAE76002315C1 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2E26461FBD7B0C004D4425 /* Base32.framework */; };
@@ -86,6 +80,12 @@
 		5F37B0D720FBDF9D002315C1 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */; };
 		5F37B0DA20FBE2EB002315C1 /* NemSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F37B03720FAABE4002315C1 /* NemSwift.framework */; };
 		5F37B0DB20FBE2EB002315C1 /* NemSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F37B03720FAABE4002315C1 /* NemSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F37B0E720FBEE24002315C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37B0E020FBEE23002315C1 /* ViewController.swift */; };
+		5F37B0E820FBEE24002315C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F37B0E120FBEE23002315C1 /* Assets.xcassets */; };
+		5F37B0E920FBEE24002315C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37B0E220FBEE23002315C1 /* LaunchScreen.storyboard */; };
+		5F37B0EA20FBEE24002315C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37B0E420FBEE23002315C1 /* Main.storyboard */; };
+		5F37B0EB20FBEE24002315C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37B0E620FBEE23002315C1 /* AppDelegate.swift */; };
+		5F415CF520FBF13A004C6CA1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F415CF420FBF13A004C6CA1 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,12 +138,6 @@
 		3E2E26461FBD7B0C004D4425 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
 		3E2E26481FBD852F004D4425 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		3E31CFA41FBC112D006CFB33 /* NemSwiftTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NemSwiftTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3E31CFA91FBC112D006CFB33 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3E31CFAC1FBC112D006CFB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3E31CFAE1FBC112D006CFB33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3E31CFB11FBC112D006CFB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3E31CFB31FBC112D006CFB33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E31CFC41FBC18D8006CFB33 /* add_scalar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = add_scalar.c; sourceTree = "<group>"; };
 		3E31CFC51FBC18D8006CFB33 /* ed25519.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ed25519.h; sourceTree = "<group>"; };
 		3E31CFC61FBC18D8006CFB33 /* fe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fe.c; sourceTree = "<group>"; };
@@ -167,7 +161,6 @@
 		3E31D0671FBC18D8006CFB33 /* sha3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha3.h; sourceTree = "<group>"; };
 		3E31D1231FBC2119006CFB33 /* ed25519_sha3_512.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ed25519_sha3_512.c; sourceTree = "<group>"; };
 		3E31D1241FBC2119006CFB33 /* ed25519_sha3_512.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ed25519_sha3_512.h; sourceTree = "<group>"; };
-		3E31D12C1FBC2464006CFB33 /* NemSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NemSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		3E31D12E1FBC28F8006CFB33 /* KeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPair.swift; sourceTree = "<group>"; };
 		3E31D1311FBC2B5C006CFB33 /* ConvertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertUtil.swift; sourceTree = "<group>"; };
 		3E31D1351FBC3CC8006CFB33 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
@@ -205,6 +198,12 @@
 		5F37B03920FAABE4002315C1 /* NemSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NemSwift.h; sourceTree = "<group>"; };
 		5F37B03A20FAABE4002315C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F37B03F20FAABE4002315C1 /* NemSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NemSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F37B0E020FBEE23002315C1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5F37B0E120FBEE23002315C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5F37B0E320FBEE23002315C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5F37B0E520FBEE23002315C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5F37B0E620FBEE23002315C1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5F415CF420FBF13A004C6CA1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NISAPITest.swift; sourceTree = "<group>"; };
 		5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettings.swift; sourceTree = "<group>"; };
 		5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterizedTest.swift; sourceTree = "<group>"; };
@@ -254,8 +253,8 @@
 		3E0E79AA1FD1599900181D31 /* NemSwiftTests */ = {
 			isa = PBXGroup;
 			children = (
-				5F4F51A2204E7E0400EE4F2C /* Sources */,
 				3E0E79AD1FD1599900181D31 /* Info.plist */,
+				5F4F51A2204E7E0400EE4F2C /* Sources */,
 			);
 			path = NemSwiftTests;
 			sourceTree = "<group>";
@@ -274,11 +273,11 @@
 		3E31CF9B1FBC112D006CFB33 = {
 			isa = PBXGroup;
 			children = (
-				3E31CFA61FBC112D006CFB33 /* NemSwift */,
-				3E0E79AA1FD1599900181D31 /* NemSwiftTests */,
-				5F37B03820FAABE4002315C1 /* NemSwift */,
-				3E31CFA51FBC112D006CFB33 /* Products */,
 				3E31D1371FBC4529006CFB33 /* Frameworks */,
+				5F37B03820FAABE4002315C1 /* NemSwift */,
+				5F37B0DF20FBEE23002315C1 /* NemSwiftTestHost */,
+				3E0E79AA1FD1599900181D31 /* NemSwiftTests */,
+				3E31CFA51FBC112D006CFB33 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -290,19 +289,6 @@
 				5F37B03F20FAABE4002315C1 /* NemSwiftTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		3E31CFA61FBC112D006CFB33 /* NemSwift */ = {
-			isa = PBXGroup;
-			children = (
-				3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */,
-				3E31CFA91FBC112D006CFB33 /* ViewController.swift */,
-				3E31CFAB1FBC112D006CFB33 /* Main.storyboard */,
-				3E31CFAE1FBC112D006CFB33 /* Assets.xcassets */,
-				3E31CFB01FBC112D006CFB33 /* LaunchScreen.storyboard */,
-				3E31CFB31FBC112D006CFB33 /* Info.plist */,
-			);
-			path = NemSwift;
 			sourceTree = "<group>";
 		};
 		3E31CFBD1FBC1816006CFB33 /* Sources */ = {
@@ -458,12 +444,24 @@
 		5F37B03820FAABE4002315C1 /* NemSwift */ = {
 			isa = PBXGroup;
 			children = (
-				3E31D12C1FBC2464006CFB33 /* NemSwift-Bridging-Header.h */,
 				5F37B03920FAABE4002315C1 /* NemSwift.h */,
 				5F37B03A20FAABE4002315C1 /* Info.plist */,
 				3E31CFBD1FBC1816006CFB33 /* Sources */,
 			);
 			path = NemSwift;
+			sourceTree = "<group>";
+		};
+		5F37B0DF20FBEE23002315C1 /* NemSwiftTestHost */ = {
+			isa = PBXGroup;
+			children = (
+				5F415CF420FBF13A004C6CA1 /* Info.plist */,
+				5F37B0E620FBEE23002315C1 /* AppDelegate.swift */,
+				5F37B0E020FBEE23002315C1 /* ViewController.swift */,
+				5F37B0E120FBEE23002315C1 /* Assets.xcassets */,
+				5F37B0E220FBEE23002315C1 /* LaunchScreen.storyboard */,
+				5F37B0E420FBEE23002315C1 /* Main.storyboard */,
+			);
+			path = NemSwiftTestHost;
 			sourceTree = "<group>";
 		};
 		5F4F51A2204E7E0400EE4F2C /* Sources */ = {
@@ -512,7 +510,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F37B04920FAABE4002315C1 /* NemSwift.h in Headers */,
-				5F37B0BE20FAADCD002315C1 /* NemSwift-Bridging-Header.h in Headers */,
 				5F37B0C820FAE603002315C1 /* ed25519.h in Headers */,
 				5F37B0C720FAE232002315C1 /* ed25519_sha3_512.h in Headers */,
 			);
@@ -628,9 +625,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E31CFB21FBC112D006CFB33 /* LaunchScreen.storyboard in Resources */,
-				3E31CFAF1FBC112D006CFB33 /* Assets.xcassets in Resources */,
-				3E31CFAD1FBC112D006CFB33 /* Main.storyboard in Resources */,
+				5F415CF520FBF13A004C6CA1 /* Info.plist in Resources */,
+				5F37B0EA20FBEE24002315C1 /* Main.storyboard in Resources */,
+				5F37B0E820FBEE24002315C1 /* Assets.xcassets in Resources */,
+				5F37B0E920FBEE24002315C1 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,8 +673,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E31CFAA1FBC112D006CFB33 /* ViewController.swift in Sources */,
-				3E31CFA81FBC112D006CFB33 /* AppDelegate.swift in Sources */,
+				5F37B0EB20FBEE24002315C1 /* AppDelegate.swift in Sources */,
+				5F37B0E720FBEE24002315C1 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,20 +772,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3E31CFAB1FBC112D006CFB33 /* Main.storyboard */ = {
+		5F37B0E220FBEE23002315C1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3E31CFAC1FBC112D006CFB33 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3E31CFB01FBC112D006CFB33 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E31CFB11FBC112D006CFB33 /* Base */,
+				5F37B0E320FBEE23002315C1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5F37B0E420FBEE23002315C1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F37B0E520FBEE23002315C1 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -916,7 +914,7 @@
 					"$(inherited)",
 					USE_KECCAK,
 				);
-				INFOPLIST_FILE = NemSwift/Info.plist;
+				INFOPLIST_FILE = NemSwiftTestHost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.openapostille.NemSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -938,7 +936,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = USE_KECCAK;
-				INFOPLIST_FILE = NemSwift/Info.plist;
+				INFOPLIST_FILE = NemSwiftTestHost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.openapostille.NemSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
