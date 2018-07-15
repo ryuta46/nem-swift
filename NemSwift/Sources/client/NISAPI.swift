@@ -9,7 +9,7 @@
 import Foundation
 import APIKit
 
-final class NISAPI {
+public final class NISAPI {
     private init() {}
 
     class NISGetRequest<T: Decodable>: NISRequest {

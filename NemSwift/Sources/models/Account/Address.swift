@@ -10,18 +10,18 @@ import Foundation
 import CryptoSwift
 import Base32
 
-struct Address {
+public struct Address {
     
-    enum Network: UInt8 {
+    public enum Network: UInt8 {
         case mijin = 0x60
         case mainnet = 0x68
         case testnet = 0x98
     }
     
-    let value:String
-    let network:Network
+    public let value:String
+    public let network:Network
     
-    init(publicKey: [UInt8], network: Network) {
+    public init(publicKey: [UInt8], network: Network) {
         self.network = network
         let pubKeyByteArray = publicKey
         let pubKeySha3 = Data(bytes: pubKeyByteArray).sha3(.keccak256)

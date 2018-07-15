@@ -8,7 +8,7 @@
 
 import UIKit
 import APIKit
-
+import NemSwift
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -61,14 +61,16 @@ class ViewController: UIViewController {
         /*
         let announce = TransferTransactionHelper.generateTransferRequestAnnounce(publicKey: account.keyPair.publicKey, network: .testnet, recepientAddress: account.address.value, amount: 0, messageTyep: .Plain, message: "送金テスト")
  */
-        
-        let mosaic = TransferMosaic(namespace: "daoka", mosaic: "daokasweep", quantity: 1)
+
+
+        /*
+        let mosaic = TransferMosaic(namespace: "daoka", mosaic: "daokasweep", quantity: 1, supply: 10, divisibility: 0)
         let mosaics = [mosaic]
  
         let announce = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(publicKey: account.keyPair.publicKey, network: .testnet, recepientAddress: account.address.value, mosaics: mosaics, messageType: .Plain, message: "mosaic transfer test")
-        
+
         let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: announce, keyPair: account.keyPair)
-        
+
         Session.send(NISAPI.TransactionAnnounce(data: requestAnnounce.data, signature: requestAnnounce.signature)) { result in
             switch result {
             case .success(let response):
@@ -83,6 +85,7 @@ class ViewController: UIViewController {
                 }
             }
         }
+         */
     }
 
     override func didReceiveMemoryWarning() {

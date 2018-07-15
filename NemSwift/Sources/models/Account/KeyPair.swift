@@ -8,31 +8,31 @@
 
 import Foundation
 
-struct KeyPair {
+public struct KeyPair {
     
     private static let PUBLIC_KEY_SIZE = 32
     private static let PRIVATE_KEY_SIZE = 64
     private static let PRIVATE_KEY_SEED_SIZE = 32
     private let SIGNATURE_SIZE = 64
     
-    let publicKey: [UInt8]
-    let privateKey: [UInt8]
-    let privateKeySeed: [UInt8]
+    public let publicKey: [UInt8]
+    public let privateKey: [UInt8]
+    public let privateKeySeed: [UInt8]
     
-    func publicKeyHexString() -> String {
+    public func publicKeyHexString() -> String {
         return ConvertUtil.toHexString(publicKey)
     }
     
-    func privateKeyHexString() -> String {
+    public func privateKeyHexString() -> String {
         return ConvertUtil.toHexString(privateKey)
     }
     
-    func importKey() -> String {
+    public func importKey() -> String {
         let swapedSeed = ConvertUtil.swapByteArray(privateKeySeed)
         return ConvertUtil.toHexString(swapedSeed)
     }
     
-    func sign(message: [UInt8]) -> [UInt8] {
+    public func sign(message: [UInt8]) -> [UInt8] {
         let signature = UnsafeMutablePointer<UInt8>.allocate(capacity: SIGNATURE_SIZE)
         ed25519_sha3_sign(signature,
                           ConvertUtil.toNativeArray(message),
@@ -44,7 +44,7 @@ struct KeyPair {
         return ConvertUtil.toArray(signature, SIGNATURE_SIZE)
     }
     
-    static func generateKeyPair() -> KeyPair {
+    public static func generateKeyPair() -> KeyPair {
         var privateKeySeed: [UInt8] = []
         let nativeSeed = UnsafeMutablePointer<UInt8>.allocate(capacity: PRIVATE_KEY_SEED_SIZE)
         ed25519_create_seed(nativeSeed)
@@ -61,7 +61,7 @@ struct KeyPair {
         return keyPair
     }
     
-    static func repairKeyPair(_ importKey: String) -> KeyPair {
+    public static func repairKeyPair(_ importKey: String) -> KeyPair {
         var privateKeySeed: [UInt8] = []
         let importKeyByteArray = ConvertUtil.toByteArray(importKey)
         let nativeSeed = ConvertUtil.swapByteArray(importKeyByteArray)

@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+import NemSwift
 
 class TestUtils {
     static func checkResult(result: NemAnnounceResult) {

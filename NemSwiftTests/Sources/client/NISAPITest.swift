@@ -46,7 +46,7 @@ class NISAPITest: XCTestCase {
         NemSwiftConfiguration.logLevel = .debug
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -380,6 +380,13 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
 
 
 class TransferTransactionTest : ParameterizedTest {
+    override func setUp() {
+        super.setUp()
+        NemSwiftConfiguration.defaultBaseURL = TestSettings.TEST_HOST
+        NemSwiftConfiguration.logLevel = .debug
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+
     override class func createTestCases() -> [ParameterizedTest] {
         return self.testInvocations.map { TransferTransactionTest(invocation: $0) }
     }

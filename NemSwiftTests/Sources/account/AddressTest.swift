@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+import NemSwift
 
 struct AddressTestFixture {
     let publicKey: String

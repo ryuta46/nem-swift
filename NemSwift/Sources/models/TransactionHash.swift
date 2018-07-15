@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct TransactionHash: Decodable {
-    let data: String?
+public struct TransactionHash: Decodable {
+    public let data: String?
 }

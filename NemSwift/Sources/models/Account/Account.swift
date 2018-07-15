@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Account {
-    let keyPair: KeyPair
-    let address: Address
+public struct Account {
+    public let keyPair: KeyPair
+    public let address: Address
     
     static public func generteAccount(network: Address.Network) -> Account {
         let keyPair = KeyPair.generateKeyPair()

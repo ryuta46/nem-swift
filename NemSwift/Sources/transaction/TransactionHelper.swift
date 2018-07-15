@@ -8,14 +8,14 @@
 
 import Foundation
 
-class TransactionHelper {
-    static let minimuxmTransferFee = 50_000
-    static let maximumXemTransferFee = 1_250_000
-    static let transferFeeFactor = 50_000
+public class TransactionHelper {
+    public static let minimuxmTransferFee = 50_000
+    public static let maximumXemTransferFee = 1_250_000
+    public static let transferFeeFactor = 50_000
     
-    let type: TransactionType
-    let publicKey: [UInt8]
-    let network: Network
+    public let type: TransactionType
+    public let publicKey: [UInt8]
+    public let network: Network
     
     init(type: TransactionType, publicKey: [UInt8], network: Network) {
         self.type = type
@@ -23,7 +23,7 @@ class TransactionHelper {
         self.network = network
     }
     
-    enum TransactionType {
+    public enum TransactionType {
         case Transfer
         case ImportanceTransfer
         case MultisigAgregateModificationTransfer
@@ -33,7 +33,7 @@ class TransactionHelper {
         case MosaicDefinitionCreation
         case MosaicSupplyChange
         
-        func transactionTypeBytes() -> UInt32 {
+        public func transactionTypeBytes() -> UInt32 {
             switch self {
             case .Transfer: return 0x0101
             case .ImportanceTransfer: return 0x0801
@@ -46,7 +46,7 @@ class TransactionHelper {
             }
         }
         
-        func versionBytes() -> UInt32 {
+        public func versionBytes() -> UInt32 {
             switch self {
             case .ImportanceTransfer: return 1
             case .Multisig: return 1
@@ -60,12 +60,12 @@ class TransactionHelper {
         }
     }
     
-    enum Network: UInt32 {
+    public enum Network: UInt32 {
         case mainnet = 0x68000000
         case testnet = 0x98000000
     }
     
-    func genesisDateTime() -> Date {
+    public func genesisDateTime() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
@@ -73,11 +73,11 @@ class TransactionHelper {
         return dateFormatter.date(from: "2015/03/29 00:06:25")!
     }
     
-    func currentTimeFromGenesisTime(date: Date) -> UInt32 {
+    public func currentTimeFromGenesisTime(date: Date) -> UInt32 {
         return UInt32(-genesisDateTime().timeIntervalSince(date))
     }
     
-    func Deadline(from: Date) -> UInt32 {
+    public func deadline(from: Date) -> UInt32 {
         let timeStamp = currentTimeFromGenesisTime(date: from)
         
         // deadlineは24時間後にする
@@ -94,6 +94,6 @@ class TransactionHelper {
             ConvertUtil.toByteArrayWithLittleEndian(UInt32(publicKey.count)) +
             publicKey +
             ConvertUtil.toByteArrayWithLittleEndian(transactionFee) +
-            ConvertUtil.toByteArrayWithLittleEndian(Deadline(from: now))
+            ConvertUtil.toByteArrayWithLittleEndian(deadline(from: now))
     }
 }

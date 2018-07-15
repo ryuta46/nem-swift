@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct NemAnnounceResult: Decodable {
-    let type: UInt
-    let code: UInt
-    let message: String
-    let transactionHash: TransactionHash
-    let innerTransactionHash: TransactionHash?
+public struct NemAnnounceResult: Decodable {
+    public let type: UInt
+    public let code: UInt
+    public let message: String
+    public let transactionHash: TransactionHash
+    public let innerTransactionHash: TransactionHash?
 }
 
 

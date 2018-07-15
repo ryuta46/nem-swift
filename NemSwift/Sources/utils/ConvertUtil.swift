@@ -8,8 +8,8 @@
 
 import Foundation
 
-class ConvertUtil {
-    static func toHexString(_ bytes : [UInt8]) -> String {
+public class ConvertUtil {
+    public static func toHexString(_ bytes : [UInt8]) -> String {
         var result = ""
         bytes.forEach { (element) in
             result = result + String(format:"%02x", element)
@@ -17,7 +17,7 @@ class ConvertUtil {
         return result
     }
     
-    static func toByteArray(_ s: String) -> [UInt8] {
+    public static func toByteArray(_ s: String) -> [UInt8] {
         let len = s.lengthOfBytes(using: .ascii)
         var data: [UInt8] = []
         for i in stride(from:0, to:len, by: 2) {
@@ -30,7 +30,7 @@ class ConvertUtil {
         return data
     }
     
-    static func toNativeArray(_ bytes: [UInt8]) -> UnsafeMutablePointer<UInt8> {
+    public static func toNativeArray(_ bytes: [UInt8]) -> UnsafeMutablePointer<UInt8> {
         let ret = UnsafeMutablePointer<UInt8>.allocate(capacity: bytes.count)
         
         for i in 0..<bytes.count {
@@ -38,7 +38,7 @@ class ConvertUtil {
         }
         return ret
     }
-    static func toArray(_ native: UnsafePointer<UInt8>,_ size: Int) -> [UInt8] {
+    public static func toArray(_ native: UnsafePointer<UInt8>,_ size: Int) -> [UInt8] {
         var ret = [UInt8](repeating: 0, count: size)
         
         for i in 0..<size {
@@ -48,7 +48,7 @@ class ConvertUtil {
     }
     
     
-    static func toByteArrayWithLittleEndian(_ value: UInt32) -> [UInt8] {
+    public static func toByteArrayWithLittleEndian(_ value: UInt32) -> [UInt8] {
         var ret = [UInt8](repeating: 0, count: 4)
         
         for i in 0..<ret.count {
@@ -57,7 +57,7 @@ class ConvertUtil {
         return ret
     }
     
-    static func toByteArrayWithLittleEndian(_ value: UInt64) -> [UInt8] {
+    public static func toByteArrayWithLittleEndian(_ value: UInt64) -> [UInt8] {
         var ret = [UInt8](repeating: 0, count: 8)
         
         for i in 0..<ret.count {
@@ -66,7 +66,7 @@ class ConvertUtil {
         return ret
     }
     
-    static func swapByteArray(_ bytes: [UInt8]) -> [UInt8] {
+    public static func swapByteArray(_ bytes: [UInt8]) -> [UInt8] {
         var ret = [UInt8](repeating:0 ,count: bytes.count)
         
         for i in 0..<bytes.count {
