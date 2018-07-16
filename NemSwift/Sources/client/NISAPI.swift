@@ -33,14 +33,14 @@ public final class NISAPI {
         }
     }
 
-    class NISPostRequest<T: Decodable>: NISRequest {
-        typealias Response = T
-        let baseURL: URL
-        let method: HTTPMethod = .post
-        let path: String
-        let parameters: Any?
+    public class NISPostRequest<T: Decodable>: NISRequest {
+        public typealias Response = T
+        public let baseURL: URL
+        public let method: HTTPMethod = .post
+        public let path: String
+        public let parameters: Any?
 
-        var dataParser: DataParser {
+        public var dataParser: DataParser {
             return DecodableDataParser()
         }
 
