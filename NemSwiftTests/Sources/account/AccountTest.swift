@@ -16,7 +16,7 @@ class AccountTest : XCTestCase {
     func testRandom() {
         for network in [Address.Network.mainnet, Address.Network.testnet, Address.Network.mijin] {
             for _ in 0..<1 {
-                let account = Account.generteAccount(network: network)
+                let account = Account.generateAccount(network: network)
                 print("\"\(account.address.value)\", \"\(account.keyPair.importKey())\"")
 
                 XCTAssertEqual(account.address.network, network)

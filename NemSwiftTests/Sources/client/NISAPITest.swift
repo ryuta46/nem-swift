@@ -347,7 +347,7 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
     if !TestSettings.PRIVATE_KEY.isEmpty {
         account = Account.repairAccount(TestSettings.PRIVATE_KEY, network: .testnet)
     } else {
-        account = Account.generteAccount(network: .testnet)
+        account = Account.generateAccount(network: .testnet)
     }
 
     XCTAssertEqual(TestSettings.ADDRESS, account.address.value)

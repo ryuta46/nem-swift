@@ -12,7 +12,7 @@ public struct Account {
     public let keyPair: KeyPair
     public let address: Address
     
-    static public func generteAccount(network: Address.Network) -> Account {
+    static public func generateAccount(network: Address.Network) -> Account {
         let keyPair = KeyPair.generateKeyPair()
         let address = Address(publicKey: keyPair.publicKey, network: network)
         return Account(keyPair: keyPair, address: address)

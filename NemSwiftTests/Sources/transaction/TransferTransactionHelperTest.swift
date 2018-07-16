@@ -53,7 +53,7 @@ class XemTransferFeeTest : ParameterizedTest {
     func testXemTransferFee() {
         let fixture = self.fixture as! XemTransferFeeTestFixture
 
-        let account = Account.generteAccount(network: .testnet)
+        let account = Account.generateAccount(network: .testnet)
 
         let transactionBytes = TransferTransactionHelper.generateTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
@@ -98,7 +98,7 @@ class MessageTransferFeeTest : ParameterizedTest {
     func testMessageTransferFee() {
         let fixture = self.fixture as! MessageTransferFeeTestFixture
 
-        let account = Account.generteAccount(network: .testnet)
+        let account = Account.generateAccount(network: .testnet)
 
         let transactionBytes = TransferTransactionHelper.generateTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
@@ -155,7 +155,7 @@ class MosaicTransferFeeTest : ParameterizedTest {
     func testMosaicTransferFee() {
         let fixture = self.fixture as! MosaicTransferFeeTestFixture
 
-        let account = Account.generteAccount(network: .testnet)
+        let account = Account.generateAccount(network: .testnet)
 
         let transactionBytes = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
