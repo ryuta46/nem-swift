@@ -9,11 +9,19 @@
 import Foundation
 
 public struct TransferMosaic {
-    let namespace: String
-    let mosaic: String
-    let quantity: UInt64
-    let supply: UInt64
-    let divisibility: Int
+    public let namespace: String
+    public let mosaic: String
+    public let quantity: UInt64
+    public let supply: UInt64
+    public let divisibility: Int
+
+    public init(namespace: String, mosaic: String, quantity: UInt64, supply: UInt64, divisibility: Int) {
+        self.namespace = namespace
+        self.mosaic = mosaic
+        self.quantity = quantity
+        self.supply = supply
+        self.divisibility = divisibility
+    }
 }
 
 public class TransferTransactionHelper: TransactionHelper {

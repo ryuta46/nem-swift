@@ -20,8 +20,8 @@ public struct MosaicDefinition: Decodable {
         return findIntPropertyValue("divisibility")
     }
 
-    public var initialSupply: Int? {
-        return findIntPropertyValue("initialSupply")
+    public var initialSupply: UInt64? {
+        return findUInt64PropertyValue("initialSupply")
     }
 
     public var supplyMutable: Bool? {
@@ -40,6 +40,13 @@ public struct MosaicDefinition: Decodable {
             return nil
         }
         return Int(value)
+    }
+
+    private func findUInt64PropertyValue(_ name: String) -> UInt64? {
+        guard let value = findProperty(name)?.value else {
+            return nil
+        }
+        return UInt64(value)
     }
 
     private func findBoolPropertyValue(_ name: String) -> Bool? {
