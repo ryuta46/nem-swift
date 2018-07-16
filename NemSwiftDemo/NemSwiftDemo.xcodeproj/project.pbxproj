@@ -14,6 +14,7 @@
 		5F37AFEE20FA9A71002315C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37AFEC20FA9A71002315C1 /* LaunchScreen.storyboard */; };
 		5F37AFF920FA9A71002315C1 /* NemSwiftDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37AFF820FA9A71002315C1 /* NemSwiftDemoTests.swift */; };
 		5F37B00420FA9A71002315C1 /* NemSwiftDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37B00320FA9A71002315C1 /* NemSwiftDemoUITests.swift */; };
+		5F415CF820FBF896004C6CA1 /* NemSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F415CF720FBF896004C6CA1 /* NemSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		5F37AFFF20FA9A71002315C1 /* NemSwiftDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NemSwiftDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F37B00320FA9A71002315C1 /* NemSwiftDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NemSwiftDemoUITests.swift; sourceTree = "<group>"; };
 		5F37B00520FA9A71002315C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F415CF720FBF896004C6CA1 /* NemSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NemSwift.framework; path = Carthage/Build/iOS/NemSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F415CF820FBF896004C6CA1 /* NemSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 				5F37AFF720FA9A71002315C1 /* NemSwiftDemoTests */,
 				5F37B00220FA9A71002315C1 /* NemSwiftDemoUITests */,
 				5F37AFE120FA9A6F002315C1 /* Products */,
+				5F415CF620FBF896004C6CA1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +129,14 @@
 			path = NemSwiftDemoUITests;
 			sourceTree = "<group>";
 		};
+		5F415CF620FBF896004C6CA1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5F415CF720FBF896004C6CA1 /* NemSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +147,7 @@
 				5F37AFDC20FA9A6F002315C1 /* Sources */,
 				5F37AFDD20FA9A6F002315C1 /* Frameworks */,
 				5F37AFDE20FA9A6F002315C1 /* Resources */,
+				5F415CF920FC547C004C6CA1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -251,6 +264,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5F415CF920FC547C004C6CA1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/NemSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/APIKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Base32.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5F37AFDC20FA9A6F002315C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -363,7 +397,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -417,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -432,6 +466,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CK945B6495;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = NemSwiftDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,6 +488,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CK945B6495;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = NemSwiftDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

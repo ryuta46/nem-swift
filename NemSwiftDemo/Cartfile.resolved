@@ -1,0 +1,5 @@
+github "antitypical/Result" "3.2.4"
+github "ishkawa/APIKit" "3.2.1"
+github "krzyzanowskim/CryptoSwift" "0.10.0"
+github "norio-nomura/Base32" "0.6.0"
+github "ryuta46/nem-swift" "7b39808f2d7d37217aa7ea547c6b1722e077e4be"

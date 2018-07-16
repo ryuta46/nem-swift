@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,13 +13,87 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="NemSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5j-Sl-f1R">
+                                <rect key="frame" x="8" y="28" width="63" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3T9-cw-BpE">
+                                <rect key="frame" x="8" y="57" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PCX-21-4Bb">
+                                <rect key="frame" x="8" y="86" width="359" height="497"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75e-ak-19r">
+                                <rect key="frame" x="8" y="591" width="175.5" height="30"/>
+                                <state key="normal" title="Account Info"/>
+                                <connections>
+                                    <action selector="onTouchedAccountInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8gK-Nq-YZz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZa-Fa-Y80">
+                                <rect key="frame" x="191.5" y="591" width="175.5" height="30"/>
+                                <state key="normal" title="Send XEM"/>
+                                <connections>
+                                    <action selector="onTouchedSendXem:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1gQ-Zk-1i7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhg-dB-gGL">
+                                <rect key="frame" x="191.5" y="629" width="175.5" height="30"/>
+                                <state key="normal" title="Send Mosic"/>
+                                <connections>
+                                    <action selector="onTouchedSendMosaic:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lAu-zo-LMN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zq-j5-PgP">
+                                <rect key="frame" x="8" y="629" width="175.5" height="30"/>
+                                <state key="normal" title="Mosic Info"/>
+                                <connections>
+                                    <action selector="onTouchedMosaicInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xGb-6j-MBI"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3T9-cw-BpE" firstAttribute="top" secondItem="k5j-Sl-f1R" secondAttribute="bottom" constant="8" id="2uZ-Qn-ocw"/>
+                            <constraint firstItem="k5j-Sl-f1R" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="318-tp-1wS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="CZa-Fa-Y80" secondAttribute="trailing" constant="8" id="4bb-Bt-ytg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Mhg-dB-gGL" secondAttribute="bottom" constant="8" id="67r-JN-AQp"/>
+                            <constraint firstItem="CZa-Fa-Y80" firstAttribute="width" secondItem="75e-ak-19r" secondAttribute="width" id="6gr-ft-Grs"/>
+                            <constraint firstItem="PCX-21-4Bb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="D0F-YB-mGN"/>
+                            <constraint firstItem="k5j-Sl-f1R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="Jun-K0-hfq"/>
+                            <constraint firstItem="3T9-cw-BpE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="LQJ-41-lJo"/>
+                            <constraint firstItem="75e-ak-19r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="Mka-go-zvp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Zq-j5-PgP" secondAttribute="bottom" constant="8" id="Yjk-aX-EBP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mhg-dB-gGL" secondAttribute="trailing" constant="8" id="ZII-dI-G4L"/>
+                            <constraint firstItem="Mhg-dB-gGL" firstAttribute="width" secondItem="8Zq-j5-PgP" secondAttribute="width" id="Zow-LI-bgI"/>
+                            <constraint firstItem="PCX-21-4Bb" firstAttribute="top" secondItem="3T9-cw-BpE" secondAttribute="bottom" constant="8" id="hWn-FN-nOq"/>
+                            <constraint firstItem="Mhg-dB-gGL" firstAttribute="leading" secondItem="8Zq-j5-PgP" secondAttribute="trailing" constant="8" id="iEM-Ef-Dpz"/>
+                            <constraint firstItem="8Zq-j5-PgP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="lkB-HG-dSi"/>
+                            <constraint firstItem="Mhg-dB-gGL" firstAttribute="top" secondItem="CZa-Fa-Y80" secondAttribute="bottom" constant="8" id="m83-SE-AJM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PCX-21-4Bb" secondAttribute="trailing" constant="8" id="opC-qv-Oj6"/>
+                            <constraint firstItem="CZa-Fa-Y80" firstAttribute="leading" secondItem="75e-ak-19r" secondAttribute="trailing" constant="8" id="pYk-oe-S1j"/>
+                            <constraint firstItem="75e-ak-19r" firstAttribute="top" secondItem="PCX-21-4Bb" secondAttribute="bottom" constant="8" id="vsX-Cp-ymR"/>
+                            <constraint firstItem="8Zq-j5-PgP" firstAttribute="top" secondItem="75e-ak-19r" secondAttribute="bottom" constant="8" id="z3S-aT-BMQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="textAddress" destination="3T9-cw-BpE" id="9Ek-kV-Jrv"/>
+                        <outlet property="textMessage" destination="PCX-21-4Bb" id="jgT-QT-ZhY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
