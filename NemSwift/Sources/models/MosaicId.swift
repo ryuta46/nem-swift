@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MosaicId: Decodable {
-    let namespaceId: String
-    let name: String
+public struct MosaicId: Decodable {
+    public let namespaceId: String
+    public let name: String
 }

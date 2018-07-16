@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct MosaicDefinitionMetaDataPairs: Decodable {
-    let data: [MosaicDefinitionMetaDataPair]
+public struct MosaicDefinitionMetaDataPairs: Decodable {
+    public let data: [MosaicDefinitionMetaDataPair]
 }
 
-struct MosaicDefinitionMetaDataPair: Decodable {
-    let meta: MosaicMetaData
-    let mosaic: MosaicDefinition
+public struct MosaicDefinitionMetaDataPair: Decodable {
+    public let meta: MosaicMetaData
+    public let mosaic: MosaicDefinition
 }

@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct TransactionMetaDataPairs: Decodable {
-    let data: [TransactionMetaDataPair]
+public struct TransactionMetaDataPairs: Decodable {
+    public let data: [TransactionMetaDataPair]
 }
 
-struct TransactionMetaDataPair: Decodable {
-    let meta: TransactionMetaData
-    let transaction: Transaction
+public struct TransactionMetaDataPair: Decodable {
+    public let meta: TransactionMetaData
+    public let transaction: Transaction
 }

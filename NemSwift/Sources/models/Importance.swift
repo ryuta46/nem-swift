@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct Importances: Decodable {
-    let data: [AccountImportance]
+public struct Importances: Decodable {
+    public let data: [AccountImportance]
 }
 
-struct AccountImportance: Decodable {
-    let address: String
-    let importance: Importance
+public struct AccountImportance: Decodable {
+    public let address: String
+    public let importance: Importance
 }
 
-struct Importance: Decodable {
-    let isSet: Int
-    let score: Double?
-    let ev: Double?
-    let height: UInt?
+public struct Importance: Decodable {
+    public let isSet: Int
+    public let score: Double?
+    public let ev: Double?
+    public let height: UInt?
 }

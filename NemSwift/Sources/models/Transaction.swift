@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct Transaction: Decodable {
-    let timeStamp: UInt
-    let amount: UInt?
-    let signature: String
-    let fee: UInt
-    let recipient: String?
-    let type: UInt
-    let version: Int
-    let signer: String
-    let mosaics: [Mosaic]?
-    let message: TransactionMessage?
+public struct Transaction: Decodable {
+    public let timeStamp: UInt
+    public let amount: UInt?
+    public let signature: String
+    public let fee: UInt
+    public let recipient: String?
+    public let type: UInt
+    public let version: Int
+    public let signer: String
+    public let mosaics: [Mosaic]?
+    public let message: TransactionMessage?
 }

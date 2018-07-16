@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct TransactionMetaData: Decodable {
-    let height: Int
-    let id: Int
-    let hash: TransactionHash
+public struct TransactionMetaData: Decodable {
+    public let height: Int
+    public let id: Int
+    public let hash: TransactionHash
 }

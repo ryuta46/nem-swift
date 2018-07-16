@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Namespaces: Decodable {
-    let data: [Namespace]
+public struct Namespaces: Decodable {
+    public let data: [Namespace]
 }
 
-struct Namespace: Decodable {
-    let fqn: String
-    let owner: String
-    let height: UInt
+public struct Namespace: Decodable {
+    public let fqn: String
+    public let owner: String
+    public let height: UInt
 }

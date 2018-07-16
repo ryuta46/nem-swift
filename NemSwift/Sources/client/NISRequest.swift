@@ -9,12 +9,12 @@
 import Foundation
 import APIKit
 
-protocol NISRequest: Request {
+public protocol NISRequest: Request {
     
 }
 
 extension NISRequest where Response: Decodable {
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
+    public func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response {
         guard let data = object as? Data else {
             throw ResponseError.unexpectedObject(object)
         }
@@ -22,13 +22,13 @@ extension NISRequest where Response: Decodable {
     }
 }
 
-struct NISError: Error, Codable {
-    let timeStamp: UInt?
-    let error: String?
-    let message: String?
-    let status: UInt?
+public struct NISError: Error, Codable {
+    public let timeStamp: UInt?
+    public let error: String?
+    public let message: String?
+    public let status: UInt?
     
-    init(object: Any) {
+    public init(object: Any) {
         let decodar = JSONDecoder()
         let obj = try! decodar.decode(NISError.self, from: object as! Data)
         self.timeStamp = obj.timeStamp
@@ -39,12 +39,12 @@ struct NISError: Error, Codable {
 }
 
 extension NISRequest {
-    func intercept(urlRequest: URLRequest) throws -> URLRequest {
+    public func intercept(urlRequest: URLRequest) throws -> URLRequest {
         Logger.i("Request: \(urlRequest.description)")
         return urlRequest
     }
 
-    func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
+    public func intercept(object: Any, urlResponse: HTTPURLResponse) throws -> Any {
         Logger.i("Response code: \(urlResponse.statusCode)")
         let res = String(data: object as! Data, encoding: .utf8)!
         Logger.i("Response body: \(res)")

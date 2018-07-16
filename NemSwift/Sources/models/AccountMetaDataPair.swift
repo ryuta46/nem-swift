@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AccountMetaDataPair: Decodable {
-    let meta: AccountMetaData
-    let account: AccountInfo
+public struct AccountMetaDataPair: Decodable {
+    public let meta: AccountMetaData
+    public let account: AccountInfo
 }

@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct AccountMetaData: Decodable {
-    let status: String
-    let remoteStatus: String
-    let cosignatoryOf: [AccountInfo]
-    let cosignatories: [AccountInfo]
+public struct AccountMetaData: Decodable {
+    public let status: String
+    public let remoteStatus: String
+    public let cosignatoryOf: [AccountInfo]
+    public let cosignatories: [AccountInfo]
 }

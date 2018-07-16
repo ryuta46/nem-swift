@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TransactionMessage: Decodable {
-    let payload: String?
-    let type: UInt?
+public struct TransactionMessage: Decodable {
+    public let payload: String?
+    public let type: UInt?
 }

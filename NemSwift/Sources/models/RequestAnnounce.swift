@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct RequestAnnounce: Codable {
-    let data: String
-    let signature: String
+public struct RequestAnnounce: Codable {
+    public let data: String
+    public let signature: String
     
     public func toJsonString() -> String {
         let data = try! JSONEncoder().encode(self)
@@ -19,7 +19,7 @@ struct RequestAnnounce: Codable {
         return jsonStr!
     }
     
-    static func generateRequestAnnounce(requestAnnounce: [UInt8], keyPair:KeyPair) -> RequestAnnounce {
+    public static func generateRequestAnnounce(requestAnnounce: [UInt8], keyPair:KeyPair) -> RequestAnnounce {
         let signatureBytes = keyPair.sign(message: requestAnnounce)
         let data = ConvertUtil.toHexString(requestAnnounce)
         let signature = ConvertUtil.toHexString(signatureBytes)

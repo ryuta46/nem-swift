@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct Harvests: Decodable {
-    let data: [Harvest]
+public struct Harvests: Decodable {
+    public let data: [Harvest]
 }
 
-struct Harvest: Decodable {
-    let timeStamp: UInt
-    let blockHash: AccountHarvestBlockHash
-    let totalFee: UInt
-    let height: UInt
+public struct Harvest: Decodable {
+    public let timeStamp: UInt
+    public let blockHash: AccountHarvestBlockHash
+    public let totalFee: UInt
+    public let height: UInt
 }
 
-struct AccountHarvestBlockHash: Decodable{
-    let data: String
+public struct AccountHarvestBlockHash: Decodable{
+    public let data: String
 }

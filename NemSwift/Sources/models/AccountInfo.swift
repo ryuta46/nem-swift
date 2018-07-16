@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct AccountInfo: Decodable {
-    let address: String
-    let balance: Int
-    let vestedBalance: Int
-    let importance: Double
-    let publicKey: String?
-    let label: String?
-    let harvestedBlocks: Int
+public struct AccountInfo: Decodable {
+    public let address: String
+    public let balance: Int
+    public let vestedBalance: Int
+    public let importance: Double
+    public let publicKey: String?
+    public let label: String?
+    public let harvestedBlocks: Int
 }

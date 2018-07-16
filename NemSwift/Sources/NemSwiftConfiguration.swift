@@ -8,8 +8,8 @@
 
 import Foundation
 
-class NemSwiftConfiguration {
-    enum LogLevel: Int {
+public class NemSwiftConfiguration {
+    public enum LogLevel: Int {
         case none    = 0
         case error   = 1
         case warning = 2
@@ -24,7 +24,7 @@ class NemSwiftConfiguration {
 
     // Configurations for library user
 
-    static var logLevel = LogLevel.none
-    static var defaultBaseURL: URL = URL(string: "http://localhost:7890")!
+    public static var logLevel = LogLevel.none
+    public static var defaultBaseURL: URL = URL(string: "http://localhost:7890")!
 
 }

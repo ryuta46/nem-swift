@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct NISErrorResponse: Decodable {
-    let timeStamp: UInt
-    let error: String
-    let message: String
-    let status: UInt
+public struct NISErrorResponse: Decodable {
+    public let timeStamp: UInt
+    public let error: String
+    public let message: String
+    public let status: UInt
 }

@@ -12,14 +12,14 @@ import APIKit
 public final class NISAPI {
     private init() {}
 
-    class NISGetRequest<T: Decodable>: NISRequest {
-        typealias Response = T
-        let baseURL: URL
-        let method: HTTPMethod = .get
-        let path: String
-        let parameters: Any?
+    public class NISGetRequest<T: Decodable>: NISRequest {
+        public typealias Response = T
+        public let baseURL: URL
+        public let method: HTTPMethod = .get
+        public let path: String
+        public let parameters: Any?
 
-        var dataParser: DataParser {
+        public var dataParser: DataParser {
             return DecodableDataParser()
         }
 
@@ -56,108 +56,108 @@ public final class NISAPI {
 
 
     // 3.1.2 Requesting the account data
-    class AccountGet: NISGetRequest<AccountMetaDataPair> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
+    public class AccountGet: NISGetRequest<AccountMetaDataPair> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
             super.init(baseURL: baseURL, path: "/account/get", parameters: ["address": address])
         }
     }
 
     // 3.1.2 Requesting the account data from public key
-    class AccountGetFromPublicKey: NISGetRequest<AccountMetaDataPair> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, publicKey: String) {
+    public class AccountGetFromPublicKey: NISGetRequest<AccountMetaDataPair> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, publicKey: String) {
             super.init(baseURL: baseURL, path: "/account/get/from-public-key", parameters: ["publicKey": publicKey])
         }
     }
     
     // 3.1.3 Requesting the original account data for a delegate account
-    class AccountGetForwarded: NISGetRequest<AccountMetaDataPair> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
+    public class AccountGetForwarded: NISGetRequest<AccountMetaDataPair> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
             super.init(baseURL: baseURL, path: "/account/get/forwarded", parameters: ["address": address])
         }
     }
     
     // 3.1.3 Requesting the original account data for a delegate account from public key
-    class AccountGetForwardedFromPublicKey: NISGetRequest<AccountMetaDataPair> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, publicKey: String) {
+    public class AccountGetForwardedFromPublicKey: NISGetRequest<AccountMetaDataPair> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, publicKey: String) {
             super.init(baseURL: baseURL, path: "/account/get/forwarded/from-public-key", parameters: ["publicKey": publicKey])
         }
     }
     
     // 3.1.4 Requesting the account status
-    class AccountStatus: NISGetRequest<AccountMetaData> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
+    public class AccountStatus: NISGetRequest<AccountMetaData> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
             super.init(baseURL: baseURL, path: "/account/status", parameters: ["address": address])
         }
     }
 
     // 3.1.5 Requesting transaction data for an account
-    class AccountTransfersIncoming: NISGetRequest<TransactionMetaDataPairs> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
+    public class AccountTransfersIncoming: NISGetRequest<TransactionMetaDataPairs> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
             super.init(baseURL: baseURL, path: "/account/transfers/incoming",
                        parameters: ["address": address, "hash": hash, "id": id])
         }
     }
     
-    class AccountTransfersOutgoing: NISGetRequest<TransactionMetaDataPairs> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
+    public class AccountTransfersOutgoing: NISGetRequest<TransactionMetaDataPairs> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
             super.init(baseURL: baseURL, path: "/account/transfers/outgoing",
                        parameters: ["address": address, "hash": hash, "id": id])
         }
     }
     
-    class AccountTransfersAll: NISGetRequest<TransactionMetaDataPairs> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
+    public class AccountTransfersAll: NISGetRequest<TransactionMetaDataPairs> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil, id: Int? = nil) {
             super.init(baseURL: baseURL, path: "/account/transfers/all",
                        parameters: ["address": address, "hash": hash, "id": id])
         }
     }
     
-    class AccountUnconfirmedTransactions: NISGetRequest<UnconfirmedTransactionMetaDataPairs> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
+    public class AccountUnconfirmedTransactions: NISGetRequest<UnconfirmedTransactionMetaDataPairs> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
             super.init(baseURL: baseURL, path: "/account/unconfirmedTransactions", parameters: ["address": address])
         }
     }
     
     // 3.1.7 Requesting harvest info data for an account
-    class AccountHarvests: NISGetRequest<Harvests> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil) {
+    public class AccountHarvests: NISGetRequest<Harvests> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, hash: String? = nil) {
             super.init(baseURL: baseURL, path: "/account/harvests",
                        parameters: ["address": address, "hash": hash])
         }
     }
     
     // 3.1.8 Retrieving account importances for accounts
-    class AccountImportances: NISGetRequest<Importances> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL) {
+    public class AccountImportances: NISGetRequest<Importances> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL) {
             super.init(baseURL: baseURL, path: "/account/importances")
         }
     }
     
     // 3.1.9 Retrieving namespaces that an account owns
-    class AccountNamespacePage: NISGetRequest<Namespaces> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, parent: String? = nil, id: Int? = nil, pageSize: Int? = nil) {
+    public class AccountNamespacePage: NISGetRequest<Namespaces> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String, parent: String? = nil, id: Int? = nil, pageSize: Int? = nil) {
             super.init(baseURL: baseURL, path: "/account/namespace/page",
                        parameters: ["address": address, "parent": parent, "id": id, "pageSize": pageSize])
         }
     }
     
-    class NamespaceMosaicDefintionPage: NISGetRequest<MosaicDefinitionMetaDataPairs> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, namespace: String, id: Int? = nil, pageSize: Int? = nil) {
+    public class NamespaceMosaicDefintionPage: NISGetRequest<MosaicDefinitionMetaDataPairs> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, namespace: String, id: Int? = nil, pageSize: Int? = nil) {
             super.init(baseURL: baseURL, path: "/namespace/mosaic/definition/page",
                        parameters: ["namespace": namespace, "id": id, "pagesize": pageSize])
         }
     }
     
     // Retrieving mosaics that an account owns
-    class AccountMosaicOwned: NISGetRequest<Mosaics> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
+    public class AccountMosaicOwned: NISGetRequest<Mosaics> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
             super.init(baseURL: baseURL, path: "/account/mosaic/owned", parameters: ["address": address])
         }
     }
     
     // 7.9.2 Sending the data to NIS
-    class TransactionAnnounce: NISPostRequest<NemAnnounceResult> {
-        init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, data: String, signature: String) {
+    public class TransactionAnnounce: NISPostRequest<NemAnnounceResult> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, data: String, signature: String) {
             super.init(baseURL: baseURL, path: "/transaction/announce", parameters: ["data": data, "signature": signature])
         }
     }

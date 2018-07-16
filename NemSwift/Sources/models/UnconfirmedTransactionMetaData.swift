@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct UnconfirmedTransactionMetaData: Decodable {
-    let data: String?
+public struct UnconfirmedTransactionMetaData: Decodable {
+    public let data: String?
 }

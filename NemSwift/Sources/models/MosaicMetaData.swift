@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct MosaicMetaData: Decodable {
-    let id: Int
+public struct MosaicMetaData: Decodable {
+    public let id: Int
 }

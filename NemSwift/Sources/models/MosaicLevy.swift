@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct MosaicLevy: Decodable {
-    let type: UInt
-    let recipient: String
-    let mosaicId: MosaicId
-    let fee: UInt
+public struct MosaicLevy: Decodable {
+    public let type: UInt
+    public let recipient: String
+    public let mosaicId: MosaicId
+    public let fee: UInt
 }

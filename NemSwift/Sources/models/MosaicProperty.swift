@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MosaicProperty: Decodable {
-    let name: String
-    let value: String
+public struct MosaicProperty: Decodable {
+    public let name: String
+    public let value: String
 }

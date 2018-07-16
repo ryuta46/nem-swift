@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct MosaicDefinition: Decodable {
-    let creator: String
-    let id: MosaicId
-    let description: String
-    let properties: [MosaicProperty]
-    let levy: MosaicLevy?
+public struct MosaicDefinition: Decodable {
+    public let creator: String
+    public let id: MosaicId
+    public let description: String
+    public let properties: [MosaicProperty]
+    public let levy: MosaicLevy?
 
     private enum CodingKeys: String, CodingKey {
         case creator
@@ -23,7 +23,7 @@ struct MosaicDefinition: Decodable {
         case levy
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         // required parameters
         creator = try values.decode(String.self, forKey: .creator)
