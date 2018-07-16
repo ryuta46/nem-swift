@@ -15,6 +15,41 @@ public struct MosaicDefinition: Decodable {
     public let properties: [MosaicProperty]
     public let levy: MosaicLevy?
 
+
+    public var divisibility: Int? {
+        return findIntPropertyValue("divisibility")
+    }
+
+    public var initialSupply: Int? {
+        return findIntPropertyValue("initialSupply")
+    }
+
+    public var supplyMutable: Bool? {
+        return findBoolPropertyValue("supplyMutable")
+    }
+
+    public var transferable: Bool? {
+        return findBoolPropertyValue("transferable")
+    }
+
+    private func findProperty(_ name: String) ->  MosaicProperty? {
+        return properties.filter { $0.name == name }.first
+    }
+    private func findIntPropertyValue(_ name: String) -> Int? {
+        guard let value = findProperty(name)?.value else {
+            return nil
+        }
+        return Int(value)
+    }
+
+    private func findBoolPropertyValue(_ name: String) -> Bool? {
+        guard let value = findProperty(name)?.value else {
+            return nil
+        }
+        return Bool(value)
+    }
+
+
     private enum CodingKeys: String, CodingKey {
         case creator
         case id

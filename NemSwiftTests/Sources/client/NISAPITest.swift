@@ -312,6 +312,15 @@ class NISAPITest: XCTestCase {
 
         response.data.forEach { metaDataPair in
             XCTAssertEqual(TestSettings.RECEIVER_PUBLIC, metaDataPair.mosaic.creator)
+
+            if metaDataPair.mosaic.id.name == "ryuta" {
+                XCTAssertEqual("Test mosaic for NEM API", metaDataPair.mosaic.description)
+                XCTAssertEqual(0, metaDataPair.mosaic.divisibility)
+                XCTAssertEqual(1_000_000, metaDataPair.mosaic.initialSupply)
+                XCTAssertEqual(true, metaDataPair.mosaic.supplyMutable)
+                XCTAssertEqual(true, metaDataPair.mosaic.transferable)
+                XCTAssertNil(metaDataPair.mosaic.levy)
+            }
         }
     }
 
