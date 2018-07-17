@@ -24,7 +24,7 @@ Use Carthage or Cocoapods.
     TARGETS -> YourTarget -> Linked Frameworks and Libraries  
     Press "+" -> Add Other... -> Select "NemSwift.framework" in Carthage/Build/iOS
 
-    ![Link NemSwift.framework](carthage_setup_link.png)
+    ![Link NemSwift.framework](../assets/carthage_setup_link.png?raw=true)
 
 4. Add Run Script in Build Phases  
     Build Phases -> Press "+" -> New Run Script Phase  
@@ -32,7 +32,7 @@ Use Carthage or Cocoapods.
     Script `/usr/local/bin/carthage copy-frameworks`  
     Add "NemSwift.framework", "APIKit.framework", "Result.framework", "Base32.framework" and "CryptoSwift.framework" to input file
 
-    ![Copy frameworks](carthage_setup_copy_framework.png)
+    ![Copy frameworks](../assets/carthage_setup_copy_framework.png?raw=true)
 
 ### Cocoapods
 
