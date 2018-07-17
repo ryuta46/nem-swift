@@ -129,7 +129,7 @@ class ViewController: UIViewController {
         if let privateKey = loadPrivatekey() {
             return Account.repairAccount(privateKey, network: Address.Network.testnet)
         } else {
-            let account = Account.generteAccount(network: Address.Network.testnet)
+            let account = Account.generateAccount(network: Address.Network.testnet)
             savePrivateKey(privateKey: account.keyPair.importKey())
             return account
         }
@@ -217,13 +217,13 @@ class ViewController: UIViewController {
 
     }
 
-    private func sendXem(_ receiverAddress: String, _ microXem: UInt64) {
+    private func sendXem(_ recipientAddress: String, _ microXem: UInt64) {
         clearMessage()
         // Create transfer transaction
         let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: TransactionHelper.Network.testnet,
-            recipientAddress: receiverAddress,
+            recipientAddress: recipientAddress,
             amount: microXem,
             messageType: TransferTransactionHelper.MessageType.Plain,
             message: "")
@@ -250,7 +250,7 @@ class ViewController: UIViewController {
         }
     }
 
-    private func sendMosaic(_ receiverAddress: String, _ quantity: UInt64) {
+    private func sendMosaic(_ recipientAddress: String, _ quantity: UInt64) {
         clearMessage()
 
         guard let mosaicSupply = mosaicSupply,
@@ -261,14 +261,14 @@ class ViewController: UIViewController {
         let mosaic = TransferMosaic(namespace: Constants.MOSAIC_NAMESPACE_ID,
                                     mosaic: Constants.MOSAIC_NAME,
                                     quantity: quantity,
-                                    supply: UInt64(mosaicSupply),
+                                    supply: mosaicSupply,
                                     divisibility: mosaicDivisibility)
 
         // Create transfer transaction
         let transaction = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: TransactionHelper.Network.testnet,
-            recipientAddress: receiverAddress,
+            recipientAddress: recipientAddress,
             mosaics: [mosaic],
             messageType: TransferTransactionHelper.MessageType.Plain,
             message: "")
