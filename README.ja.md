@@ -2,54 +2,54 @@ Read this in other languages: [English](README.md), [日本語](README.ja.md)
 
 # nem-swift
 
-nem-swift is a client library for easy use of NEM(New Economy Movement) API.
+nem-swift は NEM(New Economy Movement) のAPI を簡単に扱うためのライブラリです。
 
-This library wraps HTTP requests to NIS(NEM Infrastructure Server) and HTTP responses from NIS.
+このライブラリは、NIS(NEM Infrastructure Server) に対してのHTTPリクエストと、NISからのHTTPのレスポンスのラッパーとして機能します。
 
-This library also provides crypt related utilities like key pair generation signing and verifying.
+また、このライブラリではキーペアの作成や署名、署名検証といった暗号化関連のユーティリティも提供します。
 
-## Sample
+## サンプル
 
-Sample projects are in [NemSwiftDemo](NemSwiftDemo) directory.
+サンプルプロジェクトが [NemSwiftDemo](NemSwiftDemo) ディレクトリにあります。ご参照ください。
 
-## Installation
+## インストール
 
-Use Carthage or Cocoapods.
+Carthage か Cocoapods を利用できます。
 
 ### Carthage
 
-1. Insert `github "ryuta46/nem-swift"` to your Cartfile.
-2. Run `carthage update`.
-3. Add "NemSwift.framework" to Linked Frameworks and Libraries  
+1. Cartfile に `github "ryuta46/nem-swift"` を追加.
+2. `carthage update` を実行.
+3. "NemSwift.framework" を Linked Frameworks and Libraries に追加
     TARGETS -> YourTarget -> Linked Frameworks and Libraries  
-    Press "+" -> Add Other... -> Select "NemSwift.framework" in Carthage/Build/iOS
+    "+" をクリック -> Add Other... -> Carthage/Build/iOS にある "NemSwift.framework" を選択 
 
     ![Link NemSwift.framework](../assets/carthage_setup_link.png?raw=true)
 
-4. Add Run Script in Build Phases  
-    Build Phases -> Press "+" -> New Run Script Phase  
+4. Build Phases に Run Script を追加
+    Build Phases -> "+" をクリック -> New Run Script Phase  
     Shell `/bin/sh`  
     Script `/usr/local/bin/carthage copy-frameworks`  
-    Add "NemSwift.framework", "APIKit.framework", "Result.framework", "Base32.framework" and "CryptoSwift.framework" to input file
+    "NemSwift.framework"、"APIKit.framework"、"Result.framework"、"Base32.framework"、"CryptoSwift.framework" を input file として追加
 
     ![Copy frameworks](../assets/carthage_setup_copy_framework.png?raw=true)
 
 ### Cocoapods
 
-## How to use
+## 使用方法
 
-### Setup
+### セットアップ
 
-#### Configure ATS
+#### ATS 設定
 
-If you want to access to NIS with HTTP (not HTTPS) protocol, configure ATS (App Transport Security) in Info.plist file.
+もし NIS に対して HTTP (非HTTPS) protocol でアクセスする場合、ATS (App Transport Security) の設定を Info.plist ファイルで行う必要があります。
 
-See [ATS Configuration Basics](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW35) for details.
+詳細は [ATS Configuration Basics](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW35) を参照。
 
 
-#### Setup Library
+#### ライブラリのセットアップ
 
-nem-swift has global configurations in NemSwiftConfiguration class.
+nem-swift は NemSwiftConfiguration にグローバルな設定を持っています。
 
 ```swift
 // Default URL of NIS
@@ -59,22 +59,22 @@ NemSwiftConfiguration.logLevel = NemSwiftConfiguration.LogLevel.debug
 ```
 
 
-### Account generation
+### アカウント作成
 
-'Account' generates a NEM account. Network version is required( for main network or test network).
+'Account' クラスで NEM のアカウントを作成します。Network バージョンの指定が必要です。( メインネットまたはテストネット)。
 
 ```swift
 let account = Account.generateAccount(network: Address.Network.testnet)
 ```
 
-If you have private key already, retrieve the account from the key.
+秘密鍵がすでにあるのであれば、その情報からアカウントを生成することも出来ます。
 ```swift
 let account = Account.repairAccount(privateKey, network: Address.Network.testnet)
 ```
 
-### Getting an account information
+### アカウント情報の取得
 
-To get an account information,
+アカウント情報を取得する場合
 
 ```swift
 import NemSwift
@@ -93,8 +93,8 @@ Session.send(NISAPI.AccountGet(address: account.address.value)) { result in
 }
 ```
 
-NISAPI has classes corresponding to NEM APIs.  
-You can override NIS URL with baseURL parameter when you create a request.
+NISAPI 内に NEM の 各API に対応したクラスがあります。  
+NIS の URL は baseURL パラメータで上書きできます。
 
 ```swift
 Session.send(NISAPI.AccountGet(baseURL: URL(string:"http://customnis:7890")!,  address: account.address.value)) { result in
@@ -105,9 +105,9 @@ Session.send(NISAPI.AccountGet(baseURL: URL(string:"http://customnis:7890")!,  a
 
 ### Sending XEM and Mosaics
 
-TransferTransactionHelper is an utility to create transactions which required account signing.
+送金など、署名が必要なトランザクションの生成は 'TransferTransactionHelper' を使います。
 
-To send XEM,
+XEMを送金する場合
 ```swift
 // Create XEM transfer transaction
 let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
@@ -131,9 +131,10 @@ Session.send(NISAPI.TransactionAnnounce(data: signedTransaction.data, signature:
     }
 }
 ```
-Note that the amount specified above is micro nem unit. ( 1 XEM = 1,000,000 micro nem)
+上記で指定している amount はマイクロ NEM 単位であることに注意してください。( 1 XEM = 1,000,000 マイクロ NEM)
 
-To send mosaic,
+モザイク送信をする場合
+
 ```swift
 let mosaic = TransferMosaic(namespace: "mosaicNamespaceId",
                             mosaic: "mosaicName",
@@ -151,9 +152,9 @@ let transaction = TransferTransactionHelper.generateMosaicTransferRequestAnnounc
     message: "")
 ```
 
-Mosaic's supply and divisibility are used to calculate minimum transaction fee.
+モザイクの供給量や可分性は、最低手数料を計算する際に用いられます。
 
-You can get these parameters of mosaic with 'namespaceMosaicDefinitionPage' if you don't know them.
+もしそれらの値が不明な場合は、'NamespaceMosaicDefinitionPage' を使って取得することが出来ます。
 
 ```swift
 Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: "mosaicNameSpaceId")) { result in
