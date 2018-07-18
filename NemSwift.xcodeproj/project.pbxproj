@@ -64,7 +64,6 @@
 		5F37B0B820FAAD05002315C1 /* NemSwiftConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */; };
 		5F37B0BF20FAAE76002315C1 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A01FC2D6A30096808F /* APIKit.framework */; };
 		5F37B0C020FAAE76002315C1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A31FC2D7420096808F /* Result.framework */; };
-		5F37B0C120FAAE76002315C1 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2E26461FBD7B0C004D4425 /* Base32.framework */; };
 		5F37B0C220FAAE76002315C1 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */; };
 		5F37B0C720FAE232002315C1 /* ed25519_sha3_512.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E31D1241FBC2119006CFB33 /* ed25519_sha3_512.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5F37B0C820FAE603002315C1 /* ed25519.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E31CFC51FBC18D8006CFB33 /* ed25519.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -230,7 +229,6 @@
 			files = (
 				5F37B0BF20FAAE76002315C1 /* APIKit.framework in Frameworks */,
 				5F37B0C020FAAE76002315C1 /* Result.framework in Frameworks */,
-				5F37B0C120FAAE76002315C1 /* Base32.framework in Frameworks */,
 				5F37B0C220FAAE76002315C1 /* CryptoSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,7 +654,6 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Base32.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/APIKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 			);
