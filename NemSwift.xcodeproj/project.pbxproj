@@ -7,21 +7,212 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E31CFA81FBC112D006CFB33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */; };
-		3E31CFAA1FBC112D006CFB33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFA91FBC112D006CFB33 /* ViewController.swift */; };
-		3E31CFAD1FBC112D006CFB33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E31CFAB1FBC112D006CFB33 /* Main.storyboard */; };
-		3E31CFAF1FBC112D006CFB33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E31CFAE1FBC112D006CFB33 /* Assets.xcassets */; };
-		3E31CFB21FBC112D006CFB33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E31CFB01FBC112D006CFB33 /* LaunchScreen.storyboard */; };
+		5F37B04020FAABE4002315C1 /* NemSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F37B03720FAABE4002315C1 /* NemSwift.framework */; };
+		5F37B04920FAABE4002315C1 /* NemSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F37B03920FAABE4002315C1 /* NemSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5F37B05520FAAC30002315C1 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */; };
+		5F37B05620FAAC8E002315C1 /* TransactionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BE31FC568D800D5DCD3 /* TransactionHelper.swift */; };
+		5F37B05820FAAC99002315C1 /* TransferTransactionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BE51FC574A800D5DCD3 /* TransferTransactionHelper.swift */; };
+		5F37B05A20FAACA3002315C1 /* NISRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CA6A51FC2D9440096808F /* NISRequest.swift */; };
+		5F37B05B20FAACA3002315C1 /* DecodableDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CA6A71FC2D9EB0096808F /* DecodableDataParser.swift */; };
+		5F37B05C20FAACA3002315C1 /* NISAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF787F1FC3C768001AA416 /* NISAPI.swift */; };
+		5F37B06020FAACAC002315C1 /* ConvertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31D1311FBC2B5C006CFB33 /* ConvertUtil.swift */; };
+		5F37B06120FAACAC002315C1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51BA20571C6D00EE4F2C /* Logger.swift */; };
+		5F37B06420FAACB4002315C1 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9CA6AA1FC2DD5B0096808F /* AccountInfo.swift */; };
+		5F37B06520FAACB4002315C1 /* AccountMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF787D1FC3B5A2001AA416 /* AccountMetaData.swift */; };
+		5F37B06620FAACB4002315C1 /* AccountMetaDataPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF78811FC3C7D9001AA416 /* AccountMetaDataPair.swift */; };
+		5F37B06720FAACB4002315C1 /* TransactionMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF78831FC42700001AA416 /* TransactionMetaData.swift */; };
+		5F37B06820FAACB4002315C1 /* Mosaic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF78871FC42BAA001AA416 /* Mosaic.swift */; };
+		5F37B06920FAACB4002315C1 /* MosaicId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF78891FC42C05001AA416 /* MosaicId.swift */; };
+		5F37B06A20FAACB4002315C1 /* MosaicMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE9A061FD1302C0046A05B /* MosaicMetaData.swift */; };
+		5F37B06B20FAACB4002315C1 /* MosaicDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE99FE1FD12C6D0046A05B /* MosaicDefinition.swift */; };
+		5F37B06C20FAACB4002315C1 /* MosaicProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE9A001FD12D210046A05B /* MosaicProperty.swift */; };
+		5F37B06D20FAACB4002315C1 /* MosaicDefinitionMetaDataPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE9A041FD12FF10046A05B /* MosaicDefinitionMetaDataPair.swift */; };
+		5F37B06E20FAACB4002315C1 /* MosaicLevy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE9A081FD130FE0046A05B /* MosaicLevy.swift */; };
+		5F37B06F20FAACB4002315C1 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF78851FC42920001AA416 /* Transaction.swift */; };
+		5F37B07020FAACB4002315C1 /* TransactionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF788D1FC42D9F001AA416 /* TransactionMessage.swift */; };
+		5F37B07120FAACB4002315C1 /* TransactionMetaDataPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1000ED1FC51C090011F194 /* TransactionMetaDataPair.swift */; };
+		5F37B07220FAACB4002315C1 /* UnconfirmedTransactionMetaDataPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BD31FC541C300D5DCD3 /* UnconfirmedTransactionMetaDataPair.swift */; };
+		5F37B07320FAACB4002315C1 /* UnconfirmedTransactionMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BD51FC5426000D5DCD3 /* UnconfirmedTransactionMetaData.swift */; };
+		5F37B07420FAACB4002315C1 /* Harvest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BD71FC546E400D5DCD3 /* Harvest.swift */; };
+		5F37B07520FAACB4002315C1 /* Importance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BD91FC54C0300D5DCD3 /* Importance.swift */; };
+		5F37B07620FAACB4002315C1 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BDB1FC54DF400D5DCD3 /* Namespace.swift */; };
+		5F37B07720FAACB4002315C1 /* RequestAnnounce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E633BE71FC57DD800D5DCD3 /* RequestAnnounce.swift */; };
+		5F37B07820FAACB4002315C1 /* NemAnnounceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4304B1FCD10C3003A2C98 /* NemAnnounceResult.swift */; };
+		5F37B07920FAACB4002315C1 /* TransactionHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4304D1FCD115E003A2C98 /* TransactionHash.swift */; };
+		5F37B07A20FAACB4002315C1 /* NISErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB430511FCD6199003A2C98 /* NISErrorResponse.swift */; };
+		5F37B09220FAACBF002315C1 /* KeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31D12E1FBC28F8006CFB33 /* KeyPair.swift */; };
+		5F37B09320FAACBF002315C1 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E31D1351FBC3CC8006CFB33 /* Address.swift */; };
+		5F37B09420FAACBF002315C1 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E26481FBD852F004D4425 /* Account.swift */; };
+		5F37B09820FAACC8002315C1 /* NSData+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E263E1FBD600E004D4425 /* NSData+HexString.swift */; };
+		5F37B09920FAACC8002315C1 /* RIPEMD+Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E263F1FBD600E004D4425 /* RIPEMD+Block.swift */; };
+		5F37B09A20FAACC8002315C1 /* RIPEMD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E26401FBD600E004D4425 /* RIPEMD.swift */; };
+		5F37B09B20FAACC8002315C1 /* UInt32+CircularShift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E26411FBD600E004D4425 /* UInt32+CircularShift.swift */; };
+		5F37B0AA20FAACEC002315C1 /* add_scalar.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFC41FBC18D8006CFB33 /* add_scalar.c */; };
+		5F37B0AB20FAACEC002315C1 /* fe.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFC61FBC18D8006CFB33 /* fe.c */; };
+		5F37B0AC20FAACEC002315C1 /* ge.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFC91FBC18D8006CFB33 /* ge.c */; };
+		5F37B0AD20FAACEC002315C1 /* key_exchange.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFCB1FBC18D8006CFB33 /* key_exchange.c */; };
+		5F37B0AE20FAACEC002315C1 /* keypair.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFCC1FBC18D8006CFB33 /* keypair.c */; };
+		5F37B0AF20FAACEC002315C1 /* sc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFCE1FBC18D8006CFB33 /* sc.c */; };
+		5F37B0B020FAACEC002315C1 /* seed.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFD01FBC18D8006CFB33 /* seed.c */; };
+		5F37B0B120FAACEC002315C1 /* sha512.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFD11FBC18D8006CFB33 /* sha512.c */; };
+		5F37B0B220FAACEC002315C1 /* sign.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFD31FBC18D8006CFB33 /* sign.c */; };
+		5F37B0B320FAACEC002315C1 /* verify.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31CFD41FBC18D8006CFB33 /* verify.c */; };
+		5F37B0B420FAAD05002315C1 /* ripemd-160.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE8F61FBD3D81008A4BC1 /* ripemd-160.c */; };
+		5F37B0B520FAAD05002315C1 /* byte_order.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31D0441FBC18D8006CFB33 /* byte_order.c */; };
+		5F37B0B620FAAD05002315C1 /* sha3.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31D0661FBC18D8006CFB33 /* sha3.c */; };
+		5F37B0B720FAAD05002315C1 /* ed25519_sha3_512.c in Sources */ = {isa = PBXBuildFile; fileRef = 3E31D1231FBC2119006CFB33 /* ed25519_sha3_512.c */; };
+		5F37B0B820FAAD05002315C1 /* NemSwiftConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */; };
+		5F37B0BF20FAAE76002315C1 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A01FC2D6A30096808F /* APIKit.framework */; };
+		5F37B0C020FAAE76002315C1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A31FC2D7420096808F /* Result.framework */; };
+		5F37B0C120FAAE76002315C1 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2E26461FBD7B0C004D4425 /* Base32.framework */; };
+		5F37B0C220FAAE76002315C1 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */; };
+		5F37B0C720FAE232002315C1 /* ed25519_sha3_512.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E31D1241FBC2119006CFB33 /* ed25519_sha3_512.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5F37B0C820FAE603002315C1 /* ed25519.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E31CFC51FBC18D8006CFB33 /* ed25519.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5F37B0C920FAE74A002315C1 /* NISAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */; };
+		5F37B0CA20FAE751002315C1 /* ParameterizedTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */; };
+		5F37B0CB20FAE757002315C1 /* TransferTransactionHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B62054E6DC00EE4F2C /* TransferTransactionHelperTest.swift */; };
+		5F37B0CC20FAE767002315C1 /* TestSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */; };
+		5F37B0CD20FBDB89002315C1 /* AddressTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B1205482F100EE4F2C /* AddressTest.swift */; };
+		5F37B0D020FBDD0D002315C1 /* AccountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B3205485A400EE4F2C /* AccountTest.swift */; };
+		5F37B0D420FBDF9D002315C1 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A01FC2D6A30096808F /* APIKit.framework */; };
+		5F37B0D520FBDF9D002315C1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A31FC2D7420096808F /* Result.framework */; };
+		5F37B0D620FBDF9D002315C1 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2E26461FBD7B0C004D4425 /* Base32.framework */; };
+		5F37B0D720FBDF9D002315C1 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */; };
+		5F37B0DA20FBE2EB002315C1 /* NemSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F37B03720FAABE4002315C1 /* NemSwift.framework */; };
+		5F37B0DB20FBE2EB002315C1 /* NemSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F37B03720FAABE4002315C1 /* NemSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5F37B0E720FBEE24002315C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37B0E020FBEE23002315C1 /* ViewController.swift */; };
+		5F37B0E820FBEE24002315C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F37B0E120FBEE23002315C1 /* Assets.xcassets */; };
+		5F37B0E920FBEE24002315C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37B0E220FBEE23002315C1 /* LaunchScreen.storyboard */; };
+		5F37B0EA20FBEE24002315C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F37B0E420FBEE23002315C1 /* Main.storyboard */; };
+		5F37B0EB20FBEE24002315C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F37B0E620FBEE23002315C1 /* AppDelegate.swift */; };
+		5F415CF520FBF13A004C6CA1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5F415CF420FBF13A004C6CA1 /* Info.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5F37B04120FAABE4002315C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E31CF9C1FBC112D006CFB33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F37B03620FAABE4002315C1;
+			remoteInfo = NemSwift;
+		};
+		5F37B04320FAABE4002315C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E31CF9C1FBC112D006CFB33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E31CFA31FBC112D006CFB33;
+			remoteInfo = NemSwiftApp;
+		};
+		5F37B0DC20FBE2EB002315C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E31CF9C1FBC112D006CFB33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F37B03620FAABE4002315C1;
+			remoteInfo = NemSwift;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5F37B0DE20FBE2EC002315C1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5F37B0DB20FBE2EB002315C1 /* NemSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		3E31CFA41FBC112D006CFB33 /* NemSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NemSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3E31CFA91FBC112D006CFB33 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3E31CFAC1FBC112D006CFB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3E31CFAE1FBC112D006CFB33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3E31CFB11FBC112D006CFB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3E31CFB31FBC112D006CFB33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E0E79AD1FD1599900181D31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E1000ED1FC51C090011F194 /* TransactionMetaDataPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMetaDataPair.swift; sourceTree = "<group>"; };
+		3E1AE8F51FBD3D81008A4BC1 /* ripemd-160.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ripemd-160.h"; sourceTree = "<group>"; };
+		3E1AE8F61FBD3D81008A4BC1 /* ripemd-160.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ripemd-160.c"; sourceTree = "<group>"; };
+		3E2E263E1FBD600E004D4425 /* NSData+HexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+HexString.swift"; sourceTree = "<group>"; };
+		3E2E263F1FBD600E004D4425 /* RIPEMD+Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RIPEMD+Block.swift"; sourceTree = "<group>"; };
+		3E2E26401FBD600E004D4425 /* RIPEMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RIPEMD.swift; sourceTree = "<group>"; };
+		3E2E26411FBD600E004D4425 /* UInt32+CircularShift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt32+CircularShift.swift"; sourceTree = "<group>"; };
+		3E2E26461FBD7B0C004D4425 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
+		3E2E26481FBD852F004D4425 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		3E31CFA41FBC112D006CFB33 /* NemSwiftTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NemSwiftTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E31CFC41FBC18D8006CFB33 /* add_scalar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = add_scalar.c; sourceTree = "<group>"; };
+		3E31CFC51FBC18D8006CFB33 /* ed25519.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ed25519.h; sourceTree = "<group>"; };
+		3E31CFC61FBC18D8006CFB33 /* fe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fe.c; sourceTree = "<group>"; };
+		3E31CFC71FBC18D8006CFB33 /* fe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fe.h; sourceTree = "<group>"; };
+		3E31CFC81FBC18D8006CFB33 /* fixedint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fixedint.h; sourceTree = "<group>"; };
+		3E31CFC91FBC18D8006CFB33 /* ge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ge.c; sourceTree = "<group>"; };
+		3E31CFCA1FBC18D8006CFB33 /* ge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ge.h; sourceTree = "<group>"; };
+		3E31CFCB1FBC18D8006CFB33 /* key_exchange.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = key_exchange.c; sourceTree = "<group>"; };
+		3E31CFCC1FBC18D8006CFB33 /* keypair.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keypair.c; sourceTree = "<group>"; };
+		3E31CFCD1FBC18D8006CFB33 /* precomp_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = precomp_data.h; sourceTree = "<group>"; };
+		3E31CFCE1FBC18D8006CFB33 /* sc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sc.c; sourceTree = "<group>"; };
+		3E31CFCF1FBC18D8006CFB33 /* sc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sc.h; sourceTree = "<group>"; };
+		3E31CFD01FBC18D8006CFB33 /* seed.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = seed.c; sourceTree = "<group>"; };
+		3E31CFD11FBC18D8006CFB33 /* sha512.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha512.c; sourceTree = "<group>"; };
+		3E31CFD21FBC18D8006CFB33 /* sha512.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha512.h; sourceTree = "<group>"; };
+		3E31CFD31FBC18D8006CFB33 /* sign.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sign.c; sourceTree = "<group>"; };
+		3E31CFD41FBC18D8006CFB33 /* verify.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = verify.c; sourceTree = "<group>"; };
+		3E31D0441FBC18D8006CFB33 /* byte_order.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = byte_order.c; sourceTree = "<group>"; };
+		3E31D0451FBC18D8006CFB33 /* byte_order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = byte_order.h; sourceTree = "<group>"; };
+		3E31D0661FBC18D8006CFB33 /* sha3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha3.c; sourceTree = "<group>"; };
+		3E31D0671FBC18D8006CFB33 /* sha3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha3.h; sourceTree = "<group>"; };
+		3E31D1231FBC2119006CFB33 /* ed25519_sha3_512.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ed25519_sha3_512.c; sourceTree = "<group>"; };
+		3E31D1241FBC2119006CFB33 /* ed25519_sha3_512.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ed25519_sha3_512.h; sourceTree = "<group>"; };
+		3E31D12E1FBC28F8006CFB33 /* KeyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPair.swift; sourceTree = "<group>"; };
+		3E31D1311FBC2B5C006CFB33 /* ConvertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertUtil.swift; sourceTree = "<group>"; };
+		3E31D1351FBC3CC8006CFB33 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
+		3E633BD31FC541C300D5DCD3 /* UnconfirmedTransactionMetaDataPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnconfirmedTransactionMetaDataPair.swift; sourceTree = "<group>"; };
+		3E633BD51FC5426000D5DCD3 /* UnconfirmedTransactionMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnconfirmedTransactionMetaData.swift; sourceTree = "<group>"; };
+		3E633BD71FC546E400D5DCD3 /* Harvest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Harvest.swift; sourceTree = "<group>"; };
+		3E633BD91FC54C0300D5DCD3 /* Importance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importance.swift; sourceTree = "<group>"; };
+		3E633BDB1FC54DF400D5DCD3 /* Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
+		3E633BE31FC568D800D5DCD3 /* TransactionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHelper.swift; sourceTree = "<group>"; };
+		3E633BE51FC574A800D5DCD3 /* TransferTransactionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTransactionHelper.swift; sourceTree = "<group>"; };
+		3E633BE71FC57DD800D5DCD3 /* RequestAnnounce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAnnounce.swift; sourceTree = "<group>"; };
+		3E9CA6A01FC2D6A30096808F /* APIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = APIKit.framework; path = Carthage/Build/iOS/APIKit.framework; sourceTree = "<group>"; };
+		3E9CA6A31FC2D7420096808F /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		3E9CA6A51FC2D9440096808F /* NISRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NISRequest.swift; sourceTree = "<group>"; };
+		3E9CA6A71FC2D9EB0096808F /* DecodableDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableDataParser.swift; sourceTree = "<group>"; };
+		3E9CA6AA1FC2DD5B0096808F /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		3EB4304B1FCD10C3003A2C98 /* NemAnnounceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NemAnnounceResult.swift; sourceTree = "<group>"; };
+		3EB4304D1FCD115E003A2C98 /* TransactionHash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHash.swift; sourceTree = "<group>"; };
+		3EB430511FCD6199003A2C98 /* NISErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NISErrorResponse.swift; sourceTree = "<group>"; };
+		3ECF787D1FC3B5A2001AA416 /* AccountMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMetaData.swift; sourceTree = "<group>"; };
+		3ECF787F1FC3C768001AA416 /* NISAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NISAPI.swift; sourceTree = "<group>"; };
+		3ECF78811FC3C7D9001AA416 /* AccountMetaDataPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountMetaDataPair.swift; sourceTree = "<group>"; };
+		3ECF78831FC42700001AA416 /* TransactionMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMetaData.swift; sourceTree = "<group>"; };
+		3ECF78851FC42920001AA416 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		3ECF78871FC42BAA001AA416 /* Mosaic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mosaic.swift; sourceTree = "<group>"; };
+		3ECF78891FC42C05001AA416 /* MosaicId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicId.swift; sourceTree = "<group>"; };
+		3ECF788D1FC42D9F001AA416 /* TransactionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionMessage.swift; sourceTree = "<group>"; };
+		3EDE99FE1FD12C6D0046A05B /* MosaicDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicDefinition.swift; sourceTree = "<group>"; };
+		3EDE9A001FD12D210046A05B /* MosaicProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicProperty.swift; sourceTree = "<group>"; };
+		3EDE9A041FD12FF10046A05B /* MosaicDefinitionMetaDataPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicDefinitionMetaDataPair.swift; sourceTree = "<group>"; };
+		3EDE9A061FD1302C0046A05B /* MosaicMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicMetaData.swift; sourceTree = "<group>"; };
+		3EDE9A081FD130FE0046A05B /* MosaicLevy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicLevy.swift; sourceTree = "<group>"; };
+		5F37B03720FAABE4002315C1 /* NemSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NemSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F37B03920FAABE4002315C1 /* NemSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NemSwift.h; sourceTree = "<group>"; };
+		5F37B03A20FAABE4002315C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F37B03F20FAABE4002315C1 /* NemSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NemSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F37B0E020FBEE23002315C1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5F37B0E120FBEE23002315C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5F37B0E320FBEE23002315C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5F37B0E520FBEE23002315C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5F37B0E620FBEE23002315C1 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5F415CF420FBF13A004C6CA1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NISAPITest.swift; sourceTree = "<group>"; };
+		5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettings.swift; sourceTree = "<group>"; };
+		5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterizedTest.swift; sourceTree = "<group>"; };
+		5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		5F4F51B1205482F100EE4F2C /* AddressTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressTest.swift; sourceTree = "<group>"; };
+		5F4F51B3205485A400EE4F2C /* AccountTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTest.swift; sourceTree = "<group>"; };
+		5F4F51B62054E6DC00EE4F2C /* TransferTransactionHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferTransactionHelperTest.swift; sourceTree = "<group>"; };
+		5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NemSwiftConfiguration.swift; sourceTree = "<group>"; };
+		5F4F51BA20571C6D00EE4F2C /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,16 +220,63 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F37B0DA20FBE2EB002315C1 /* NemSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F37B03320FAABE4002315C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F37B0BF20FAAE76002315C1 /* APIKit.framework in Frameworks */,
+				5F37B0C020FAAE76002315C1 /* Result.framework in Frameworks */,
+				5F37B0C120FAAE76002315C1 /* Base32.framework in Frameworks */,
+				5F37B0C220FAAE76002315C1 /* CryptoSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F37B03C20FAABE4002315C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F37B0D420FBDF9D002315C1 /* APIKit.framework in Frameworks */,
+				5F37B0D520FBDF9D002315C1 /* Result.framework in Frameworks */,
+				5F37B0D620FBDF9D002315C1 /* Base32.framework in Frameworks */,
+				5F37B0D720FBDF9D002315C1 /* CryptoSwift.framework in Frameworks */,
+				5F37B04020FAABE4002315C1 /* NemSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E0E79AA1FD1599900181D31 /* NemSwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				3E0E79AD1FD1599900181D31 /* Info.plist */,
+				5F4F51A2204E7E0400EE4F2C /* Sources */,
+			);
+			path = NemSwiftTests;
+			sourceTree = "<group>";
+		};
+		3E2E263D1FBD600E004D4425 /* RIPEMD-160 */ = {
+			isa = PBXGroup;
+			children = (
+				3E2E263E1FBD600E004D4425 /* NSData+HexString.swift */,
+				3E2E263F1FBD600E004D4425 /* RIPEMD+Block.swift */,
+				3E2E26401FBD600E004D4425 /* RIPEMD.swift */,
+				3E2E26411FBD600E004D4425 /* UInt32+CircularShift.swift */,
+			);
+			path = "RIPEMD-160";
+			sourceTree = "<group>";
+		};
 		3E31CF9B1FBC112D006CFB33 = {
 			isa = PBXGroup;
 			children = (
-				3E31CFA61FBC112D006CFB33 /* NemSwift */,
+				3E31D1371FBC4529006CFB33 /* Frameworks */,
+				5F37B03820FAABE4002315C1 /* NemSwift */,
+				5F37B0DF20FBEE23002315C1 /* NemSwiftTestHost */,
+				3E0E79AA1FD1599900181D31 /* NemSwiftTests */,
 				3E31CFA51FBC112D006CFB33 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,34 +284,268 @@
 		3E31CFA51FBC112D006CFB33 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E31CFA41FBC112D006CFB33 /* NemSwift.app */,
+				3E31CFA41FBC112D006CFB33 /* NemSwiftTestHost.app */,
+				5F37B03720FAABE4002315C1 /* NemSwift.framework */,
+				5F37B03F20FAABE4002315C1 /* NemSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3E31CFA61FBC112D006CFB33 /* NemSwift */ = {
+		3E31CFBD1FBC1816006CFB33 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				3E31CFA71FBC112D006CFB33 /* AppDelegate.swift */,
-				3E31CFA91FBC112D006CFB33 /* ViewController.swift */,
-				3E31CFAB1FBC112D006CFB33 /* Main.storyboard */,
-				3E31CFAE1FBC112D006CFB33 /* Assets.xcassets */,
-				3E31CFB01FBC112D006CFB33 /* LaunchScreen.storyboard */,
-				3E31CFB31FBC112D006CFB33 /* Info.plist */,
+				3E633BE21FC568BB00D5DCD3 /* transaction */,
+				3E9CA69F1FC2D51F0096808F /* client */,
+				3E31D1301FBC2B37006CFB33 /* utils */,
+				3E31D12D1FBC28DC006CFB33 /* models */,
+				3E2E263D1FBD600E004D4425 /* RIPEMD-160 */,
+				3E31CFBE1FBC18D8006CFB33 /* ed25519 */,
+				3E31CFD61FBC18D8006CFB33 /* RHash */,
+				3E31D1231FBC2119006CFB33 /* ed25519_sha3_512.c */,
+				3E31D1241FBC2119006CFB33 /* ed25519_sha3_512.h */,
+				5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3E31CFBE1FBC18D8006CFB33 /* ed25519 */ = {
+			isa = PBXGroup;
+			children = (
+				3E31CFC31FBC18D8006CFB33 /* src */,
+			);
+			path = ed25519;
+			sourceTree = "<group>";
+		};
+		3E31CFC31FBC18D8006CFB33 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				3E31CFC41FBC18D8006CFB33 /* add_scalar.c */,
+				3E31CFC51FBC18D8006CFB33 /* ed25519.h */,
+				3E31CFC61FBC18D8006CFB33 /* fe.c */,
+				3E31CFC71FBC18D8006CFB33 /* fe.h */,
+				3E31CFC81FBC18D8006CFB33 /* fixedint.h */,
+				3E31CFC91FBC18D8006CFB33 /* ge.c */,
+				3E31CFCA1FBC18D8006CFB33 /* ge.h */,
+				3E31CFCB1FBC18D8006CFB33 /* key_exchange.c */,
+				3E31CFCC1FBC18D8006CFB33 /* keypair.c */,
+				3E31CFCD1FBC18D8006CFB33 /* precomp_data.h */,
+				3E31CFCE1FBC18D8006CFB33 /* sc.c */,
+				3E31CFCF1FBC18D8006CFB33 /* sc.h */,
+				3E31CFD01FBC18D8006CFB33 /* seed.c */,
+				3E31CFD11FBC18D8006CFB33 /* sha512.c */,
+				3E31CFD21FBC18D8006CFB33 /* sha512.h */,
+				3E31CFD31FBC18D8006CFB33 /* sign.c */,
+				3E31CFD41FBC18D8006CFB33 /* verify.c */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		3E31CFD61FBC18D8006CFB33 /* RHash */ = {
+			isa = PBXGroup;
+			children = (
+				3E31D03F1FBC18D8006CFB33 /* librhash */,
+			);
+			path = RHash;
+			sourceTree = "<group>";
+		};
+		3E31D03F1FBC18D8006CFB33 /* librhash */ = {
+			isa = PBXGroup;
+			children = (
+				3E1AE8F61FBD3D81008A4BC1 /* ripemd-160.c */,
+				3E1AE8F51FBD3D81008A4BC1 /* ripemd-160.h */,
+				3E31D0441FBC18D8006CFB33 /* byte_order.c */,
+				3E31D0451FBC18D8006CFB33 /* byte_order.h */,
+				3E31D0661FBC18D8006CFB33 /* sha3.c */,
+				3E31D0671FBC18D8006CFB33 /* sha3.h */,
+			);
+			path = librhash;
+			sourceTree = "<group>";
+		};
+		3E31D12D1FBC28DC006CFB33 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3E9CA6A91FC2DC920096808F /* Account */,
+				3E9CA6AA1FC2DD5B0096808F /* AccountInfo.swift */,
+				3ECF787D1FC3B5A2001AA416 /* AccountMetaData.swift */,
+				3ECF78811FC3C7D9001AA416 /* AccountMetaDataPair.swift */,
+				3ECF78831FC42700001AA416 /* TransactionMetaData.swift */,
+				3ECF78871FC42BAA001AA416 /* Mosaic.swift */,
+				3ECF78891FC42C05001AA416 /* MosaicId.swift */,
+				3EDE9A061FD1302C0046A05B /* MosaicMetaData.swift */,
+				3EDE99FE1FD12C6D0046A05B /* MosaicDefinition.swift */,
+				3EDE9A001FD12D210046A05B /* MosaicProperty.swift */,
+				3EDE9A041FD12FF10046A05B /* MosaicDefinitionMetaDataPair.swift */,
+				3EDE9A081FD130FE0046A05B /* MosaicLevy.swift */,
+				3ECF78851FC42920001AA416 /* Transaction.swift */,
+				3ECF788D1FC42D9F001AA416 /* TransactionMessage.swift */,
+				3E1000ED1FC51C090011F194 /* TransactionMetaDataPair.swift */,
+				3E633BD31FC541C300D5DCD3 /* UnconfirmedTransactionMetaDataPair.swift */,
+				3E633BD51FC5426000D5DCD3 /* UnconfirmedTransactionMetaData.swift */,
+				3E633BD71FC546E400D5DCD3 /* Harvest.swift */,
+				3E633BD91FC54C0300D5DCD3 /* Importance.swift */,
+				3E633BDB1FC54DF400D5DCD3 /* Namespace.swift */,
+				3E633BE71FC57DD800D5DCD3 /* RequestAnnounce.swift */,
+				3EB4304B1FCD10C3003A2C98 /* NemAnnounceResult.swift */,
+				3EB4304D1FCD115E003A2C98 /* TransactionHash.swift */,
+				3EB430511FCD6199003A2C98 /* NISErrorResponse.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		3E31D1301FBC2B37006CFB33 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				3E31D1311FBC2B5C006CFB33 /* ConvertUtil.swift */,
+				5F4F51BA20571C6D00EE4F2C /* Logger.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		3E31D1371FBC4529006CFB33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E9CA6A31FC2D7420096808F /* Result.framework */,
+				3E9CA6A01FC2D6A30096808F /* APIKit.framework */,
+				3E2E26461FBD7B0C004D4425 /* Base32.framework */,
+				3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E633BE21FC568BB00D5DCD3 /* transaction */ = {
+			isa = PBXGroup;
+			children = (
+				3E633BE31FC568D800D5DCD3 /* TransactionHelper.swift */,
+				3E633BE51FC574A800D5DCD3 /* TransferTransactionHelper.swift */,
+			);
+			path = transaction;
+			sourceTree = "<group>";
+		};
+		3E9CA69F1FC2D51F0096808F /* client */ = {
+			isa = PBXGroup;
+			children = (
+				3E9CA6A51FC2D9440096808F /* NISRequest.swift */,
+				3E9CA6A71FC2D9EB0096808F /* DecodableDataParser.swift */,
+				3ECF787F1FC3C768001AA416 /* NISAPI.swift */,
+			);
+			path = client;
+			sourceTree = "<group>";
+		};
+		3E9CA6A91FC2DC920096808F /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				3E31D12E1FBC28F8006CFB33 /* KeyPair.swift */,
+				3E31D1351FBC3CC8006CFB33 /* Address.swift */,
+				3E2E26481FBD852F004D4425 /* Account.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		5F37B03820FAABE4002315C1 /* NemSwift */ = {
+			isa = PBXGroup;
+			children = (
+				5F37B03920FAABE4002315C1 /* NemSwift.h */,
+				5F37B03A20FAABE4002315C1 /* Info.plist */,
+				3E31CFBD1FBC1816006CFB33 /* Sources */,
 			);
 			path = NemSwift;
 			sourceTree = "<group>";
 		};
+		5F37B0DF20FBEE23002315C1 /* NemSwiftTestHost */ = {
+			isa = PBXGroup;
+			children = (
+				5F415CF420FBF13A004C6CA1 /* Info.plist */,
+				5F37B0E620FBEE23002315C1 /* AppDelegate.swift */,
+				5F37B0E020FBEE23002315C1 /* ViewController.swift */,
+				5F37B0E120FBEE23002315C1 /* Assets.xcassets */,
+				5F37B0E220FBEE23002315C1 /* LaunchScreen.storyboard */,
+				5F37B0E420FBEE23002315C1 /* Main.storyboard */,
+			);
+			path = NemSwiftTestHost;
+			sourceTree = "<group>";
+		};
+		5F4F51A2204E7E0400EE4F2C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5F4F51B52054E6C600EE4F2C /* transaction */,
+				5F4F51B0205482E200EE4F2C /* account */,
+				5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */,
+				5F4F51A3204E7E0400EE4F2C /* client */,
+				5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */,
+				5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		5F4F51A3204E7E0400EE4F2C /* client */ = {
+			isa = PBXGroup;
+			children = (
+				5F4F51A4204E7E1F00EE4F2C /* NISAPITest.swift */,
+			);
+			path = client;
+			sourceTree = "<group>";
+		};
+		5F4F51B0205482E200EE4F2C /* account */ = {
+			isa = PBXGroup;
+			children = (
+				5F4F51B1205482F100EE4F2C /* AddressTest.swift */,
+				5F4F51B3205485A400EE4F2C /* AccountTest.swift */,
+			);
+			path = account;
+			sourceTree = "<group>";
+		};
+		5F4F51B52054E6C600EE4F2C /* transaction */ = {
+			isa = PBXGroup;
+			children = (
+				5F4F51B62054E6DC00EE4F2C /* TransferTransactionHelperTest.swift */,
+			);
+			path = transaction;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		5F37B03420FAABE4002315C1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F37B04920FAABE4002315C1 /* NemSwift.h in Headers */,
+				5F37B0C820FAE603002315C1 /* ed25519.h in Headers */,
+				5F37B0C720FAE232002315C1 /* ed25519_sha3_512.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		3E31CFA31FBC112D006CFB33 /* NemSwift */ = {
+		3E31CFA31FBC112D006CFB33 /* NemSwiftTestHost */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E31CFB61FBC112D006CFB33 /* Build configuration list for PBXNativeTarget "NemSwift" */;
+			buildConfigurationList = 3E31CFB61FBC112D006CFB33 /* Build configuration list for PBXNativeTarget "NemSwiftTestHost" */;
 			buildPhases = (
 				3E31CFA01FBC112D006CFB33 /* Sources */,
 				3E31CFA11FBC112D006CFB33 /* Frameworks */,
 				3E31CFA21FBC112D006CFB33 /* Resources */,
+				3E31D13A1FBC4537006CFB33 /* ShellScript */,
+				5F37B0DE20FBE2EC002315C1 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F37B0DD20FBE2EB002315C1 /* PBXTargetDependency */,
+			);
+			name = NemSwiftTestHost;
+			productName = NemSwift;
+			productReference = 3E31CFA41FBC112D006CFB33 /* NemSwiftTestHost.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5F37B03620FAABE4002315C1 /* NemSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F37B04E20FAABE5002315C1 /* Build configuration list for PBXNativeTarget "NemSwift" */;
+			buildPhases = (
+				5F37B03220FAABE4002315C1 /* Sources */,
+				5F37B03320FAABE4002315C1 /* Frameworks */,
+				5F37B03420FAABE4002315C1 /* Headers */,
+				5F37B03520FAABE4002315C1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -81,8 +553,27 @@
 			);
 			name = NemSwift;
 			productName = NemSwift;
-			productReference = 3E31CFA41FBC112D006CFB33 /* NemSwift.app */;
-			productType = "com.apple.product-type.application";
+			productReference = 5F37B03720FAABE4002315C1 /* NemSwift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5F37B03E20FAABE4002315C1 /* NemSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F37B05220FAABE5002315C1 /* Build configuration list for PBXNativeTarget "NemSwiftTests" */;
+			buildPhases = (
+				5F37B03B20FAABE4002315C1 /* Sources */,
+				5F37B03C20FAABE4002315C1 /* Frameworks */,
+				5F37B03D20FAABE4002315C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5F37B04220FAABE4002315C1 /* PBXTargetDependency */,
+				5F37B04420FAABE4002315C1 /* PBXTargetDependency */,
+			);
+			name = NemSwiftTests;
+			productName = NemSwiftTests;
+			productReference = 5F37B03F20FAABE4002315C1 /* NemSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -90,13 +581,22 @@
 		3E31CF9C1FBC112D006CFB33 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = OpenApostille;
 				TargetAttributes = {
 					3E31CFA31FBC112D006CFB33 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+					};
+					5F37B03620FAABE4002315C1 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+					};
+					5F37B03E20FAABE4002315C1 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3E31CFA31FBC112D006CFB33;
 					};
 				};
 			};
@@ -113,7 +613,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3E31CFA31FBC112D006CFB33 /* NemSwift */,
+				3E31CFA31FBC112D006CFB33 /* NemSwiftTestHost */,
+				5F37B03620FAABE4002315C1 /* NemSwift */,
+				5F37B03E20FAABE4002315C1 /* NemSwiftTests */,
 			);
 		};
 /* End PBXProject section */
@@ -123,41 +625,167 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E31CFB21FBC112D006CFB33 /* LaunchScreen.storyboard in Resources */,
-				3E31CFAF1FBC112D006CFB33 /* Assets.xcassets in Resources */,
-				3E31CFAD1FBC112D006CFB33 /* Main.storyboard in Resources */,
+				5F415CF520FBF13A004C6CA1 /* Info.plist in Resources */,
+				5F37B0EA20FBEE24002315C1 /* Main.storyboard in Resources */,
+				5F37B0E820FBEE24002315C1 /* Assets.xcassets in Resources */,
+				5F37B0E920FBEE24002315C1 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F37B03520FAABE4002315C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F37B03D20FAABE4002315C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E31D13A1FBC4537006CFB33 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Base32.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/APIKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3E31CFA01FBC112D006CFB33 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E31CFAA1FBC112D006CFB33 /* ViewController.swift in Sources */,
-				3E31CFA81FBC112D006CFB33 /* AppDelegate.swift in Sources */,
+				5F37B0EB20FBEE24002315C1 /* AppDelegate.swift in Sources */,
+				5F37B0E720FBEE24002315C1 /* ViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F37B03220FAABE4002315C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F37B0B620FAAD05002315C1 /* sha3.c in Sources */,
+				5F37B06C20FAACB4002315C1 /* MosaicProperty.swift in Sources */,
+				5F37B0AE20FAACEC002315C1 /* keypair.c in Sources */,
+				5F37B0B820FAAD05002315C1 /* NemSwiftConfiguration.swift in Sources */,
+				5F37B06620FAACB4002315C1 /* AccountMetaDataPair.swift in Sources */,
+				5F37B07A20FAACB4002315C1 /* NISErrorResponse.swift in Sources */,
+				5F37B0B120FAACEC002315C1 /* sha512.c in Sources */,
+				5F37B07120FAACB4002315C1 /* TransactionMetaDataPair.swift in Sources */,
+				5F37B06B20FAACB4002315C1 /* MosaicDefinition.swift in Sources */,
+				5F37B07220FAACB4002315C1 /* UnconfirmedTransactionMetaDataPair.swift in Sources */,
+				5F37B05620FAAC8E002315C1 /* TransactionHelper.swift in Sources */,
+				5F37B0AA20FAACEC002315C1 /* add_scalar.c in Sources */,
+				5F37B06020FAACAC002315C1 /* ConvertUtil.swift in Sources */,
+				5F37B06720FAACB4002315C1 /* TransactionMetaData.swift in Sources */,
+				5F37B07820FAACB4002315C1 /* NemAnnounceResult.swift in Sources */,
+				5F37B05C20FAACA3002315C1 /* NISAPI.swift in Sources */,
+				5F37B06D20FAACB4002315C1 /* MosaicDefinitionMetaDataPair.swift in Sources */,
+				5F37B05A20FAACA3002315C1 /* NISRequest.swift in Sources */,
+				5F37B09220FAACBF002315C1 /* KeyPair.swift in Sources */,
+				5F37B09320FAACBF002315C1 /* Address.swift in Sources */,
+				5F37B0B420FAAD05002315C1 /* ripemd-160.c in Sources */,
+				5F37B06120FAACAC002315C1 /* Logger.swift in Sources */,
+				5F37B07520FAACB4002315C1 /* Importance.swift in Sources */,
+				5F37B06820FAACB4002315C1 /* Mosaic.swift in Sources */,
+				5F37B07320FAACB4002315C1 /* UnconfirmedTransactionMetaData.swift in Sources */,
+				5F37B0AD20FAACEC002315C1 /* key_exchange.c in Sources */,
+				5F37B09B20FAACC8002315C1 /* UInt32+CircularShift.swift in Sources */,
+				5F37B06F20FAACB4002315C1 /* Transaction.swift in Sources */,
+				5F37B06A20FAACB4002315C1 /* MosaicMetaData.swift in Sources */,
+				5F37B06920FAACB4002315C1 /* MosaicId.swift in Sources */,
+				5F37B06420FAACB4002315C1 /* AccountInfo.swift in Sources */,
+				5F37B09420FAACBF002315C1 /* Account.swift in Sources */,
+				5F37B09A20FAACC8002315C1 /* RIPEMD.swift in Sources */,
+				5F37B05B20FAACA3002315C1 /* DecodableDataParser.swift in Sources */,
+				5F37B09820FAACC8002315C1 /* NSData+HexString.swift in Sources */,
+				5F37B0B720FAAD05002315C1 /* ed25519_sha3_512.c in Sources */,
+				5F37B09920FAACC8002315C1 /* RIPEMD+Block.swift in Sources */,
+				5F37B0B020FAACEC002315C1 /* seed.c in Sources */,
+				5F37B05820FAAC99002315C1 /* TransferTransactionHelper.swift in Sources */,
+				5F37B06520FAACB4002315C1 /* AccountMetaData.swift in Sources */,
+				5F37B07420FAACB4002315C1 /* Harvest.swift in Sources */,
+				5F37B0AC20FAACEC002315C1 /* ge.c in Sources */,
+				5F37B07620FAACB4002315C1 /* Namespace.swift in Sources */,
+				5F37B07920FAACB4002315C1 /* TransactionHash.swift in Sources */,
+				5F37B0B220FAACEC002315C1 /* sign.c in Sources */,
+				5F37B07020FAACB4002315C1 /* TransactionMessage.swift in Sources */,
+				5F37B0AF20FAACEC002315C1 /* sc.c in Sources */,
+				5F37B07720FAACB4002315C1 /* RequestAnnounce.swift in Sources */,
+				5F37B06E20FAACB4002315C1 /* MosaicLevy.swift in Sources */,
+				5F37B0B520FAAD05002315C1 /* byte_order.c in Sources */,
+				5F37B0B320FAACEC002315C1 /* verify.c in Sources */,
+				5F37B0AB20FAACEC002315C1 /* fe.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5F37B03B20FAABE4002315C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F37B0CA20FAE751002315C1 /* ParameterizedTest.swift in Sources */,
+				5F37B0D020FBDD0D002315C1 /* AccountTest.swift in Sources */,
+				5F37B0C920FAE74A002315C1 /* NISAPITest.swift in Sources */,
+				5F37B05520FAAC30002315C1 /* TestUtils.swift in Sources */,
+				5F37B0CD20FBDB89002315C1 /* AddressTest.swift in Sources */,
+				5F37B0CB20FAE757002315C1 /* TransferTransactionHelperTest.swift in Sources */,
+				5F37B0CC20FAE767002315C1 /* TestSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		3E31CFAB1FBC112D006CFB33 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E31CFAC1FBC112D006CFB33 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		5F37B04220FAABE4002315C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F37B03620FAABE4002315C1 /* NemSwift */;
+			targetProxy = 5F37B04120FAABE4002315C1 /* PBXContainerItemProxy */;
 		};
-		3E31CFB01FBC112D006CFB33 /* LaunchScreen.storyboard */ = {
+		5F37B04420FAABE4002315C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E31CFA31FBC112D006CFB33 /* NemSwiftTestHost */;
+			targetProxy = 5F37B04320FAABE4002315C1 /* PBXContainerItemProxy */;
+		};
+		5F37B0DD20FBE2EB002315C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F37B03620FAABE4002315C1 /* NemSwift */;
+			targetProxy = 5F37B0DC20FBE2EB002315C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5F37B0E220FBEE23002315C1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3E31CFB11FBC112D006CFB33 /* Base */,
+				5F37B0E320FBEE23002315C1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5F37B0E420FBEE23002315C1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F37B0E520FBEE23002315C1 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -211,7 +839,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -262,7 +890,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -273,30 +901,166 @@
 		3E31CFB71FBC112D006CFB33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46946JQQ95;
-				INFOPLIST_FILE = NemSwift/Info.plist;
+				DEVELOPMENT_TEAM = CK945B6495;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					USE_KECCAK,
+				);
+				INFOPLIST_FILE = NemSwiftTestHost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.openapostille.NemSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		3E31CFB81FBC112D006CFB33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 46946JQQ95;
-				INFOPLIST_FILE = NemSwift/Info.plist;
+				DEVELOPMENT_TEAM = CK945B6495;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = USE_KECCAK;
+				INFOPLIST_FILE = NemSwiftTestHost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.openapostille.NemSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+		5F37B04F20FAABE5002315C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = CK945B6495;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					USE_KECCAK,
+				);
+				INFOPLIST_FILE = NemSwift/Info.plist;
+				INSTALL_PATH = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryuta46.NemSwift;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/NemSwift/Sources";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5F37B05020FAABE5002315C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = CK945B6495;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = USE_KECCAK;
+				INFOPLIST_FILE = NemSwift/Info.plist;
+				INSTALL_PATH = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryuta46.NemSwift;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/NemSwift/Sources";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5F37B05320FAABE5002315C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CK945B6495;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = NemSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryuta46.NemSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NemSwiftTestHost.app/NemSwiftTestHost";
+			};
+			name = Debug;
+		};
+		5F37B05420FAABE5002315C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CK945B6495;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = NemSwiftTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryuta46.NemSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NemSwiftTestHost.app/NemSwiftTestHost";
 			};
 			name = Release;
 		};
@@ -312,11 +1076,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E31CFB61FBC112D006CFB33 /* Build configuration list for PBXNativeTarget "NemSwift" */ = {
+		3E31CFB61FBC112D006CFB33 /* Build configuration list for PBXNativeTarget "NemSwiftTestHost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E31CFB71FBC112D006CFB33 /* Debug */,
 				3E31CFB81FBC112D006CFB33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F37B04E20FAABE5002315C1 /* Build configuration list for PBXNativeTarget "NemSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F37B04F20FAABE5002315C1 /* Debug */,
+				5F37B05020FAABE5002315C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F37B05220FAABE5002315C1 /* Build configuration list for PBXNativeTarget "NemSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F37B05320FAABE5002315C1 /* Debug */,
+				5F37B05420FAABE5002315C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

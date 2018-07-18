@@ -1,0 +1,6 @@
+[submodule "NemSwift/Sources/ed25519"]
+	path = NemSwift/Sources/ed25519
+	url = https://github.com/orlp/ed25519.git
+[submodule "NemSwift/Sources/RHash"]
+	path = NemSwift/Sources/RHash
+	url = https://github.com/rhash/RHash.git
