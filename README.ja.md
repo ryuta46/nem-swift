@@ -2,7 +2,7 @@ Read this in other languages: [English](README.md), [日本語](README.ja.md)
 
 # nem-swift
 
-nem-swift は NEM(New Economy Movement) のAPI を簡単に扱うためのライブラリです。
+nem-swift は NEM のAPI を簡単に扱うためのライブラリです。
 
 このライブラリは、NIS(NEM Infrastructure Server) に対してのHTTPリクエストと、NISからのHTTPのレスポンスのラッパーとして機能します。
 

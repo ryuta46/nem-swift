@@ -2,7 +2,7 @@ Read this in other languages: [English](README.md), [日本語](README.ja.md)
 
 # nem-swift
 
-nem-swift is a client library for easy use of NEM(New Economy Movement) API.
+nem-swift is a client library for easy use of NEM API.
 
 This library wraps HTTP requests to NIS(NEM Infrastructure Server) and HTTP responses from NIS.
 
