@@ -14,12 +14,12 @@ nem-swift は NEM(New Economy Movement) のAPI を簡単に扱うためのライ
 
 ## インストール
 
-Carthage か Cocoapods を利用できます。
+Carthage か CocoaPods を利用できます。
 
 ### Carthage
 
-1. Cartfile に `github "ryuta46/nem-swift"` を追加.
-2. `carthage update` を実行.
+1. Cartfile に `github "ryuta46/nem-swift"` を追加
+2. `carthage update` を実行
 3. "NemSwift.framework" を Linked Frameworks and Libraries に追加
     TARGETS -> YourTarget -> Linked Frameworks and Libraries  
     "+" をクリック -> Add Other... -> Carthage/Build/iOS にある "NemSwift.framework" を選択 
@@ -30,11 +30,15 @@ Carthage か Cocoapods を利用できます。
     Build Phases -> "+" をクリック -> New Run Script Phase  
     Shell `/bin/sh`  
     Script `/usr/local/bin/carthage copy-frameworks`  
-    "NemSwift.framework"、"APIKit.framework"、"Result.framework"、"Base32.framework"、"CryptoSwift.framework" を input file として追加
+    "NemSwift.framework"、"APIKit.framework"、"Result.framework"、"CryptoSwift.framework" を input file として追加
 
     ![Copy frameworks](../assets/carthage_setup_copy_framework.png?raw=true)
 
-### Cocoapods
+### CocoaPods
+
+1. Podfile に `pod 'NemSwift'` を追加
+2. `pod update` を実行
+3. 生成された .xcworkspace ファイルを Xcode で開く
 
 ## 使用方法
 
@@ -52,6 +56,9 @@ Carthage か Cocoapods を利用できます。
 nem-swift は NemSwiftConfiguration にグローバルな設定を持っています。
 
 ```swift
+import NemSwift
+...
+
 // Default URL of NIS
 NemSwiftConfiguration.defaultBaseURL = URL(string: "https://nismain.ttechdev.com:7891")!
 // Log level
