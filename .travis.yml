@@ -1,0 +1,14 @@
+language: objective-c
+osx_image: xcode9.4
+before_install:
+  - brew update
+  - brew install carthage
+  - carthage update --platform ios  
+  - gem install xcpretty
+script:
+  - xcodebuild -project NemSwift.xcodeproj -scheme NemSwift -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.4' test | xcpretty -c && | bundle exec xcpretty -c && exit ${PIPESTATUS[0]}
+
+branches:
+  only:
+  - master
+  - develop
