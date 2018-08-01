@@ -274,7 +274,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/NemSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/APIKit.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Base32.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/CryptoSwift.framework",
 			);
 			outputPaths = (

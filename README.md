@@ -2,7 +2,7 @@ Read this in other languages: [English](README.md), [日本語](README.ja.md)
 
 # nem-swift
 
-nem-swift is a client library for easy use of NEM(New Economy Movement) API.
+nem-swift is a client library for easy use of NEM API.
 
 This library wraps HTTP requests to NIS(NEM Infrastructure Server) and HTTP responses from NIS.
 
@@ -14,7 +14,7 @@ Sample projects are in [NemSwiftDemo](NemSwiftDemo) directory.
 
 ## Installation
 
-Use Carthage or Cocoapods.
+Use Carthage or CocoaPods.
 
 ### Carthage
 
@@ -30,11 +30,15 @@ Use Carthage or Cocoapods.
     Build Phases -> Press "+" -> New Run Script Phase  
     Shell `/bin/sh`  
     Script `/usr/local/bin/carthage copy-frameworks`  
-    Add "NemSwift.framework", "APIKit.framework", "Result.framework", "Base32.framework" and "CryptoSwift.framework" to input file
+    Add "NemSwift.framework", "APIKit.framework", "Result.framework" and "CryptoSwift.framework" to input file
 
     ![Copy frameworks](../assets/carthage_setup_copy_framework.png?raw=true)
 
-### Cocoapods
+### CocoaPods
+
+1. Insert `pod 'NemSwift'` to your Podfile
+2. Run `pod update`
+3. Open generated .xcworkspace file with Xcode.
 
 ## How to use
 
@@ -52,6 +56,9 @@ See [ATS Configuration Basics](https://developer.apple.com/library/archive/docum
 nem-swift has global configurations in NemSwiftConfiguration class.
 
 ```swift
+import NemSwift
+...
+
 // Default URL of NIS
 NemSwiftConfiguration.defaultBaseURL = URL(string: "https://nismain.ttechdev.com:7891")!
 // Log level
