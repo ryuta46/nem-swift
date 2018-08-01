@@ -244,12 +244,15 @@ class NISAPITest: XCTestCase {
 
 
     func testAccountUnconfirmedTransactions() {
+        var address = TestSettings.ADDRESS
         if TestSettings.PRIVATE_KEY.isEmpty {
-            return
+            address = Account.generateAccount(network: .testnet).address.value
+        } else {
+            testTransferTransaction(fixture: TransferTransactionTestFixture(0))
         }
-        testTransferTransaction(fixture: TransferTransactionTestFixture(0))
 
-        guard let response = Session.sendSyncWithTest(NISAPI.AccountUnconfirmedTransactions(address: TestSettings.ADDRESS)) else { return }
+
+        guard let response = Session.sendSyncWithTest(NISAPI.AccountUnconfirmedTransactions(address: address)) else { return }
         print("\(response)")
 
         if TestSettings.PRIVATE_KEY.isEmpty {
@@ -346,11 +349,11 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
     let account: Account
     if !TestSettings.PRIVATE_KEY.isEmpty {
         account = Account.repairAccount(TestSettings.PRIVATE_KEY, network: .testnet)
+        XCTAssertEqual(TestSettings.ADDRESS, account.address.value)
     } else {
         account = Account.generateAccount(network: .testnet)
     }
 
-    XCTAssertEqual(TestSettings.ADDRESS, account.address.value)
 
     let announce: [UInt8]
 

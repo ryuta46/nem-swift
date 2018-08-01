@@ -75,7 +75,6 @@
 		5F37B0D020FBDD0D002315C1 /* AccountTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4F51B3205485A400EE4F2C /* AccountTest.swift */; };
 		5F37B0D420FBDF9D002315C1 /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A01FC2D6A30096808F /* APIKit.framework */; };
 		5F37B0D520FBDF9D002315C1 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9CA6A31FC2D7420096808F /* Result.framework */; };
-		5F37B0D620FBDF9D002315C1 /* Base32.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2E26461FBD7B0C004D4425 /* Base32.framework */; };
 		5F37B0D720FBDF9D002315C1 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */; };
 		5F37B0DA20FBE2EB002315C1 /* NemSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F37B03720FAABE4002315C1 /* NemSwift.framework */; };
 		5F37B0DB20FBE2EB002315C1 /* NemSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F37B03720FAABE4002315C1 /* NemSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -134,7 +133,6 @@
 		3E2E263F1FBD600E004D4425 /* RIPEMD+Block.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RIPEMD+Block.swift"; sourceTree = "<group>"; };
 		3E2E26401FBD600E004D4425 /* RIPEMD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RIPEMD.swift; sourceTree = "<group>"; };
 		3E2E26411FBD600E004D4425 /* UInt32+CircularShift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UInt32+CircularShift.swift"; sourceTree = "<group>"; };
-		3E2E26461FBD7B0C004D4425 /* Base32.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Base32.framework; path = Carthage/Build/iOS/Base32.framework; sourceTree = "<group>"; };
 		3E2E26481FBD852F004D4425 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		3E31CFA41FBC112D006CFB33 /* NemSwiftTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NemSwiftTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E31CFC41FBC18D8006CFB33 /* add_scalar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = add_scalar.c; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 			files = (
 				5F37B0D420FBDF9D002315C1 /* APIKit.framework in Frameworks */,
 				5F37B0D520FBDF9D002315C1 /* Result.framework in Frameworks */,
-				5F37B0D620FBDF9D002315C1 /* Base32.framework in Frameworks */,
 				5F37B0D720FBDF9D002315C1 /* CryptoSwift.framework in Frameworks */,
 				5F37B04020FAABE4002315C1 /* NemSwift.framework in Frameworks */,
 			);
@@ -404,7 +401,6 @@
 			children = (
 				3E9CA6A31FC2D7420096808F /* Result.framework */,
 				3E9CA6A01FC2D6A30096808F /* APIKit.framework */,
-				3E2E26461FBD7B0C004D4425 /* Base32.framework */,
 				3E31D1381FBC452A006CFB33 /* CryptoSwift.framework */,
 			);
 			name = Frameworks;
