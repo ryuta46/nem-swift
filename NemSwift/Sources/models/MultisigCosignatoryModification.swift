@@ -16,4 +16,13 @@ public enum ModificationType: Int {
 public struct MultisigCosignatoryModification : Decodable {
     public let modificationType: Int // 1: Add, 2: Delete
     public let cosignatoryAccount: String // Public key of cosignatory account.
+    
+    public init(modificationType: Int, cosignatoryAccount: String) {
+        self.modificationType = modificationType
+        self.cosignatoryAccount = cosignatoryAccount
+    }
+    
+    public init(modificationType: ModificationType, cosignatoryAccount: String) {
+        self.init(modificationType: modificationType.rawValue, cosignatoryAccount: cosignatoryAccount)
+    }
 }
