@@ -420,9 +420,9 @@
 		3E633BE21FC568BB00D5DCD3 /* transaction */ = {
 			isa = PBXGroup;
 			children = (
+				5FC1D0802111854A00A6FB2C /* MultisigTransactionHelper.swift */,
 				3E633BE31FC568D800D5DCD3 /* TransactionHelper.swift */,
 				3E633BE51FC574A800D5DCD3 /* TransferTransactionHelper.swift */,
-				5FC1D0802111854A00A6FB2C /* MultisigTransactionHelper.swift */,
 			);
 			path = transaction;
 			sourceTree = "<group>";
