@@ -11,7 +11,6 @@ import Foundation
 public class TransactionHelper {
     public static let minimuxmTransferFee = 50_000
     public static let maximumXemTransferFee = 1_250_000
-    public static let transferFeeFactor = 50_000
     
     private init(){ }
     

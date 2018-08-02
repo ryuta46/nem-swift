@@ -160,6 +160,15 @@ public final class NISAPI {
         public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, data: String, signature: String) {
             super.init(baseURL: baseURL, path: "/transaction/announce", parameters: ["data": data, "signature": signature])
         }
+        
+        convenience init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, requestAnnounce: RequestAnnounce) {
+            self.init(baseURL: baseURL, data: requestAnnounce.data, signature: requestAnnounce.signature)
+        }
+        
+        convenience init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, requestAnnounce: [UInt8], keyPair: KeyPair) {
+            self.init(baseURL: baseURL, requestAnnounce: RequestAnnounce.generateRequestAnnounce(requestAnnounce: requestAnnounce, keyPair: keyPair))
+        }
+
     }
 }
 

@@ -16,4 +16,5 @@ public struct AccountInfo: Decodable {
     public let publicKey: String?
     public let label: String?
     public let harvestedBlocks: Int
+    public let multisigInfo: MultisigInfo?
 }

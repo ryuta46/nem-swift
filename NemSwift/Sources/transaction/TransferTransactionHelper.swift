@@ -26,6 +26,8 @@ public struct TransferMosaic {
 
 
 public class TransferTransactionHelper {
+    public static let transferFeeFactor = 50_000
+
     public enum MessageType: UInt32 {
         case Plain = 1
         case Secure = 2
