@@ -116,6 +116,9 @@ class NISAPITest: XCTestCase {
             if metaDataPair.transaction.type == TransactionHelper.TransactionType.Transfer.transactionTypeBytes() {
                 XCTAssertEqual(TestSettings.ADDRESS, metaDataPair.transaction.recipient)
             }
+            else if metaDataPair.transaction.type == TransactionHelper.TransactionType.Multisig.transactionTypeBytes() {
+                XCTAssertEqual(TestSettings.ADDRESS, metaDataPair.transaction.otherTrans?.recipient)
+            }
         }
     }
     func testAccountTransfersIncomingId() {
@@ -398,7 +401,7 @@ class TransferTransactionTest : ParameterizedTest {
         NemSwiftConfiguration.logLevel = .debug
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override class func createTestCases() -> [ParameterizedTest] {
         return self.testInvocations.map { TransferTransactionTest(invocation: $0) }
     }
@@ -422,4 +425,259 @@ class TransferTransactionTest : ParameterizedTest {
     }
 }
 
+
+class MultisigTransactionTest: XCTestCase {
+    override func setUp() {
+        super.setUp()
+        NemSwiftConfiguration.defaultBaseURL = TestSettings.TEST_HOST
+        NemSwiftConfiguration.logLevel = .debug
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+    
+
+    func testMultisigAggregateModificationTransactionMyself() {
+        let multisig = Account.generateAccount(network: .testnet)
+    
+        print(multisig.address)
+        print(multisig.keyPair.importKey())
+
+        if TestSettings.PRIVATE_KEY.isEmpty {
+            let ownerAccount = Account.generateAccount(network: .testnet)
+            let multisigRequest = MultisigTransactionHelper.generateAggregateModificationRequestAnnounce(
+                publicKey: multisig.keyPair.publicKey,
+                network: .testnet,
+                modifications: [MultisigCosignatoryModification(modificationType: 1, cosignatoryAccount: ownerAccount.keyPair.publicKeyHexString())],
+                minCosignatoriesRelativeChange: 1)
+
+
+            let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: multisigRequest, keyPair: multisig.keyPair)
+            guard let response = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: requestAnnounce)) else { return }
+            print("\(response)")
+
+            TestUtils.checkResultIsInsufficientBalance(result: response)
+            return
+        }
+        let account = Account.repairAccount(TestSettings.PRIVATE_KEY, network: .testnet)
+    
+        let transfer = TransferTransactionHelper.generateTransferRequestAnnounce(publicKey: account.keyPair.publicKey, network: .testnet, recipientAddress: multisig.address.value, amount: MultisigTransactionHelper.multisigAggregateModificationFee)
+
+        // first, transfer xem to create transaction
+        let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: transfer, keyPair: account.keyPair)
+        guard let response = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: requestAnnounce)) else { return }
+        print("\(response)")
+        
+        TestUtils.checkResult(result: response)
+
+        // wait for transaction confirmed
+        XCTAssertTrue(TestUtils.waitUntilIncomingIsNotEmpty(address: multisig.address.value))
+
+        // second, create multisig transaction
+        let modificationRequest = MultisigTransactionHelper.generateAggregateModificationRequestAnnounce(
+            publicKey: multisig.keyPair.publicKey,
+            network: .testnet,
+            modifications: [MultisigCosignatoryModification(modificationType: 1, cosignatoryAccount: account.keyPair.publicKeyHexString())],
+            minCosignatoriesRelativeChange: 1)
+
+        let modificationRequestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: modificationRequest, keyPair: multisig.keyPair)
+        guard let modificationResponse = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: modificationRequestAnnounce)) else { return }
+        print("\(modificationResponse)")
+
+        TestUtils.checkResult(result: modificationResponse)
+        
+        // wait for transaction confirmed
+        XCTAssertTrue(TestUtils.waitUntilIncomingIsNotEmpty(address: multisig.address.value))
+
+        guard let multisigAccountInfo = Session.sendSyncWithTest(NISAPI.AccountGet(address: multisig.address.value)) else { return }
+        
+        print(multisigAccountInfo)
+        XCTAssertEqual(account.address.value, multisigAccountInfo.meta.cosignatories.first?.address)
+    }
+
+    func testMultisigAggregateModificationTransaction() {
+        let account: Account
+        if !TestSettings.PRIVATE_KEY.isEmpty {
+            account = Account.repairAccount(TestSettings.PRIVATE_KEY, network: .testnet)
+        } else {
+            account = Account.generateAccount(network: .testnet)
+            print("Generated temporary account.")
+            print(account.address)
+            print(account.keyPair.importKey())
+        }
+        let signer: Account
+        if !TestSettings.SIGNER_PRIVATE_KEY.isEmpty {
+            signer = Account.repairAccount(TestSettings.SIGNER_PRIVATE_KEY, network: .testnet)
+        } else {
+            signer = Account.generateAccount(network: .testnet)
+            print("Generated temporary signer.")
+            print(signer.address)
+            print(signer.keyPair.importKey())
+        }
+
+        if true {
+            // Create inner transaction of which deletes signer and decrements minimum cosignatory.
+            let modificationTransaction = MultisigTransactionHelper.generateAggregateModification(
+                publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
+                network: .testnet,
+                modifications: [MultisigCosignatoryModification(modificationType: ModificationType.delete.rawValue, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
+                minCosignatoriesRelativeChange: -1)
+
+            // Create multisig transaction
+            let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
+                publicKey: account.keyPair.publicKey,
+                network: .testnet,
+                innerTransaction: modificationTransaction)
+            
+            guard let multisigResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: multisigRequest, keyPair: account.keyPair)) else { return }
+
+            print(multisigResult)
+            
+            if TestSettings.PRIVATE_KEY.isEmpty || TestSettings.SIGNER_PRIVATE_KEY.isEmpty {
+                TestUtils.checkResultIsMultisigNotACosigner(result: multisigResult)
+                return
+            } else {
+                TestUtils.checkResult(result: multisigResult)
+            }
+            
+            // Sign the transaction
+            guard let unconfirmedTransactions = Session.sendSyncWithTest(NISAPI.AccountUnconfirmedTransactions(address: signer.address.value)) else { return }
+            print(unconfirmedTransactions)
+            
+            guard let hash = unconfirmedTransactions.data.first?.meta.data else {
+                XCTAssertTrue(false, "Failed to load hash of unconfirmed transactions")
+                return
+            }
+            
+            let signatureRequest = MultisigTransactionHelper.generateSignatureRequestAnnounce(
+                publicKey: signer.keyPair.publicKey,
+                network: .testnet,
+                otherHash: hash,
+                otherAccount: TestSettings.MULTISIG_ADDRESS)
+            
+            guard let signatureResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: signatureRequest, keyPair: signer.keyPair)) else { return }
+
+            print(signatureResult)
+            TestUtils.checkResult(result: signatureResult)
+            
+            print("... Waiting for transaction confirmed of aggregate modification ...")
+            
+            // wait for transaction confirmed
+            XCTAssertTrue(TestUtils.waitUntilConfirmedOutgoing(address: account.address.value, hash: multisigResult.transactionHash.data!))
+            
+            guard let multisigAccountInfo = Session.sendSyncWithTest(NISAPI.AccountGet(address: TestSettings.MULTISIG_ADDRESS)) else { return }
+            
+            print(multisigAccountInfo)
+            XCTAssertEqual(1, multisigAccountInfo.account.multisigInfo?.cosignatoriesCount)
+            XCTAssertNotNil(multisigAccountInfo.meta.cosignatories.first(where: { $0.address == account.address.value}))
+            XCTAssertNil(multisigAccountInfo.meta.cosignatories.first(where: { $0.address == signer.address.value}))
+        }
+
+        if true {
+            // Create inner transaction of which adds signer and increments minimum cosignatory.
+            let modificationTransaction = MultisigTransactionHelper.generateAggregateModification(
+                publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
+                network: .testnet,
+                modifications: [MultisigCosignatoryModification(modificationType: ModificationType.add.rawValue, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
+                minCosignatoriesRelativeChange: 1)
+
+            
+            // Create multisig transaction
+            let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
+                publicKey: account.keyPair.publicKey,
+                network: .testnet,
+                innerTransaction: modificationTransaction)
+            
+            guard let multisigResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: multisigRequest, keyPair: account.keyPair)) else { return }
+            
+            print(multisigResult)
+            TestUtils.checkResult(result: multisigResult)
+
+            print("... Waiting for transaction confirmed of aggregate modification ...")
+            
+            // wait for transaction confirmed
+            XCTAssertTrue(TestUtils.waitUntilConfirmedOutgoing(address: account.address.value, hash: multisigResult.transactionHash.data!))
+
+            guard let multisigAccountInfo = Session.sendSyncWithTest(NISAPI.AccountGet(address: TestSettings.MULTISIG_ADDRESS)) else { return }
+            
+            print(multisigAccountInfo)
+            XCTAssertEqual(2, multisigAccountInfo.account.multisigInfo?.cosignatoriesCount)
+            XCTAssertNotNil(multisigAccountInfo.meta.cosignatories.first(where: { $0.address == account.address.value}))
+            XCTAssertNotNil(multisigAccountInfo.meta.cosignatories.first(where: { $0.address == signer.address.value}))
+        }
+    }
+    
+    func testMultisigSignatureTransaction() {
+        let account: Account
+        if !TestSettings.PRIVATE_KEY.isEmpty {
+            account = Account.repairAccount(TestSettings.PRIVATE_KEY, network: .testnet)
+        } else {
+            account = Account.generateAccount(network: .testnet)
+            print("Generated temporary account.")
+            print(account.address)
+            print(account.keyPair.importKey())
+        }
+        let signer: Account
+        if !TestSettings.SIGNER_PRIVATE_KEY.isEmpty {
+            signer = Account.repairAccount(TestSettings.SIGNER_PRIVATE_KEY, network: .testnet)
+        } else {
+            signer = Account.generateAccount(network: .testnet)
+            print("Generated temporary signer.")
+            print(signer.address)
+            print(signer.keyPair.importKey())
+        }
+
+        // Create inner transaction of which transfers XEM
+        let transferTransaction = TransferTransactionHelper.generateTransfer(
+            publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
+            network: .testnet,
+            recipientAddress: TestSettings.ADDRESS,
+            amount: 10
+        )
+        
+    
+        // Create multisig transaction
+        let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
+            publicKey: account.keyPair.publicKey,
+            network: .testnet,
+            innerTransaction: transferTransaction)
+        
+        guard let multisigResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: multisigRequest, keyPair: account.keyPair)) else { return }
+
+        print(multisigResult)
+    
+        if TestSettings.SIGNER_PRIVATE_KEY.isEmpty {
+            TestUtils.checkResultIsMultisigNotACosigner(result: multisigResult)
+            return
+        }
+    
+        if TestSettings.PRIVATE_KEY.isEmpty {
+            TestUtils.checkResultIsInsufficientBalance(result: multisigResult)
+            return
+        } else {
+            TestUtils.checkResult(result: multisigResult)
+        }
+        
+        
+        // Sign the transaction
+        guard let unconfirmedTransactions = Session.sendSyncWithTest(NISAPI.AccountUnconfirmedTransactions(address: signer.address.value)) else { return }
+        print(unconfirmedTransactions)
+        
+        
+        guard let hash = unconfirmedTransactions.data.first?.meta.data else {
+            XCTAssertTrue(false, "Failed to load hash of unconfirmed transactions")
+            return
+        }
+    
+        let signatureRequest = MultisigTransactionHelper.generateSignatureRequestAnnounce(
+            publicKey: signer.keyPair.publicKey,
+            network: .testnet,
+            otherHash: hash,
+            otherAccount: TestSettings.MULTISIG_ADDRESS)
+        
+        guard let signatureResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: signatureRequest, keyPair: signer.keyPair)) else { return }
+        
+        print(signatureResult)
+        TestUtils.checkResult(result: signatureResult)
+    }
+
+}
 
