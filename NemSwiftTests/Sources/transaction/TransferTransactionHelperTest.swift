@@ -55,14 +55,15 @@ class XemTransferFeeTest : ParameterizedTest {
 
         let account = Account.generateAccount(network: .testnet)
 
-        let transactionBytes = TransferTransactionHelper.generateTransferRequestAnnounce(
+        let transaction = TransferTransactionHelper.generateTransfer(
             publicKey: account.keyPair.publicKey,
             network: .testnet,
             recipientAddress: TestSettings.RECEIVER,
-            amount: fixture.microNem,
-            messageType: .Plain,
-            message: "")
+            amount: fixture.microNem)
 
+        let transactionBytes = transaction.toByteArray()
+
+        XCTAssertEqual(fixture.expected, transaction.fee)
         XCTAssertEqual(fixture.expected, extractTransactionFee(transactionBytes))
     }
 
@@ -100,7 +101,7 @@ class MessageTransferFeeTest : ParameterizedTest {
 
         let account = Account.generateAccount(network: .testnet)
 
-        let transactionBytes = TransferTransactionHelper.generateTransferRequestAnnounce(
+        let transaction = TransferTransactionHelper.generateTransfer(
             publicKey: account.keyPair.publicKey,
             network: .testnet,
             recipientAddress: TestSettings.RECEIVER,
@@ -108,7 +109,9 @@ class MessageTransferFeeTest : ParameterizedTest {
             messageType: .Plain,
             message: fixture.message)
 
+        let transactionBytes = transaction.toByteArray()
         // 50_000 is transfer fee of 0 xem.
+        XCTAssertEqual(fixture.expected + 50_000, transaction.fee)
         XCTAssertEqual(fixture.expected + 50_000, extractTransactionFee(transactionBytes))
     }
 }
@@ -157,14 +160,15 @@ class MosaicTransferFeeTest : ParameterizedTest {
 
         let account = Account.generateAccount(network: .testnet)
 
-        let transactionBytes = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
+        let transaction = TransferTransactionHelper.generateMosaicTransfer(
             publicKey: account.keyPair.publicKey,
             network: .testnet,
             recipientAddress: TestSettings.RECEIVER,
-            mosaics: fixture.mosaics,
-            messageType: .Plain,
-            message: "")
+            mosaics: fixture.mosaics)
 
+        let transactionBytes = transaction.toByteArray()
+        
+        XCTAssertEqual(fixture.expected, transaction.fee)
         XCTAssertEqual(fixture.expected, extractTransactionFee(transactionBytes))
     }
 }

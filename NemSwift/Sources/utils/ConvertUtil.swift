@@ -47,7 +47,15 @@ public class ConvertUtil {
         return ret
     }
     
-    
+    public static func toByteArrayWithLittleEndian(_ value: Int32) -> [UInt8] {
+        var ret = [UInt8](repeating: 0, count: 4)
+        
+        for i in 0..<ret.count {
+            ret[i] = UInt8(value >> (i * 8) & Int32(0xFF))
+        }
+        return ret
+    }
+
     public static func toByteArrayWithLittleEndian(_ value: UInt32) -> [UInt8] {
         var ret = [UInt8](repeating: 0, count: 4)
         
@@ -56,7 +64,7 @@ public class ConvertUtil {
         }
         return ret
     }
-    
+
     public static func toByteArrayWithLittleEndian(_ value: UInt64) -> [UInt8] {
         var ret = [UInt8](repeating: 0, count: 8)
         

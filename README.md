@@ -175,3 +175,94 @@ Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: "mosaicNameSpaceId")
 
 ```
 
+### Multisig Related Transactions
+
+Multisig related transactions(MultisigTransaction, MultisigSignatureTransaction, MultisigAggreageModificationTransaction) are created by MultisigTransactionHelper.
+
+To change an account to multisig account,
+
+```swift
+let modificationRequest = MultisigTransactionHelper.generateAggregateModificationRequestAnnounce(
+    publicKey: account.keyPair.publicKey,
+    network: .testnet,
+    modifications: [MultisigCosignatoryModification(modificationType: .add, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
+    minCosignatoriesRelativeChange: 1)
+
+Session.send(NISAPI.TransactionAnnounce(requestAnnounce: modificationRequest, keyPair: account.keyPair)) { result in
+    switch result {
+        case .success(let response):
+            print(response)
+        case .failure(let error):
+            print(error)
+    }
+}
+```
+
+
+To send XEM from multisig account,
+
+```swift
+// Create inner transaction of which transfers XEM
+let transferTransaction = TransferTransactionHelper.generateTransfer(
+    publicKey: MULTISIG_ACCOUNT_PUBLIC_KEY,
+    network: .testnet,
+    recipientAddress: recipientAddress,
+    amount: 10
+)
+        
+    
+// Create multisig transaction
+let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
+    publicKey: account.keyPair.publicKey,
+    network: .testnet,
+    innerTransaction: transferTransaction)
+
+
+Session.send(NISAPI.TransactionAnnounce(requestAnnounce: multisigRequest, keyPair: account.keyPair)) { result in
+    switch result {
+        case .success(let response):
+            print(response)
+        case .failure(let error):
+            print(error)
+    }
+}
+```
+
+And to sign the transaction,
+
+```swift
+// Get hash of the transaction to be signed.
+Session.send(NISAPI.AccountUnconfirmedTransactions(address: signer.address.value)) { [weak self] result in
+    switch result {
+        case .success(let response):
+            self?.unconfirmedTransactions = response
+        case .failure(let error):
+            print(error)
+        }
+    }
+}
+
+...
+        
+guard let hash = self.unconfirmedTransactions?.data.first?.meta.data else {
+    return
+}
+    
+// Sign the transaction
+let signatureRequest = MultisigTransactionHelper.generateSignatureRequestAnnounce(
+    publicKey: signer.keyPair.publicKey,
+    network: .testnet,
+    otherHash: hash,
+    otherAccount: MULTISIG_ACCOUNT_ADDRESS)
+    
+
+Session.send(NISAPI.TransactionAnnounce(requestAnnounce: signatureRequest, keyPair: signer.keyPair)) { result in
+    switch result {
+        case .success(let response):
+            print(response)
+        case .failure(let error):
+            print(error)
+    }
+}
+```
+
