@@ -224,9 +224,7 @@ class ViewController: UIViewController {
             publicKey: account.keyPair.publicKey,
             network: TransactionHelper.Network.testnet,
             recipientAddress: recipientAddress,
-            amount: microXem,
-            messageType: TransferTransactionHelper.MessageType.Plain,
-            message: "")
+            amount: microXem)
 
         // Sign the transaction
         let signedTransaction = RequestAnnounce.generateRequestAnnounce(requestAnnounce: transaction, keyPair: account.keyPair)
@@ -269,9 +267,7 @@ class ViewController: UIViewController {
             publicKey: account.keyPair.publicKey,
             network: TransactionHelper.Network.testnet,
             recipientAddress: recipientAddress,
-            mosaics: [mosaic],
-            messageType: TransferTransactionHelper.MessageType.Plain,
-            message: "")
+            mosaics: [mosaic])
 
         // Sign the transaction
         let signedTransaction = RequestAnnounce.generateRequestAnnounce(requestAnnounce: transaction, keyPair: account.keyPair)
