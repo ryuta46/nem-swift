@@ -62,7 +62,7 @@ import NemSwift
 // Default URL of NIS
 NemSwiftConfiguration.defaultBaseURL = URL(string: "https://nismain.ttechdev.com:7891")!
 // Log level
-NemSwiftConfiguration.logLevel = NemSwiftConfiguration.LogLevel.debug
+NemSwiftConfiguration.logLevel = .debug
 ```
 
 
@@ -71,12 +71,12 @@ NemSwiftConfiguration.logLevel = NemSwiftConfiguration.LogLevel.debug
 'Account' クラスで NEM のアカウントを作成します。Network バージョンの指定が必要です。( メインネットまたはテストネット)。
 
 ```swift
-let account = Account.generateAccount(network: Address.Network.testnet)
+let account = Account.generateAccount(network: .testnet)
 ```
 
 秘密鍵がすでにあるのであれば、その情報からアカウントを生成することも出来ます。
 ```swift
-let account = Account.repairAccount(privateKey, network: Address.Network.testnet)
+let account = Account.repairAccount(privateKey, network: .testnet)
 ```
 
 ### アカウント情報の取得
@@ -119,11 +119,9 @@ XEMを送金する場合
 // Create XEM transfer transaction
 let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
-    network: TransactionHelper.Network.testnet,
+    network: .testnet,
     recipientAddress: recipient,
-    amount: microXem,
-    messageType: TransferTransactionHelper.MessageType.Plain,
-    message: "")
+    amount: microXem)
 
 // Sign the transaction
 let signedTransaction = RequestAnnounce.generateRequestAnnounce(requestAnnounce: transaction, keyPair: account.keyPair)
@@ -152,11 +150,9 @@ let mosaic = TransferMosaic(namespace: "mosaicNamespaceId",
 // Create transfer transaction
 let transaction = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
-    network: TransactionHelper.Network.testnet,
+    network: .testnet,
     recipientAddress: recipient,
-    mosaics: [mosaic],
-    messageType: TransferTransactionHelper.MessageType.Plain,
-    message: "")
+    mosaics: [mosaic])
 ```
 
 モザイクの供給量や可分性は、最低手数料を計算する際に用いられます。
@@ -174,6 +170,64 @@ Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: "mosaicNameSpaceId")
                 }
             }
 
+```
+
+### メッセージの送受信
+
+平文のメッセージを含めて XEM の送信を行う場合
+
+```swift
+let message = Array("message".utf8)
+
+let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
+    publicKey: account.keyPair.publicKey,
+    network: .testnet,
+    recipientAddress: recipient,
+    amount: microXem,
+    messageType: .plain,
+    message: message)
+```
+
+暗号化メッセージを含めて XEM の送信を行う場合
+
+```swift
+let message = Array("message".utf8)
+
+let encryptedMessage = MessageEncryption.encrypt(
+    senderKeys: account.keyPair, 
+    receiverPublicKey: receiverPublicKey,
+    message: message)
+
+let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
+    publicKey: account.keyPair.publicKey,
+    network: .testnet,
+    recipientAddress: recipient,
+    amount: microXem,
+    messageType: .secure,
+    message: message)
+```
+
+受信したトランザクションからメッセージを読み取るには、下記のように実装します。
+
+```swift
+guard let payload = transaction?.transaction.message?.payload,
+    let type = transaction?.transaction.message?.type {
+    return
+}
+
+let messageBytes = ConvertUtil.toByteArray(payload)
+
+let message: String
+if (type == TransferTransactionHelper.MessageType.plain.rawValue) {
+    message = String(bytes: messageBytes, encoding: .utf8)!
+} else {
+    let decryptedBytes = try MessageEncryption.decrypt(
+        receiverKeys: account.keyPair,
+        senderPublicKey: senderPublicKey,
+        mergedEncryptedMessage: messageBytes)
+
+    message = String(bytes: decryptedBytes, encoding: .utf8)!
+}
 ```
 
 ### マルチシグ関連のトランザクション
