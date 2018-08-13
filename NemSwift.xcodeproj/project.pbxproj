@@ -88,6 +88,10 @@
 		5FC1D0812111854A00A6FB2C /* MultisigTransactionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1D0802111854A00A6FB2C /* MultisigTransactionHelper.swift */; };
 		5FC1D08321118AA500A6FB2C /* MultisigCosignatoryModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1D08221118AA500A6FB2C /* MultisigCosignatoryModification.swift */; };
 		5FC1D08521118B5900A6FB2C /* MinimumCosignatoriesModification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC1D08421118B5900A6FB2C /* MinimumCosignatoriesModification.swift */; };
+		5FC300BC2120D9DC007856EA /* MessageEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC300BB2120D9DC007856EA /* MessageEncryption.swift */; };
+		5FC300BF2120DE3A007856EA /* MessageEncryptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC300BE2120DE3A007856EA /* MessageEncryptionTest.swift */; };
+		5FC300C221210D85007856EA /* message_encryption.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FC300C121210D85007856EA /* message_encryption.c */; };
+		5FC300C321210E63007856EA /* message_encryption.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FC300C021210D5F007856EA /* message_encryption.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +222,10 @@
 		5FC1D0802111854A00A6FB2C /* MultisigTransactionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultisigTransactionHelper.swift; sourceTree = "<group>"; };
 		5FC1D08221118AA500A6FB2C /* MultisigCosignatoryModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultisigCosignatoryModification.swift; sourceTree = "<group>"; };
 		5FC1D08421118B5900A6FB2C /* MinimumCosignatoriesModification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimumCosignatoriesModification.swift; sourceTree = "<group>"; };
+		5FC300BB2120D9DC007856EA /* MessageEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEncryption.swift; sourceTree = "<group>"; };
+		5FC300BE2120DE3A007856EA /* MessageEncryptionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageEncryptionTest.swift; sourceTree = "<group>"; };
+		5FC300C021210D5F007856EA /* message_encryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_encryption.h; sourceTree = "<group>"; };
+		5FC300C121210D85007856EA /* message_encryption.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = message_encryption.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +315,8 @@
 				3E31D1231FBC2119006CFB33 /* ed25519_sha3_512.c */,
 				3E31D1241FBC2119006CFB33 /* ed25519_sha3_512.h */,
 				5F4F51B82055BC6300EE4F2C /* NemSwiftConfiguration.swift */,
+				5FC300C021210D5F007856EA /* message_encryption.h */,
+				5FC300C121210D85007856EA /* message_encryption.c */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -403,6 +413,7 @@
 			children = (
 				3E31D1311FBC2B5C006CFB33 /* ConvertUtil.swift */,
 				5F4F51BA20571C6D00EE4F2C /* Logger.swift */,
+				5FC300BB2120D9DC007856EA /* MessageEncryption.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -473,12 +484,13 @@
 		5F4F51A2204E7E0400EE4F2C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5F4F51B52054E6C600EE4F2C /* transaction */,
-				5F4F51B0205482E200EE4F2C /* account */,
 				5F4F51AC2053C31B00EE4F2C /* ParameterizedTest.swift */,
-				5F4F51A3204E7E0400EE4F2C /* client */,
 				5F4F51A6204E7ED700EE4F2C /* TestSettings.swift */,
 				5F4F51AE20547ACA00EE4F2C /* TestUtils.swift */,
+				5F4F51B0205482E200EE4F2C /* account */,
+				5F4F51A3204E7E0400EE4F2C /* client */,
+				5F4F51B52054E6C600EE4F2C /* transaction */,
+				5FC300BD2120DE14007856EA /* utils */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -508,6 +520,14 @@
 			path = transaction;
 			sourceTree = "<group>";
 		};
+		5FC300BD2120DE14007856EA /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				5FC300BE2120DE3A007856EA /* MessageEncryptionTest.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -518,6 +538,7 @@
 				5F37B04920FAABE4002315C1 /* NemSwift.h in Headers */,
 				5F37B0C820FAE603002315C1 /* ed25519.h in Headers */,
 				5F37B0C720FAE232002315C1 /* ed25519_sha3_512.h in Headers */,
+				5FC300C321210E63007856EA /* message_encryption.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +712,7 @@
 				5F37B06C20FAACB4002315C1 /* MosaicProperty.swift in Sources */,
 				5F37B0AE20FAACEC002315C1 /* keypair.c in Sources */,
 				5F37B0B820FAAD05002315C1 /* NemSwiftConfiguration.swift in Sources */,
+				5FC300C221210D85007856EA /* message_encryption.c in Sources */,
 				5F37B06620FAACB4002315C1 /* AccountMetaDataPair.swift in Sources */,
 				5F37B07A20FAACB4002315C1 /* NISErrorResponse.swift in Sources */,
 				5F37B0B120FAACEC002315C1 /* sha512.c in Sources */,
@@ -709,6 +731,7 @@
 				5FC1D0812111854A00A6FB2C /* MultisigTransactionHelper.swift in Sources */,
 				5F37B09220FAACBF002315C1 /* KeyPair.swift in Sources */,
 				5F37B09320FAACBF002315C1 /* Address.swift in Sources */,
+				5FC300BC2120D9DC007856EA /* MessageEncryption.swift in Sources */,
 				5F37B0B420FAAD05002315C1 /* ripemd-160.c in Sources */,
 				5F37B06120FAACAC002315C1 /* Logger.swift in Sources */,
 				5F37B07520FAACB4002315C1 /* Importance.swift in Sources */,
@@ -756,6 +779,7 @@
 				5F37B05520FAAC30002315C1 /* TestUtils.swift in Sources */,
 				5F37B0CD20FBDB89002315C1 /* AddressTest.swift in Sources */,
 				5F37B0CB20FAE757002315C1 /* TransferTransactionHelperTest.swift in Sources */,
+				5FC300BF2120DE3A007856EA /* MessageEncryptionTest.swift in Sources */,
 				5F37B0CC20FAE767002315C1 /* TestSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -340,7 +340,7 @@ class TransferTransactionTestFixture {
     let messageType: TransferTransactionHelper.MessageType
     let mosaics: [TransferMosaic]
 
-    init(_ xem: UInt64, _ message: String = "", _ messageType: TransferTransactionHelper.MessageType = TransferTransactionHelper.MessageType.Plain, _ mosaics: [TransferMosaic] = []) {
+    init(_ xem: UInt64, _ message: String = "", _ messageType: TransferTransactionHelper.MessageType = .plain, _ mosaics: [TransferMosaic] = []) {
         self.xem = xem
         self.message = message
         self.messageType = messageType
@@ -357,7 +357,15 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
         account = Account.generateAccount(network: .testnet)
     }
 
-
+    let messageBytes: [UInt8]
+    if fixture.messageType == .plain {
+        messageBytes = Array(fixture.message.utf8)
+    } else {
+        messageBytes = try! MessageEncryption.encrypt(senderKeys: account.keyPair,
+                                                      receiverPublicKey: ConvertUtil.toByteArray(TestSettings.RECEIVER_PUBLIC),
+                                                      message: Array(fixture.message.utf8))
+    }
+    
     let announce: [UInt8]
 
     if fixture.mosaics.isEmpty {
@@ -367,7 +375,7 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
             recipientAddress: TestSettings.RECEIVER,
             amount: fixture.xem,
             messageType: fixture.messageType,
-            message: fixture.message)
+            message: messageBytes)
     } else {
         announce = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
@@ -375,7 +383,7 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
             recipientAddress: TestSettings.RECEIVER,
             mosaics: fixture.mosaics,
             messageType: fixture.messageType,
-            message: fixture.message)
+            message: messageBytes)
     }
 
     let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: announce, keyPair: account.keyPair)
@@ -410,8 +418,9 @@ class TransferTransactionTest : ParameterizedTest {
         get {
             return [
                 TransferTransactionTestFixture(1),
-                TransferTransactionTestFixture(0, "Message test", TransferTransactionHelper.MessageType.Plain),
-                TransferTransactionTestFixture(0, "", TransferTransactionHelper.MessageType.Plain,
+                TransferTransactionTestFixture(0, "Message test", .plain),
+                TransferTransactionTestFixture(0, "TEST ENCRYPT MESSAGE", .secure),
+                TransferTransactionTestFixture(0, "", .plain,
                                                [TransferMosaic(namespace: "nem", mosaic: "xem", quantity: 1, supply: 8_999_999_999, divisibility: 6)]),
 
             ]

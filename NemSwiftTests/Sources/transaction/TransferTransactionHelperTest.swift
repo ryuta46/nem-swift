@@ -106,8 +106,8 @@ class MessageTransferFeeTest : ParameterizedTest {
             network: .testnet,
             recipientAddress: TestSettings.RECEIVER,
             amount: 0,
-            messageType: .Plain,
-            message: fixture.message)
+            messageType: .plain,
+            message: Array(fixture.message.utf8))
 
         let transactionBytes = transaction.toByteArray()
         // 50_000 is transfer fee of 0 xem.
