@@ -1,3 +1,14 @@
+## Version 0.3.0
+
+2018-08-13
+
+* BREAKING CHANGE: Type of message is changed from string to byte array to accept encrypted bytes.  
+        In plain text message, pass UTF-8 byte array by using `Array("message".utf8)`. 
+See [README](README.md) for more details.
+
+* Add: Message Encryption
+
+
 ## Version 0.2.0
 
 2018-08-03

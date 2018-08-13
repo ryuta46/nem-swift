@@ -19,4 +19,6 @@ FOUNDATION_EXPORT const unsigned char NemSwiftVersionString[];
 
 #import "ed25519_sha3_512.h"
 #import "ed25519.h"
+#import "message_encryption.h"
+
 //#import "Sources/ed25519/src/ed25519.h"

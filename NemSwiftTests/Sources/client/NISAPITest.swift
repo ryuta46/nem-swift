@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 import APIKit
 import Result
-@testable import NemSwift
+import NemSwift
 
 //extension Extension where Base: Session {
 extension Session {
@@ -340,7 +340,7 @@ class TransferTransactionTestFixture {
     let messageType: TransferTransactionHelper.MessageType
     let mosaics: [TransferMosaic]
 
-    init(_ xem: UInt64, _ message: String = "", _ messageType: TransferTransactionHelper.MessageType = TransferTransactionHelper.MessageType.Plain, _ mosaics: [TransferMosaic] = []) {
+    init(_ xem: UInt64, _ message: String = "", _ messageType: TransferTransactionHelper.MessageType = .plain, _ mosaics: [TransferMosaic] = []) {
         self.xem = xem
         self.message = message
         self.messageType = messageType
@@ -357,7 +357,15 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
         account = Account.generateAccount(network: .testnet)
     }
 
-
+    let messageBytes: [UInt8]
+    if fixture.messageType == .plain {
+        messageBytes = Array(fixture.message.utf8)
+    } else {
+        messageBytes = try! MessageEncryption.encrypt(senderKeys: account.keyPair,
+                                                      receiverPublicKey: ConvertUtil.toByteArray(TestSettings.RECEIVER_PUBLIC),
+                                                      message: Array(fixture.message.utf8))
+    }
+    
     let announce: [UInt8]
 
     if fixture.mosaics.isEmpty {
@@ -367,7 +375,7 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
             recipientAddress: TestSettings.RECEIVER,
             amount: fixture.xem,
             messageType: fixture.messageType,
-            message: fixture.message)
+            message: messageBytes)
     } else {
         announce = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
@@ -375,7 +383,7 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
             recipientAddress: TestSettings.RECEIVER,
             mosaics: fixture.mosaics,
             messageType: fixture.messageType,
-            message: fixture.message)
+            message: messageBytes)
     }
 
     let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: announce, keyPair: account.keyPair)
@@ -410,8 +418,9 @@ class TransferTransactionTest : ParameterizedTest {
         get {
             return [
                 TransferTransactionTestFixture(1),
-                TransferTransactionTestFixture(0, "Message test", TransferTransactionHelper.MessageType.Plain),
-                TransferTransactionTestFixture(0, "", TransferTransactionHelper.MessageType.Plain,
+                TransferTransactionTestFixture(0, "Message test", .plain),
+                TransferTransactionTestFixture(0, "TEST ENCRYPT MESSAGE", .secure),
+                TransferTransactionTestFixture(0, "", .plain,
                                                [TransferMosaic(namespace: "nem", mosaic: "xem", quantity: 1, supply: 8_999_999_999, divisibility: 6)]),
 
             ]
@@ -680,4 +689,88 @@ class MultisigTransactionTest: XCTestCase {
     }
 
 }
+
+
+struct ReadMessageFixture {
+    let transactionHash: String
+    let expected: String
+    
+    init(_ transactionHash: String, _ expected: String) {
+        self.transactionHash = transactionHash
+        self.expected = expected
+    }
+}
+        
+class ReadMessageTest : ParameterizedTest {
+    override func setUp() {
+        super.setUp()
+        NemSwiftConfiguration.defaultBaseURL = TestSettings.TEST_HOST
+        NemSwiftConfiguration.logLevel = .debug
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+    
+    override class func createTestCases() -> [ParameterizedTest] {
+        return self.testInvocations.map { ReadMessageTest(invocation: $0) }
+    }
+    
+    override class var fixtures: [Any] {
+        get {
+            return [
+                ReadMessageFixture("9eda9271565628765caf51e9c89fadb41ed7413ed94c62e4d75870f1197d3872", "TEST PLAIN TEXT MESSAGE"),
+                ReadMessageFixture("e19c81ec1ab9d2c96edd5418933054e2edfedd483d530324acab533153e09db3", "TEST ENCRYPTED MESSAGE")
+            ]
+        }
+    }
+    
+    func testReadMessage() {
+        let fixture = self.fixture as! ReadMessageFixture
+        
+        var id: Int? = nil
+        var transaction: TransactionMetaDataPair? = nil
+        repeat {
+            let transactions = Session.sendSyncWithTest(NISAPI.AccountTransfersIncoming(address: TestSettings.ADDRESS, id: id))
+            transactions?.data.forEach {
+                if ($0.meta.hash.data == fixture.transactionHash) {
+                    transaction = $0
+                    return
+                }
+            }
+            if transaction != nil {
+                break
+            }
+            guard let lastId = transactions?.data.last?.meta.id else {
+                break
+            }
+            id = lastId
+        } while(transaction != nil)
+        
+        XCTAssertNotNil(transaction)
+        
+        let messageObject = transaction!.transaction.message
+        XCTAssertNotNil(messageObject)
+        
+        let messageBytes = ConvertUtil.toByteArray(messageObject!.payload!)
+        
+        let message: String
+        if (messageObject!.type! == TransferTransactionHelper.MessageType.plain.rawValue) {
+            message = String(bytes: messageBytes, encoding: .utf8)!
+        } else {
+            guard !TestSettings.PRIVATE_KEY.isEmpty else {
+                return
+            }
+            let account = Account.repairAccount(TestSettings.PRIVATE_KEY, network: .testnet)
+            let decryptedBytes = try! MessageEncryption.decrypt(receiverKeys: account.keyPair,
+                                                           senderPublicKey: ConvertUtil.toByteArray(TestSettings.RECEIVER_PUBLIC),
+                                                           mergedEncryptedMessage: messageBytes)
+            message = String(bytes: decryptedBytes, encoding: .utf8)!
+        }
+        
+        XCTAssertEqual(fixture.expected, message)
+    }
+    
+    
+    
+}
+
+
 
