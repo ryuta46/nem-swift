@@ -29,8 +29,8 @@ public class TransferTransactionHelper {
     public static let transferFeeFactor = 50_000
 
     public enum MessageType: UInt32 {
-        case Plain = 1
-        case Secure = 2
+        case plain = 1
+        case secure = 2
     }
     
     private init() { }
@@ -39,10 +39,10 @@ public class TransferTransactionHelper {
         public let recipientAddress: String
         public let amount: UInt64
         public let messageType: MessageType
-        public let message: String
+        public let message: [UInt8]
         public let mosaics: [TransferMosaic]?
         
-        init(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, amount: UInt64, messageType: MessageType, message: String, mosaics: [TransferMosaic]?) {
+        init(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, amount: UInt64, messageType: MessageType, message: [UInt8], mosaics: [TransferMosaic]?) {
             
             self.recipientAddress = recipientAddress
             self.amount = amount
@@ -66,13 +66,8 @@ public class TransferTransactionHelper {
                 mosaicBytes()
         }
         
-        private func messagePayloadBytes() -> [UInt8] {
-            // TODO: 暗号化は後で対応する
-            return Array(message.utf8)
-        }
-        
         private func messageLength() -> UInt32 {
-            return UInt32(4) + UInt32(4) + (UInt32)(messagePayloadBytes().count)
+            return UInt32(4) + UInt32(4) + (UInt32)(message.count)
         }
         
         private func transferFee() -> UInt64 {
@@ -88,8 +83,8 @@ public class TransferTransactionHelper {
         }
         
         private func messageTransferFee() -> UInt64 {
-            let count = messagePayloadBytes().count
-            return (UInt64)(count > 0 ? 50_000 * UInt(1 + message.lengthOfBytes(using: .utf8) / 32) : 0)
+            let count = message.count
+            return (UInt64)(count > 0 ? 50_000 * UInt(1 + message.count / 32) : 0)
         }
         
         private func mosaicTransferFee() -> UInt64 {
@@ -124,8 +119,8 @@ public class TransferTransactionHelper {
             } else {
                 return ConvertUtil.toByteArrayWithLittleEndian(messageLength()) +
                     ConvertUtil.toByteArrayWithLittleEndian(messageType.rawValue) +
-                    ConvertUtil.toByteArrayWithLittleEndian((UInt32)(messagePayloadBytes().count)) +
-                    messagePayloadBytes()
+                    ConvertUtil.toByteArrayWithLittleEndian((UInt32)(message.count)) +
+                    message
             }
         }
         
@@ -165,17 +160,18 @@ public class TransferTransactionHelper {
     
     
     public static func generateTransfer(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, amount: UInt64,
-                                        messageType: MessageType = .Plain,
-                                        message: String = ""
+                                        messageType: MessageType = .plain,
+                                        message: [UInt8] = []
         ) -> Transaction {
         return Transaction(publicKey: publicKey, network: network,
                            recipientAddress: recipientAddress, amount: amount,
                            messageType: messageType, message: message,
                            mosaics: nil)
     }
+    
     public static func generateMosaicTransfer(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, mosaics: [TransferMosaic],
-                                              messageType: MessageType = .Plain,
-                                              message: String = ""
+                                              messageType: MessageType = .plain,
+                                              message: [UInt8] = []
         ) -> Transaction {
         
         let amount = (UInt64)(1_000_000)
@@ -188,8 +184,8 @@ public class TransferTransactionHelper {
 
 
     public static func generateTransferRequestAnnounce(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, amount: UInt64,
-                                                       messageType: MessageType = .Plain,
-                                                       message: String = ""
+                                                       messageType: MessageType = .plain,
+                                                       message: [UInt8] = []
         ) -> [UInt8] {
         return generateTransfer(publicKey: publicKey, network: network,
                                 recipientAddress: recipientAddress, amount: amount,
@@ -197,8 +193,8 @@ public class TransferTransactionHelper {
     }
     
     public static func generateMosaicTransferRequestAnnounce(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, mosaics: [TransferMosaic],
-                                                             messageType: MessageType = .Plain,
-                                                             message: String = ""
+                                                             messageType: MessageType = .plain,
+                                                             message: [UInt8] = []
         ) -> [UInt8] {
 
         return generateMosaicTransfer(publicKey: publicKey, network: network,
