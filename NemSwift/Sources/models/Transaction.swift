@@ -10,14 +10,14 @@ import Foundation
 
 public class Transaction: Decodable {
     public let timeStamp: UInt
-    public let fee: UInt
+    public let fee: UInt64
     public let type: UInt
     public let version: Int
     public let signer: String
     public let signature: String?
 
     // for Transfer
-    public let amount: UInt?
+    public let amount: UInt64?
     public let recipient: String?
     public let mosaics: [Mosaic]?
     public let message: TransactionMessage?
@@ -34,8 +34,8 @@ public class Transaction: Decodable {
     public let multisigSignatureTransaction: [Transaction]?
 
     
-    public init(timeStamp: UInt, fee: UInt, type: UInt, version: Int, signer: String, signature: String? = nil,
-                amount: UInt? = nil, recipient: String? = nil, mosaics: [Mosaic]? = nil, message: TransactionMessage? = nil,
+    public init(timeStamp: UInt, fee: UInt64, type: UInt, version: Int, signer: String, signature: String? = nil,
+                amount: UInt64? = nil, recipient: String? = nil, mosaics: [Mosaic]? = nil, message: TransactionMessage? = nil,
                 modifications: [MultisigCosignatoryModification]? = nil, minCosignatories: MinimumCosignatoriesModification? = nil,
                 otherHash: TransactionHash? = nil, otherAccount: String? = nil,
                 otherTrans: Transaction? = nil, multisigSignatureTransaction: [Transaction]? = nil

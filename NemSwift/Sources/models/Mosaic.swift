@@ -14,5 +14,5 @@ public struct Mosaics: Decodable {
 
 public struct Mosaic: Decodable {
     public let mosaicId: MosaicId
-    public let quantity: UInt
+    public let quantity: UInt64
 }
