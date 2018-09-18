@@ -10,8 +10,8 @@ import Foundation
 
 public struct AccountInfo: Decodable {
     public let address: String
-    public let balance: Int
-    public let vestedBalance: Int
+    public let balance: UInt64
+    public let vestedBalance: UInt64
     public let importance: Double
     public let publicKey: String?
     public let label: String?

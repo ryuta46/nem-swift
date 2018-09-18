@@ -12,5 +12,5 @@ public struct MosaicLevy: Decodable {
     public let type: UInt
     public let recipient: String
     public let mosaicId: MosaicId
-    public let fee: UInt
+    public let fee: UInt64
 }
