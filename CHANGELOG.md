@@ -1,3 +1,9 @@
+## Version 0.3.1
+
+2018-09-19
+
+* Fix: Some APIs does not work on 32bit environment.
+
 ## Version 0.3.0
 
 2018-08-13
