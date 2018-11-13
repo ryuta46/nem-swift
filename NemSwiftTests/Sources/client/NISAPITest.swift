@@ -758,7 +758,7 @@ class ReadMessageTest : ParameterizedTest {
                 break
             }
             id = lastId
-        } while(transaction != nil)
+        } while(transaction == nil)
         
         XCTAssertNotNil(transaction)
         
