@@ -1,3 +1,9 @@
+## Version 0.3.2
+
+2018-11-14
+
+* Fix: Sort mosaic list before serialization.
+
 ## Version 0.3.1
 
 2018-09-19
