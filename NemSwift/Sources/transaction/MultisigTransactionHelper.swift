@@ -54,7 +54,7 @@ public class MultisigTransactionHelper {
             bytes += ConvertUtil.toByteArrayWithLittleEndian(UInt32(modifications.count))
             
             var modificationsBytes: [UInt8] = []
-            modifications.forEach { (modification) in
+            modifications.sorted(by: {left, right in left.cosignatoryAccount < right.cosignatoryAccount }).forEach { (modification) in
                 let publicKey = ConvertUtil.toByteArray(modification.cosignatoryAccount)
                 var thisModificationBytes: [UInt8] = []
                 thisModificationBytes += ConvertUtil.toByteArrayWithLittleEndian(UInt32(modification.modificationType))
