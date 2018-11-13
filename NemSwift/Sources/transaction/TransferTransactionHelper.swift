@@ -22,6 +22,9 @@ public struct TransferMosaic {
         self.supply = supply
         self.divisibility = divisibility
     }
+    public var fullName: String {
+        return namespace + ":" + mosaic;
+    }
 }
 
 
@@ -132,7 +135,7 @@ public class TransferTransactionHelper {
             var mosaicsBytes: [UInt8]?
             let mosaicNumBytes = ConvertUtil.toByteArrayWithLittleEndian(UInt32(mosaics.count))
             
-            for mosaic in mosaics {
+            for mosaic in mosaics.sorted(by: { left, right in left.fullName < right.fullName }) {
                 let mosaicNameSpaceIdBytes = Array(mosaic.namespace.utf8) as [UInt8]
                 let mosaicNameBytes = Array(mosaic.mosaic.utf8) as [UInt8]
                 let mosaicIdStructLength = 4 + mosaicNameSpaceIdBytes.count + 4 + mosaicNameBytes.count
