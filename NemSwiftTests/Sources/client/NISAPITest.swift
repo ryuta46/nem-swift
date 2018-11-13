@@ -423,6 +423,22 @@ class TransferTransactionTest : ParameterizedTest {
                 TransferTransactionTestFixture(0, "", .plain,
                                                [TransferMosaic(namespace: "nem", mosaic: "xem", quantity: 1, supply: 8_999_999_999, divisibility: 6)]),
 
+
+                TransferTransactionTestFixture(0, "", .plain,
+                        [TransferMosaic(namespace: "ename", mosaic: "ecoin1", quantity: 1, supply: 9_000_000_000, divisibility: 0),
+                         TransferMosaic(namespace: "ename", mosaic: "ecoin0", quantity: 1, supply: 9_000_000_000, divisibility: 0)]),
+
+                TransferTransactionTestFixture(0, "", .plain,
+                        [TransferMosaic(namespace: "ename", mosaic: "ecoin0", quantity: 1, supply: 9_000_000_000, divisibility: 0),
+                         TransferMosaic(namespace: "ename", mosaic: "ecoin1", quantity: 2, supply: 9_000_000_000, divisibility: 0)]),
+
+                TransferTransactionTestFixture(0, "", .plain,
+                        [TransferMosaic(namespace: "nem", mosaic: "xem", quantity: 1, supply: 8_999_999_999, divisibility: 6),
+                         TransferMosaic(namespace: "ename", mosaic: "ecoin0", quantity: 1, supply: 9_000_000_000, divisibility: 0)]),
+
+                TransferTransactionTestFixture(0, "", .plain,
+                        [TransferMosaic(namespace: "ename", mosaic: "ecoin0", quantity: 2, supply: 9_000_000_000, divisibility: 0),
+                         TransferMosaic(namespace: "nem", mosaic: "xem", quantity: 1, supply: 8_999_999_999, divisibility: 6)]),
             ]
         }
     }
