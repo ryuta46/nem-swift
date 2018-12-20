@@ -331,6 +331,20 @@ class NISAPITest: XCTestCase {
     }
 
 
+    func testNetworkTime() {
+        guard let response = Session.sendSyncWithTest(NISAPI.NetworkTime()) else { return }
+
+        let serverTimeStamp = response.receiveTimeStampBySeconds
+        let localTimeStamp = TimeUtil.currentTimeFromGenesisTime(date: Date())
+
+        print("serverTimeStamp: \(serverTimeStamp)")
+        print("localTimeStamp : \(localTimeStamp)")
+
+        let timeDiff = serverTimeStamp > localTimeStamp ? serverTimeStamp - localTimeStamp : localTimeStamp - serverTimeStamp
+        XCTAssertLessThan(timeDiff, 3600)
+        //response.receiveTimeStamp
+    }
+
 }
 
 

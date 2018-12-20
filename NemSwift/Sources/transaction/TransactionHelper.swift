@@ -37,34 +37,20 @@ public class TransactionHelper {
             
             return ConvertUtil.toByteArrayWithLittleEndian(type.transactionTypeBytes()) +
                 ConvertUtil.toByteArrayWithLittleEndian(network.rawValue + type.versionBytes()) +
-                ConvertUtil.toByteArrayWithLittleEndian(currentTimeFromGenesisTime(date: now)) +
+                ConvertUtil.toByteArrayWithLittleEndian(TimeUtil.currentTimeFromGenesisTime(date: now)) +
                 ConvertUtil.toByteArrayWithLittleEndian(UInt32(publicKey.count)) +
                 publicKey +
                 ConvertUtil.toByteArrayWithLittleEndian(fee) +
                 ConvertUtil.toByteArrayWithLittleEndian(deadline(from: now))
         }
         
-        func genesisDateTime() -> Date {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-            dateFormatter.timeZone = TimeZone(identifier: "UTC")
-            
-            return dateFormatter.date(from: "2015/03/29 00:06:25")!
-        }
-        
-        func currentTimeFromGenesisTime(date: Date) -> UInt32 {
-            return UInt32(-genesisDateTime().timeIntervalSince(date))
-        }
-        
+
         func deadline(from: Date) -> UInt32 {
-            let timeStamp = currentTimeFromGenesisTime(date: from)
-            
+            let timeStamp = TimeUtil.currentTimeFromGenesisTime(date: from)
+
             // deadlineは24時間後にする
             return timeStamp + 60 * 60 * 24
         }
-        
-
-
     }
     
     public enum TransactionType {
