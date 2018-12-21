@@ -110,6 +110,35 @@ Session.send(NISAPI.AccountGet(baseURL: URL(string:"http://customnis:7890")!,  a
 }
 ```
 
+### トランザクションの作成
+
+**トランザクションを作成する際は、NISからネットワーク時間を取得して、それをタイムスタンプとして使う必要があります。**
+
+最初に、NISからネットワーク時間を取得し、
+```swift
+Session.send(NISAPI.NetworkTime()) { result in
+    switch result {
+        case .success(let response):
+            timeStamp = response.receiveTimeStampBySeconds
+        case .failure(let error):
+            print(error)
+    }
+}
+```
+
+次に、取得した時間を `timeStamp` としてトランザクション作成時に設定します。
+```swift
+// Create XEM transfer transaction
+let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
+    publicKey: account.keyPair.publicKey,
+    network: .testnet,
+    timeStamp: timeStamp,
+    recipientAddress: recipient,
+    amount: microXem)
+```
+
+`timeStamp` パラメータが省略された場合はローカル時間が使われますが、その場合はトランザクションを送信した際に `FAILURE_TIMESTAMP_TOO_FAR_IN_FUTURE` エラーが発生する場合があります。
+
 ### XEM、モザイクの送信
 
 送金など、署名が必要なトランザクションの生成は 'TransferTransactionHelper' を使います。
@@ -120,6 +149,7 @@ XEMを送金する場合
 let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipient,
     amount: microXem)
 
@@ -151,6 +181,7 @@ let mosaic = TransferMosaic(namespace: "mosaicNamespaceId",
 let transaction = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipient,
     mosaics: [mosaic])
 ```
@@ -182,6 +213,7 @@ let message = Array("message".utf8)
 let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipient,
     amount: microXem,
     messageType: .plain,
@@ -201,6 +233,7 @@ let encryptedMessage = MessageEncryption.encrypt(
 let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipient,
     amount: microXem,
     messageType: .secure,
@@ -240,6 +273,7 @@ if (type == TransferTransactionHelper.MessageType.plain.rawValue) {
 let modificationRequest = MultisigTransactionHelper.generateAggregateModificationRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     modifications: [MultisigCosignatoryModification(modificationType: .add, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
     minCosignatoriesRelativeChange: 1)
 
@@ -261,6 +295,7 @@ Session.send(NISAPI.TransactionAnnounce(requestAnnounce: modificationRequest, ke
 let transferTransaction = TransferTransactionHelper.generateTransfer(
     publicKey: MULTISIG_ACCOUNT_PUBLIC_KEY,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipientAddress,
     amount: 10
 )
@@ -270,6 +305,7 @@ let transferTransaction = TransferTransactionHelper.generateTransfer(
 let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     innerTransaction: transferTransaction)
 
 
@@ -307,6 +343,7 @@ guard let hash = self.unconfirmedTransactions?.data.first?.meta.data else {
 let signatureRequest = MultisigTransactionHelper.generateSignatureRequestAnnounce(
     publicKey: signer.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     otherHash: hash,
     otherAccount: MULTISIG_ACCOUNT_ADDRESS)
     

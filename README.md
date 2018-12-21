@@ -110,6 +110,35 @@ Session.send(NISAPI.AccountGet(baseURL: URL(string:"http://customnis:7890")!,  a
 }
 ```
 
+### Creating a transaction
+
+**When creating a transaction, you should get network time from the NIS and use it as timeStamp.**
+
+First, get network time from the NIS
+```swift
+Session.send(NISAPI.NetworkTime()) { result in
+    switch result {
+        case .success(let response):
+            timeStamp = response.receiveTimeStampBySeconds
+        case .failure(let error):
+            print(error)
+        }
+}
+```
+
+Next, create a transaction using the acquired network time as timeStamp.
+```swift
+// Create XEM transfer transaction
+let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
+    publicKey: account.keyPair.publicKey,
+    network: .testnet,
+    timeStamp: timeStamp,
+    recipientAddress: recipient,
+    amount: microXem)
+```
+
+The local time is used when the `timeStamp` parameter is omitted, but it may cause `FAILURE_TIMESTAMP_TOO_FAR_IN_FUTURE` error when the transaction is announced.
+
 ### Sending XEM and Mosaics
 
 TransferTransactionHelper is an utility to create transactions which required account signing.
@@ -120,6 +149,7 @@ To send XEM,
 let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipient,
     amount: microXem)
 
@@ -150,6 +180,7 @@ let mosaic = TransferMosaic(namespace: "mosaicNamespaceId",
 let transaction = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipient,
     mosaics: [mosaic])
 ```
@@ -181,6 +212,7 @@ let message = Array("message".utf8)
 let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipient,
     amount: microXem,
     messageType: .plain,
@@ -200,6 +232,7 @@ let encryptedMessage = MessageEncryption.encrypt(
 let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipient,
     amount: microXem,
     messageType: .secure,
@@ -239,6 +272,7 @@ To change an account to multisig account,
 let modificationRequest = MultisigTransactionHelper.generateAggregateModificationRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     modifications: [MultisigCosignatoryModification(modificationType: .add, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
     minCosignatoriesRelativeChange: 1)
 
@@ -260,6 +294,7 @@ To send XEM from multisig account,
 let transferTransaction = TransferTransactionHelper.generateTransfer(
     publicKey: MULTISIG_ACCOUNT_PUBLIC_KEY,
     network: .testnet,
+    timeStamp: timeStamp,
     recipientAddress: recipientAddress,
     amount: 10
 )
@@ -269,6 +304,7 @@ let transferTransaction = TransferTransactionHelper.generateTransfer(
 let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
     publicKey: account.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     innerTransaction: transferTransaction)
 
 
@@ -306,6 +342,7 @@ guard let hash = self.unconfirmedTransactions?.data.first?.meta.data else {
 let signatureRequest = MultisigTransactionHelper.generateSignatureRequestAnnounce(
     publicKey: signer.keyPair.publicKey,
     network: .testnet,
+    timeStamp: timeStamp,
     otherHash: hash,
     otherAccount: MULTISIG_ACCOUNT_ADDRESS)
     
