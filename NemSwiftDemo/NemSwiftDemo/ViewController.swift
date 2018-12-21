@@ -77,7 +77,9 @@ class ViewController: UIViewController {
                     return
             }
             weakSelf.textMessage.text = ""
-            weakSelf.sendXem(address, UInt64(microXem))
+            weakSelf.fetchServerTimeStamp{ timeStamp in
+                weakSelf.sendXem(address, UInt64(microXem), timeStamp)
+            }
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action:UIAlertAction!) -> Void in }
@@ -114,7 +116,9 @@ class ViewController: UIViewController {
                     return
             }
             weakSelf.textMessage.text = ""
-            weakSelf.sendMosaic(address, UInt64(quantity))
+            weakSelf.fetchServerTimeStamp{ timeStamp in
+                weakSelf.sendMosaic(address, UInt64(quantity), timeStamp)
+            }
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action:UIAlertAction!) -> Void in }
@@ -185,7 +189,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     private func fetchMosaicDefinition(from id: Int? = nil) {
         Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: Constants.MOSAIC_NAMESPACE_ID, id: id)) { [weak self] result in
             guard let weakSelf = self else {
@@ -216,13 +220,30 @@ class ViewController: UIViewController {
         }
 
     }
+    
+    private func fetchServerTimeStamp(handler: @escaping (_ timeStamp: UInt32) -> Void) {
+        Session.send(NISAPI.NetworkTime()) { result in
+            switch result {
+            case .success(let response):
+                handler(response.receiveTimeStampBySeconds)
+            case .failure(let error):
+                switch error {
+                case .responseError(let e as NISError):
+                    print(e)
+                default:
+                    print(error)
+                }
+            }
+        }
+    }
 
-    private func sendXem(_ recipientAddress: String, _ microXem: UInt64) {
+    private func sendXem(_ recipientAddress: String, _ microXem: UInt64, _ timeStamp: UInt32) {
         clearMessage()
         // Create transfer transaction
         let transaction = TransferTransactionHelper.generateTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: TransactionHelper.Network.testnet,
+            timeStamp: timeStamp,
             recipientAddress: recipientAddress,
             amount: microXem)
 
@@ -248,7 +269,7 @@ class ViewController: UIViewController {
         }
     }
 
-    private func sendMosaic(_ recipientAddress: String, _ quantity: UInt64) {
+    private func sendMosaic(_ recipientAddress: String, _ quantity: UInt64, _ timeStamp: UInt32) {
         clearMessage()
 
         guard let mosaicSupply = mosaicSupply,
@@ -266,6 +287,7 @@ class ViewController: UIViewController {
         let transaction = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
             publicKey: account.keyPair.publicKey,
             network: TransactionHelper.Network.testnet,
+            timeStamp: timeStamp,
             recipientAddress: recipientAddress,
             mosaics: [mosaic])
 
