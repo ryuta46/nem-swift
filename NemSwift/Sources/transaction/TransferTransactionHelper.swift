@@ -45,7 +45,11 @@ public class TransferTransactionHelper {
         public let message: [UInt8]
         public let mosaics: [TransferMosaic]?
         
-        init(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, amount: UInt64, messageType: MessageType, message: [UInt8], mosaics: [TransferMosaic]?) {
+        init(publicKey: [UInt8],
+             network: TransactionHelper.Network,
+             timeStamp: UInt32,
+             duration: UInt32,
+             recipientAddress: String, amount: UInt64, messageType: MessageType, message: [UInt8], mosaics: [TransferMosaic]?) {
             
             self.recipientAddress = recipientAddress
             self.amount = amount
@@ -53,7 +57,7 @@ public class TransferTransactionHelper {
             self.message = message
             self.mosaics = mosaics
             
-            super.init(type: .Transfer, network: network, publicKey: publicKey, fee: 0)
+            super.init(type: .Transfer, network: network, publicKey: publicKey, fee: 0, timeStamp: timeStamp, duration: duration)
             
             self.fee = transferFee()
         }
@@ -162,47 +166,94 @@ public class TransferTransactionHelper {
     }
     
     
-    public static func generateTransfer(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, amount: UInt64,
-                                        messageType: MessageType = .plain,
-                                        message: [UInt8] = []
-        ) -> Transaction {
-        return Transaction(publicKey: publicKey, network: network,
-                           recipientAddress: recipientAddress, amount: amount,
-                           messageType: messageType, message: message,
-                           mosaics: nil)
+    public static func generateTransfer(
+            publicKey: [UInt8],
+            network: TransactionHelper.Network,
+            timeStamp: UInt32 = TimeUtil.currentTimeFromGenesisTime(date: Date()),
+            duration: UInt32 = TimeUtil.oneDay,
+            recipientAddress: String,
+            amount: UInt64,
+            messageType: MessageType = .plain,
+            message: [UInt8] = []
+    ) -> Transaction {
+
+        return Transaction(
+                publicKey: publicKey,
+                network: network,
+                timeStamp: timeStamp,
+                duration: duration,
+                recipientAddress: recipientAddress, amount: amount,
+                messageType: messageType, message: message,
+                mosaics: nil)
     }
     
-    public static func generateMosaicTransfer(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, mosaics: [TransferMosaic],
-                                              messageType: MessageType = .plain,
-                                              message: [UInt8] = []
-        ) -> Transaction {
+    public static func generateMosaicTransfer(
+            publicKey: [UInt8],
+            network: TransactionHelper.Network,
+            timeStamp: UInt32 = TimeUtil.currentTimeFromGenesisTime(date: Date()),
+            duration: UInt32 = TimeUtil.oneDay,
+            recipientAddress: String,
+            mosaics: [TransferMosaic],
+            messageType: MessageType = .plain,
+            message: [UInt8] = []
+    ) -> Transaction {
         
         let amount = (UInt64)(1_000_000)
         
-        return Transaction(publicKey: publicKey, network: network,
-                           recipientAddress: recipientAddress, amount: amount,
-                           messageType: messageType, message: message,
-                           mosaics: mosaics)
+        return Transaction(
+                publicKey: publicKey,
+                network: network,
+                timeStamp: timeStamp,
+                duration: duration,
+                recipientAddress: recipientAddress,
+                amount: amount,
+                messageType: messageType,
+                message: message,
+                mosaics: mosaics)
     }
 
 
-    public static func generateTransferRequestAnnounce(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, amount: UInt64,
-                                                       messageType: MessageType = .plain,
-                                                       message: [UInt8] = []
-        ) -> [UInt8] {
-        return generateTransfer(publicKey: publicKey, network: network,
-                                recipientAddress: recipientAddress, amount: amount,
-                                messageType: messageType, message: message).toByteArray()
+    public static func generateTransferRequestAnnounce(
+            publicKey: [UInt8],
+            network: TransactionHelper.Network,
+            timeStamp: UInt32 = TimeUtil.currentTimeFromGenesisTime(date: Date()),
+            duration: UInt32 = TimeUtil.oneDay,
+            recipientAddress: String,
+            amount: UInt64,
+            messageType: MessageType = .plain,
+            message: [UInt8] = []
+    ) -> [UInt8] {
+        return generateTransfer(
+                publicKey: publicKey,
+                network: network,
+                timeStamp: timeStamp,
+                duration: duration,
+                recipientAddress: recipientAddress,
+                amount: amount,
+                messageType: messageType,
+                message: message).toByteArray()
     }
     
-    public static func generateMosaicTransferRequestAnnounce(publicKey: [UInt8], network: TransactionHelper.Network, recipientAddress: String, mosaics: [TransferMosaic],
-                                                             messageType: MessageType = .plain,
-                                                             message: [UInt8] = []
-        ) -> [UInt8] {
+    public static func generateMosaicTransferRequestAnnounce(
+            publicKey: [UInt8],
+            network: TransactionHelper.Network,
+            timeStamp: UInt32 = TimeUtil.currentTimeFromGenesisTime(date: Date()),
+            duration: UInt32 = TimeUtil.oneDay,
+            recipientAddress: String,
+            mosaics: [TransferMosaic],
+            messageType: MessageType = .plain,
+            message: [UInt8] = []
+    ) -> [UInt8] {
 
-        return generateMosaicTransfer(publicKey: publicKey, network: network,
-                                      recipientAddress: recipientAddress, mosaics: mosaics,
-                                      messageType: messageType, message: message).toByteArray()
+        return generateMosaicTransfer(
+                publicKey: publicKey,
+                network: network,
+                timeStamp: timeStamp,
+                duration: duration,
+                recipientAddress: recipientAddress,
+                mosaics: mosaics,
+                messageType: messageType,
+                message: message).toByteArray()
 
     }
 

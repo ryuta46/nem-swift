@@ -8,6 +8,8 @@ import Foundation
 public class TimeUtil {
     private init(){}
 
+    public static let oneDay: UInt32 = 60 * 60 * 24
+
     public static func genesisDateTime() -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"

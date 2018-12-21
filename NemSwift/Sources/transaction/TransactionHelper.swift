@@ -19,37 +19,32 @@ public class TransactionHelper {
         public let network: Network
         public let publicKey: [UInt8]
         public var fee: UInt64
+        public let timeStamp: UInt32
+        public let duration: UInt32
         
         public init(
             type: TransactionType,
             network: Network,
             publicKey: [UInt8],
-            fee: UInt64) {
+            fee: UInt64,
+            timeStamp: UInt32,
+            duration: UInt32) {
             self.type = type
             self.network = network
             self.publicKey = publicKey
             self.fee = fee
+            self.timeStamp = timeStamp
+            self.duration = duration
         }
         
         public func toByteArray() -> [UInt8] {
-            let now = Date()
-            Logger.d("Now: \(now)")
-            
             return ConvertUtil.toByteArrayWithLittleEndian(type.transactionTypeBytes()) +
                 ConvertUtil.toByteArrayWithLittleEndian(network.rawValue + type.versionBytes()) +
-                ConvertUtil.toByteArrayWithLittleEndian(TimeUtil.currentTimeFromGenesisTime(date: now)) +
+                ConvertUtil.toByteArrayWithLittleEndian(timeStamp) +
                 ConvertUtil.toByteArrayWithLittleEndian(UInt32(publicKey.count)) +
                 publicKey +
                 ConvertUtil.toByteArrayWithLittleEndian(fee) +
-                ConvertUtil.toByteArrayWithLittleEndian(deadline(from: now))
-        }
-        
-
-        func deadline(from: Date) -> UInt32 {
-            let timeStamp = TimeUtil.currentTimeFromGenesisTime(date: from)
-
-            // deadlineは24時間後にする
-            return timeStamp + 60 * 60 * 24
+                ConvertUtil.toByteArrayWithLittleEndian(timeStamp + duration)
         }
     }
     
