@@ -191,7 +191,7 @@ class ViewController: UIViewController {
     }
     
     private func fetchMosaicDefinition(from id: Int? = nil) {
-        Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: Constants.MOSAIC_NAMESPACE_ID, id: id)) { [weak self] result in
+        Session.send(NISAPI.NamespaceMosaicDefinitionPage(namespace: Constants.MOSAIC_NAMESPACE_ID, id: id)) { [weak self] result in
             guard let weakSelf = self else {
                 return
             }
