@@ -140,14 +140,21 @@ public final class NISAPI {
                        parameters: ["address": address, "parent": parent, "id": id, "pageSize": pageSize])
         }
     }
-    
-    public class NamespaceMosaicDefintionPage: NISGetRequest<MosaicDefinitionMetaDataPairs> {
-        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, namespace: String, id: Int? = nil, pageSize: Int? = nil) {
-            super.init(baseURL: baseURL, path: "/namespace/mosaic/definition/page",
-                       parameters: ["namespace": namespace, "id": id, "pagesize": pageSize])
+
+    public class Namespace: NISGetRequest<NemSwift.Namespace> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, namespace: String) {
+            super.init(baseURL: baseURL, path: "/namespace",
+                    parameters: ["namespace": namespace])
         }
     }
-    
+
+    public class NamespaceMosaicDefinitionPage: NISGetRequest<MosaicDefinitionMetaDataPairs> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, namespace: String, id: Int? = nil, pageSize: Int? = nil) {
+            super.init(baseURL: baseURL, path: "/namespace/mosaic/definition/page",
+                    parameters: ["namespace": namespace, "id": id, "pagesize": pageSize])
+        }
+    }
+
     // Retrieving mosaics that an account owns
     public class AccountMosaicOwned: NISGetRequest<Mosaics> {
         public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {

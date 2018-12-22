@@ -310,8 +310,18 @@ class NISAPITest: XCTestCase {
         XCTAssertFalse(response.data.isEmpty)
     }
 
+
+    func testNamespace() {
+        guard let response: Namespace = Session.sendSyncWithTest(NISAPI.Namespace(namespace: "ename")) else { return }
+        print("\(response)")
+
+        XCTAssertEqual(TestSettings.RECEIVER, response.owner)
+        XCTAssertEqual("ename", response.fqn)
+        XCTAssertEqual(1718511, response.height)
+    }
+
     func testNamespaceMosaicDefinitionPage() {
-        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefintionPage(namespace: "ename")) else { return }
+        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefinitionPage(namespace: "ename")) else { return }
         print("\(response)")
 
         XCTAssertFalse(response.data.isEmpty)
