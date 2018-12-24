@@ -25,6 +25,6 @@ Pod::Spec.new do |s|
 
   s.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '"USE_KECCAK"' }
 
-  s.dependency 'APIKit', '~> 3.1' 
+  s.dependency 'APIKit' 
   s.dependency 'CryptoSwift'
 end
