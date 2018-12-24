@@ -310,8 +310,18 @@ class NISAPITest: XCTestCase {
         XCTAssertFalse(response.data.isEmpty)
     }
 
+
+    func testNamespace() {
+        guard let response: Namespace = Session.sendSyncWithTest(NISAPI.Namespace(namespace: "ename")) else { return }
+        print("\(response)")
+
+        XCTAssertEqual(TestSettings.RECEIVER, response.owner)
+        XCTAssertEqual("ename", response.fqn)
+        XCTAssertEqual(1718511, response.height)
+    }
+
     func testNamespaceMosaicDefinitionPage() {
-        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefintionPage(namespace: "ttech")) else { return }
+        guard let response = Session.sendSyncWithTest(NISAPI.NamespaceMosaicDefinitionPage(namespace: "ename")) else { return }
         print("\(response)")
 
         XCTAssertFalse(response.data.isEmpty)
@@ -319,10 +329,10 @@ class NISAPITest: XCTestCase {
         response.data.forEach { metaDataPair in
             XCTAssertEqual(TestSettings.RECEIVER_PUBLIC, metaDataPair.mosaic.creator)
 
-            if metaDataPair.mosaic.id.name == "ryuta" {
-                XCTAssertEqual("Test mosaic for NEM API", metaDataPair.mosaic.description)
-                XCTAssertEqual(0, metaDataPair.mosaic.divisibility)
-                XCTAssertEqual(1_000_000, metaDataPair.mosaic.initialSupply)
+            if metaDataPair.mosaic.id.name == "emosaic1k" {
+                XCTAssertEqual("divisibility = 3", metaDataPair.mosaic.description)
+                XCTAssertEqual(3, metaDataPair.mosaic.divisibility)
+                XCTAssertEqual(9_000_000_000, metaDataPair.mosaic.initialSupply)
                 XCTAssertEqual(true, metaDataPair.mosaic.supplyMutable)
                 XCTAssertEqual(true, metaDataPair.mosaic.transferable)
                 XCTAssertNil(metaDataPair.mosaic.levy)
@@ -330,6 +340,20 @@ class NISAPITest: XCTestCase {
         }
     }
 
+
+    func testNetworkTime() {
+        guard let response = Session.sendSyncWithTest(NISAPI.NetworkTime()) else { return }
+
+        let serverTimeStamp = response.receiveTimeStampBySeconds
+        let localTimeStamp = TimeUtil.currentTimeFromGenesisTime(date: Date())
+
+        print("serverTimeStamp: \(serverTimeStamp)")
+        print("localTimeStamp : \(localTimeStamp)")
+
+        let timeDiff = serverTimeStamp > localTimeStamp ? serverTimeStamp - localTimeStamp : localTimeStamp - serverTimeStamp
+        XCTAssertLessThan(timeDiff, 3600)
+        //response.receiveTimeStamp
+    }
 
 }
 
@@ -368,22 +392,26 @@ func testTransferTransaction(fixture: TransferTransactionTestFixture) {
     
     let announce: [UInt8]
 
+    guard let serverTime = Session.sendSyncWithTest(NISAPI.NetworkTime()) else { return }
+
     if fixture.mosaics.isEmpty {
         announce = TransferTransactionHelper.generateTransferRequestAnnounce(
-            publicKey: account.keyPair.publicKey,
-            network: .testnet,
-            recipientAddress: TestSettings.RECEIVER,
-            amount: fixture.xem,
-            messageType: fixture.messageType,
-            message: messageBytes)
+                publicKey: account.keyPair.publicKey,
+                network: .testnet,
+                timeStamp: serverTime.receiveTimeStampBySeconds,
+                recipientAddress: TestSettings.RECEIVER,
+                amount: fixture.xem,
+                messageType: fixture.messageType,
+                message: messageBytes)
     } else {
         announce = TransferTransactionHelper.generateMosaicTransferRequestAnnounce(
-            publicKey: account.keyPair.publicKey,
-            network: .testnet,
-            recipientAddress: TestSettings.RECEIVER,
-            mosaics: fixture.mosaics,
-            messageType: fixture.messageType,
-            message: messageBytes)
+                publicKey: account.keyPair.publicKey,
+                network: .testnet,
+                timeStamp: serverTime.receiveTimeStampBySeconds,
+                recipientAddress: TestSettings.RECEIVER,
+                mosaics: fixture.mosaics,
+                messageType: fixture.messageType,
+                message: messageBytes)
     }
 
     let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: announce, keyPair: account.keyPair)
@@ -469,10 +497,11 @@ class MultisigTransactionTest: XCTestCase {
         if TestSettings.PRIVATE_KEY.isEmpty {
             let ownerAccount = Account.generateAccount(network: .testnet)
             let multisigRequest = MultisigTransactionHelper.generateAggregateModificationRequestAnnounce(
-                publicKey: multisig.keyPair.publicKey,
-                network: .testnet,
-                modifications: [MultisigCosignatoryModification(modificationType: 1, cosignatoryAccount: ownerAccount.keyPair.publicKeyHexString())],
-                minCosignatoriesRelativeChange: 1)
+                    publicKey: multisig.keyPair.publicKey,
+                    network: .testnet,
+                    timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                    modifications: [MultisigCosignatoryModification(modificationType: 1, cosignatoryAccount: ownerAccount.keyPair.publicKeyHexString())],
+                    minCosignatoriesRelativeChange: 1)
 
 
             let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: multisigRequest, keyPair: multisig.keyPair)
@@ -484,7 +513,12 @@ class MultisigTransactionTest: XCTestCase {
         }
         let account = Account.repairAccount(TestSettings.PRIVATE_KEY, network: .testnet)
     
-        let transfer = TransferTransactionHelper.generateTransferRequestAnnounce(publicKey: account.keyPair.publicKey, network: .testnet, recipientAddress: multisig.address.value, amount: MultisigTransactionHelper.multisigAggregateModificationFee)
+        let transfer = TransferTransactionHelper.generateTransferRequestAnnounce(
+                publicKey: account.keyPair.publicKey,
+                network: .testnet,
+                timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                recipientAddress: multisig.address.value,
+                amount: MultisigTransactionHelper.multisigAggregateModificationFee)
 
         // first, transfer xem to create transaction
         let requestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: transfer, keyPair: account.keyPair)
@@ -498,10 +532,11 @@ class MultisigTransactionTest: XCTestCase {
 
         // second, create multisig transaction
         let modificationRequest = MultisigTransactionHelper.generateAggregateModificationRequestAnnounce(
-            publicKey: multisig.keyPair.publicKey,
-            network: .testnet,
-            modifications: [MultisigCosignatoryModification(modificationType: 1, cosignatoryAccount: account.keyPair.publicKeyHexString())],
-            minCosignatoriesRelativeChange: 1)
+                publicKey: multisig.keyPair.publicKey,
+                network: .testnet,
+                timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                modifications: [MultisigCosignatoryModification(modificationType: 1, cosignatoryAccount: account.keyPair.publicKeyHexString())],
+                minCosignatoriesRelativeChange: 1)
 
         let modificationRequestAnnounce = RequestAnnounce.generateRequestAnnounce(requestAnnounce: modificationRequest, keyPair: multisig.keyPair)
         guard let modificationResponse = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: modificationRequestAnnounce)) else { return }
@@ -541,16 +576,18 @@ class MultisigTransactionTest: XCTestCase {
         if true {
             // Create inner transaction of which deletes signer and decrements minimum cosignatory.
             let modificationTransaction = MultisigTransactionHelper.generateAggregateModification(
-                publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
-                network: .testnet,
-                modifications: [MultisigCosignatoryModification(modificationType: ModificationType.delete.rawValue, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
-                minCosignatoriesRelativeChange: -1)
+                    publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
+                    network: .testnet,
+                    timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                    modifications: [MultisigCosignatoryModification(modificationType: ModificationType.delete.rawValue, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
+                    minCosignatoriesRelativeChange: -1)
 
             // Create multisig transaction
             let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
-                publicKey: account.keyPair.publicKey,
-                network: .testnet,
-                innerTransaction: modificationTransaction)
+                    publicKey: account.keyPair.publicKey,
+                    network: .testnet,
+                    timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                    innerTransaction: modificationTransaction)
             
             guard let multisigResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: multisigRequest, keyPair: account.keyPair)) else { return }
 
@@ -573,10 +610,11 @@ class MultisigTransactionTest: XCTestCase {
             }
             
             let signatureRequest = MultisigTransactionHelper.generateSignatureRequestAnnounce(
-                publicKey: signer.keyPair.publicKey,
-                network: .testnet,
-                otherHash: hash,
-                otherAccount: TestSettings.MULTISIG_ADDRESS)
+                    publicKey: signer.keyPair.publicKey,
+                    network: .testnet,
+                    timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                    otherHash: hash,
+                    otherAccount: TestSettings.MULTISIG_ADDRESS)
             
             guard let signatureResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: signatureRequest, keyPair: signer.keyPair)) else { return }
 
@@ -599,17 +637,19 @@ class MultisigTransactionTest: XCTestCase {
         if true {
             // Create inner transaction of which adds signer and increments minimum cosignatory.
             let modificationTransaction = MultisigTransactionHelper.generateAggregateModification(
-                publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
-                network: .testnet,
-                modifications: [MultisigCosignatoryModification(modificationType: ModificationType.add.rawValue, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
-                minCosignatoriesRelativeChange: 1)
+                    publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
+                    network: .testnet,
+                    timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                    modifications: [MultisigCosignatoryModification(modificationType: ModificationType.add.rawValue, cosignatoryAccount: signer.keyPair.publicKeyHexString())],
+                    minCosignatoriesRelativeChange: 1)
 
             
             // Create multisig transaction
             let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
-                publicKey: account.keyPair.publicKey,
-                network: .testnet,
-                innerTransaction: modificationTransaction)
+                    publicKey: account.keyPair.publicKey,
+                    network: .testnet,
+                    timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                    innerTransaction: modificationTransaction)
             
             guard let multisigResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: multisigRequest, keyPair: account.keyPair)) else { return }
             
@@ -652,18 +692,20 @@ class MultisigTransactionTest: XCTestCase {
 
         // Create inner transaction of which transfers XEM
         let transferTransaction = TransferTransactionHelper.generateTransfer(
-            publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
-            network: .testnet,
-            recipientAddress: TestSettings.ADDRESS,
-            amount: 10
+                publicKey: ConvertUtil.toByteArray(TestSettings.MULTISIG_PUBLIC_KEY),
+                network: .testnet,
+                timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                recipientAddress: TestSettings.ADDRESS,
+                amount: 10
         )
         
     
         // Create multisig transaction
         let multisigRequest = MultisigTransactionHelper.generateMultisigRequestAnnounce(
-            publicKey: account.keyPair.publicKey,
-            network: .testnet,
-            innerTransaction: transferTransaction)
+                publicKey: account.keyPair.publicKey,
+                network: .testnet,
+                timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                innerTransaction: transferTransaction)
         
         guard let multisigResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: multisigRequest, keyPair: account.keyPair)) else { return }
 
@@ -693,10 +735,11 @@ class MultisigTransactionTest: XCTestCase {
         }
     
         let signatureRequest = MultisigTransactionHelper.generateSignatureRequestAnnounce(
-            publicKey: signer.keyPair.publicKey,
-            network: .testnet,
-            otherHash: hash,
-            otherAccount: TestSettings.MULTISIG_ADDRESS)
+                publicKey: signer.keyPair.publicKey,
+                network: .testnet,
+                timeStamp: Session.sendSyncWithTest(NISAPI.NetworkTime())!.receiveTimeStampBySeconds,
+                otherHash: hash,
+                otherAccount: TestSettings.MULTISIG_ADDRESS)
         
         guard let signatureResult = Session.sendSyncWithTest(NISAPI.TransactionAnnounce(requestAnnounce: signatureRequest, keyPair: signer.keyPair)) else { return }
         

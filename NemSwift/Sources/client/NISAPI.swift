@@ -140,14 +140,21 @@ public final class NISAPI {
                        parameters: ["address": address, "parent": parent, "id": id, "pageSize": pageSize])
         }
     }
-    
-    public class NamespaceMosaicDefintionPage: NISGetRequest<MosaicDefinitionMetaDataPairs> {
-        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, namespace: String, id: Int? = nil, pageSize: Int? = nil) {
-            super.init(baseURL: baseURL, path: "/namespace/mosaic/definition/page",
-                       parameters: ["namespace": namespace, "id": id, "pagesize": pageSize])
+
+    public class Namespace: NISGetRequest<NemSwift.Namespace> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, namespace: String) {
+            super.init(baseURL: baseURL, path: "/namespace",
+                    parameters: ["namespace": namespace])
         }
     }
-    
+
+    public class NamespaceMosaicDefinitionPage: NISGetRequest<MosaicDefinitionMetaDataPairs> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, namespace: String, id: Int? = nil, pageSize: Int? = nil) {
+            super.init(baseURL: baseURL, path: "/namespace/mosaic/definition/page",
+                    parameters: ["namespace": namespace, "id": id, "pagesize": pageSize])
+        }
+    }
+
     // Retrieving mosaics that an account owns
     public class AccountMosaicOwned: NISGetRequest<Mosaics> {
         public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, address: String) {
@@ -160,15 +167,22 @@ public final class NISAPI {
         public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, data: String, signature: String) {
             super.init(baseURL: baseURL, path: "/transaction/announce", parameters: ["data": data, "signature": signature])
         }
-        
+
         public convenience init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, requestAnnounce: RequestAnnounce) {
             self.init(baseURL: baseURL, data: requestAnnounce.data, signature: requestAnnounce.signature)
         }
-        
+
         public convenience init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, requestAnnounce: [UInt8], keyPair: KeyPair) {
             self.init(baseURL: baseURL, requestAnnounce: RequestAnnounce.generateRequestAnnounce(requestAnnounce: requestAnnounce, keyPair: keyPair))
         }
 
+    }
+
+    // Fetching network time from the node.
+    public class NetworkTime: NISGetRequest<NodeTimeStamp> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL) {
+            super.init(baseURL: baseURL, path: "/time-sync/network-time")
+        }
     }
 }
 

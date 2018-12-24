@@ -1,3 +1,13 @@
+## Version 0.4.0
+
+2018-12-24
+
+* Add: Network time API
+* Add: Namespace API
+* Fix: Typo.
+    * NamespaceMosaicDefintionPage -> NamespaceMosaicDefinitionPage
+    * SignatureTransction -> SignatureTransaction
+
 ## Version 0.3.2
 
 2018-11-14
