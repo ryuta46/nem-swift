@@ -269,9 +269,11 @@ class NISAPITest: XCTestCase {
     }
 
     func testAccountHarvests() {
-        guard let response = Session.sendSyncWithTest(NISAPI.AccountHarvests(address: TestSettings.ADDRESS, hash: "")) else { return }
+        NemSwiftConfiguration.defaultBaseURL = TestSettings.MAIN_HOST
+        guard let response = Session.sendSyncWithTest(NISAPI.AccountHarvests(address: "NBZMQO7ZPBYNBDUR7F75MAKA2S3DHDCIFG775N3D", hash: "")) else { return }
+
         print("\(response)")
-        XCTAssertTrue(response.data.isEmpty)
+        XCTAssertFalse(response.data.isEmpty)
     }
 
 
