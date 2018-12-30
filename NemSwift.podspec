@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "NemSwift"
-  s.version      = "0.4.0"
+  s.version      = "0.4.1"
   s.summary      = "client library for easy use of NEM API"
   s.description  = <<-DESC
                   - NemSwift wraps HTTP requests to NIS(NEM Infrastructure Server) and HTTP responses from NIS.

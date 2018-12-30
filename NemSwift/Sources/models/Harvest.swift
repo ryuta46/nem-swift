@@ -13,8 +13,9 @@ public struct Harvests: Decodable {
 }
 
 public struct Harvest: Decodable {
+    public let id: Int
     public let timeStamp: UInt
-    public let blockHash: AccountHarvestBlockHash
+    public let difficulty: UInt64
     public let totalFee: UInt64
     public let height: UInt
 }

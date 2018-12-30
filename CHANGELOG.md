@@ -1,3 +1,9 @@
+## Version 0.4.1
+
+2018-12-31
+
+* Fix: Harvest model
+    
 ## Version 0.4.0
 
 2018-12-24
