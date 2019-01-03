@@ -173,6 +173,40 @@ class NISAPITest: XCTestCase {
         }
     }
 
+    func testAccountTransfersMultisig() {
+        guard let response: TransactionMetaDataPairs = Session.sendSyncWithTest(NISAPI.AccountTransfersOutgoing(address: TestSettings.MULTISIG_ADDRESS, hash: nil, id: nil )) else { return }
+        print("\(response)")
+        XCTAssertFalse(response.data.isEmpty)
+
+        response.data.forEach { metaDataPair in
+            if metaDataPair.transaction.type == TransactionHelper.TransactionType.Multisig.transactionTypeBytes() {
+                let multisig = metaDataPair.transaction
+                guard let signatures = multisig.signatures else {
+                    XCTFail("Multisig signatures is nil")
+                    return
+                }
+
+                guard let otherTrans = multisig.otherTrans else {
+                    XCTFail("Multisig otherTrans is nil")
+                    return
+
+                }
+                let multisigAddress = Address(publicKey: ConvertUtil.toByteArray(otherTrans.signer), network: .testnet)
+                XCTAssertEqual(multisigAddress.value, TestSettings.MULTISIG_ADDRESS)
+
+                signatures.forEach { signatureTransaction in
+                    XCTAssertEqual(UInt32(signatureTransaction.type), TransactionHelper.TransactionType.MultisigSignature.transactionTypeBytes())
+                    XCTAssertEqual(signatureTransaction.otherAccount, TestSettings.MULTISIG_ADDRESS)
+                    guard let signatureOtherHash = signatureTransaction.otherHash else {
+                        XCTFail("Signature otherTrans is nil")
+                        return
+                    }
+                }
+            }
+        }
+    }
+
+
 
     func testAccountTransfersAll() {
         guard let response = Session.sendSyncWithTest(NISAPI.AccountTransfersAll(address: TestSettings.ADDRESS, hash: nil, id: nil )) else { return }
