@@ -1,3 +1,9 @@
+## Version 0.4.2
+
+2019-01-04
+
+* Fix: Multisig transaction model
+
 ## Version 0.4.1
 
 2018-12-31
