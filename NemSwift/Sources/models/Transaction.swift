@@ -31,14 +31,14 @@ public class Transaction: Decodable {
 
     // for Multisig
     public let otherTrans: Transaction?
-    public let multisigSignatureTransaction: [Transaction]?
+    public let signatures: [Transaction]?
 
     
     public init(timeStamp: UInt, fee: UInt64, type: UInt, version: Int, signer: String, signature: String? = nil,
                 amount: UInt64? = nil, recipient: String? = nil, mosaics: [Mosaic]? = nil, message: TransactionMessage? = nil,
                 modifications: [MultisigCosignatoryModification]? = nil, minCosignatories: MinimumCosignatoriesModification? = nil,
                 otherHash: TransactionHash? = nil, otherAccount: String? = nil,
-                otherTrans: Transaction? = nil, multisigSignatureTransaction: [Transaction]? = nil
+                otherTrans: Transaction? = nil, signatures: [Transaction]? = nil
                 ) {
         self.timeStamp = timeStamp
         self.fee = fee
@@ -59,6 +59,6 @@ public class Transaction: Decodable {
         self.otherAccount = otherAccount
         
         self.otherTrans = otherTrans
-        self.multisigSignatureTransaction = multisigSignatureTransaction
+        self.signatures = signatures
     }
 }
