@@ -184,5 +184,13 @@ public final class NISAPI {
             super.init(baseURL: baseURL, path: "/time-sync/network-time")
         }
     }
+
+    // Fetching current supply of mosaic
+    public class MosaicSupply: NISGetRequest<NemSwift.MosaicSupply> {
+        public init(baseURL: URL = NemSwiftConfiguration.defaultBaseURL, mosaicId: MosaicId) {
+            super.init(baseURL: baseURL, path: "/mosaic/supply", parameters: ["mosaicId": mosaicId.fullName])
+        }
+    }
+
 }
 
