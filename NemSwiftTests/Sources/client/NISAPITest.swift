@@ -391,6 +391,16 @@ class NISAPITest: XCTestCase {
         //response.receiveTimeStamp
     }
 
+    func testMosaicSupply() {
+        let mosaicId = MosaicId(namespaceId: "ename", name: "supply_change_10000_15000")
+        guard let response: MosaicSupply = Session.sendSyncWithTest(NISAPI.MosaicSupply(mosaicId: mosaicId)) else { return }
+
+        XCTAssertEqual(mosaicId.namespaceId, response.mosaicId.namespaceId)
+        XCTAssertEqual(mosaicId.name, response.mosaicId.name)
+
+        XCTAssertEqual(15000, response.supply)
+    }
+
 }
 
 

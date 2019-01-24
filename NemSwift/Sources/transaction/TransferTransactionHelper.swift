@@ -100,14 +100,13 @@ public class TransferTransactionHelper {
             }
             var mosaicTransferFeeTotal: UInt64 = 0
             mosaics.forEach { mosaic in
-                if ( mosaic.divisibility == 0 && mosaic.supply < 10_000 ) { // small buisiness mosaic
+                if ( mosaic.divisibility == 0 && mosaic.supply <= 10_000 ) { // small business mosaic
                     mosaicTransferFeeTotal += 50_000
                 } else {
                     let maxMosaicQuantity: Int64 = 9_000_000_000_000_000
                     let totalMosaicQuantity = Double(mosaic.supply) * pow(10.0, Double(mosaic.divisibility))
                     let supplyRelatedAdjustment = Int64(floor(0.8 * log(Double(maxMosaicQuantity) / totalMosaicQuantity)))
-                    
-                    
+
                     let xemEquivalent = NSDecimalNumber(value: 8_999_999_999 as Int64).multiplying(by: NSDecimalNumber(value: mosaic.quantity)).dividing(by: NSDecimalNumber(value: totalMosaicQuantity))
                     
                     let microNemEquivalent = Int64(xemEquivalent.multiplying(by: NSDecimalNumber(value: pow(10.0, 6.0))).doubleValue)

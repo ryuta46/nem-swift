@@ -91,6 +91,7 @@
 		5FC300BF2120DE3A007856EA /* MessageEncryptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC300BE2120DE3A007856EA /* MessageEncryptionTest.swift */; };
 		5FC300C221210D85007856EA /* message_encryption.c in Sources */ = {isa = PBXBuildFile; fileRef = 5FC300C121210D85007856EA /* message_encryption.c */; };
 		5FC300C321210E63007856EA /* message_encryption.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FC300C021210D5F007856EA /* message_encryption.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6905761E66A1770B5AD18C47 /* MosaicSupply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6905787E95AE9561CFDC8DA8 /* MosaicSupply.swift */; };
 		690579D701C6984B3011DDE2 /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6905755333AC9F0DD2D26C7B /* TimeUtil.swift */; };
 		69057B305FDF8A79B936746C /* NodeTimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69057BAB8BF4C78B8FB8D368 /* NodeTimeStamp.swift */; };
 /* End PBXBuildFile section */
@@ -228,6 +229,7 @@
 		5FC300C021210D5F007856EA /* message_encryption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = message_encryption.h; sourceTree = "<group>"; };
 		5FC300C121210D85007856EA /* message_encryption.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = message_encryption.c; sourceTree = "<group>"; };
 		6905755333AC9F0DD2D26C7B /* TimeUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
+		6905787E95AE9561CFDC8DA8 /* MosaicSupply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MosaicSupply.swift; sourceTree = "<group>"; };
 		69057BAB8BF4C78B8FB8D368 /* NodeTimeStamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTimeStamp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -408,6 +410,7 @@
 				3E633BD51FC5426000D5DCD3 /* UnconfirmedTransactionMetaData.swift */,
 				3E633BD31FC541C300D5DCD3 /* UnconfirmedTransactionMetaDataPair.swift */,
 				69057BAB8BF4C78B8FB8D368 /* NodeTimeStamp.swift */,
+				6905787E95AE9561CFDC8DA8 /* MosaicSupply.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -772,6 +775,7 @@
 				5F672BF021127CD50057A35C /* MultisigInfo.swift in Sources */,
 				69057B305FDF8A79B936746C /* NodeTimeStamp.swift in Sources */,
 				690579D701C6984B3011DDE2 /* TimeUtil.swift in Sources */,
+				6905761E66A1770B5AD18C47 /* MosaicSupply.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
