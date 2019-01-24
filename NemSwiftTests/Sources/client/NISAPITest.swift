@@ -401,6 +401,23 @@ class NISAPITest: XCTestCase {
         XCTAssertEqual(15000, response.supply)
     }
 
+    func testMosaicSupplyNotFound() {
+        let mosaicId = MosaicId(namespaceId: "ename", name: "foo_bar_foo_bar_foo_bar")
+        let result = Session.sendSync(NISAPI.MosaicSupply(mosaicId: mosaicId))
+
+        switch result {
+        case .failure(let error):
+            if case .responseError(let innerError as NISError) = error {
+                print("\(innerError)")
+                XCTAssertEqual(404, innerError.status)
+            } else {
+                XCTFail("Not expected error")
+            }
+        default:
+            XCTFail("Not success")
+        }
+    }
+
 }
 
 
