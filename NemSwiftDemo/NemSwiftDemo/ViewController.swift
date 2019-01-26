@@ -14,8 +14,8 @@ import Result
 class Constants {
     static let DEFAULT_BASE_URL = "https://nistest.ttechdev.com:7891"
     static let KEY_PRIVATE_KEY = "PRIVATE_KEY"
-    static let MOSAIC_NAMESPACE_ID = "ttech"
-    static let MOSAIC_NAME = "ryuta"
+    static let MOSAIC_NAMESPACE_ID = "ename"
+    static let MOSAIC_NAME = "supply_change_10000_15000"
 }
 
 class ViewController: UIViewController {
@@ -42,6 +42,7 @@ class ViewController: UIViewController {
 
         // Fetch mosaic info to calculate transfer fee of mosaic
         fetchMosaicDefinition()
+        fetchMosaicSupply()
     }
 
 
@@ -199,13 +200,11 @@ class ViewController: UIViewController {
             case .success(let response):
                 for mosaicDefinition in response.data {
                     if (mosaicDefinition.mosaic.id.name == Constants.MOSAIC_NAME) {
-                        weakSelf.mosaicSupply = mosaicDefinition.mosaic.initialSupply
                         weakSelf.mosaicDivisibility = mosaicDefinition.mosaic.divisibility
                     }
                 }
-                print("mosaic supply: \(String(describing: weakSelf.mosaicSupply))")
                 print("mosaic divisibility: \(String(describing: weakSelf.mosaicDivisibility))")
-
+                
                 if !response.data.isEmpty && (weakSelf.mosaicSupply != nil || weakSelf.mosaicDivisibility != nil) {
                     weakSelf.fetchMosaicDefinition(from: response.data.last!.meta.id)
                 }
@@ -218,9 +217,32 @@ class ViewController: UIViewController {
                 }
             }
         }
-
+        
     }
     
+    private func fetchMosaicSupply() {
+        let mosaicId = MosaicId(namespaceId: Constants.MOSAIC_NAMESPACE_ID, name: Constants.MOSAIC_NAME)
+        Session.send(NISAPI.MosaicSupply(mosaicId: mosaicId)) { [weak self] result in
+            guard let weakSelf = self else {
+                return
+            }
+            switch result {
+            case .success(let response):
+                weakSelf.mosaicSupply = response.supply
+                print("mosaic supply: \(String(describing: weakSelf.mosaicSupply))")
+                
+            case .failure(let error):
+                switch error {
+                case .responseError(let e as NISError):
+                    print(e)
+                default:
+                    print(error)
+                }
+            }
+        }
+    }
+
+
     private func fetchServerTimeStamp(handler: @escaping (_ timeStamp: UInt32) -> Void) {
         Session.send(NISAPI.NetworkTime()) { result in
             switch result {
