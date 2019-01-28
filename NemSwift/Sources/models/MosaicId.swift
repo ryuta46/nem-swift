@@ -11,4 +11,13 @@ import Foundation
 public struct MosaicId: Decodable {
     public let namespaceId: String
     public let name: String
+
+    public init(namespaceId: String, name: String) {
+        self.namespaceId = namespaceId
+        self.name = name
+    }
+
+    public var fullName: String {
+        return namespaceId + ":" + name
+    }
 }

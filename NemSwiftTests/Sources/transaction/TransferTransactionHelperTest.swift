@@ -151,6 +151,17 @@ class MosaicTransferFeeTest : ParameterizedTest {
                 MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:250_000_000_000, supply: 8_999_999_999, divisibility: 6)], 1_250_000),
                 MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:250_000_000_001, supply: 8_999_999_999, divisibility: 6)], 1_250_000),
                 MosaicTransferFeeTestFixture([TransferMosaic(namespace: "nem", mosaic: "xem", quantity:1_000_000_000_000, supply: 8_999_999_999, divisibility: 6)], 1_250_000),
+
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ename", mosaic: "small_business_mosaic", quantity:1, supply: 1000, divisibility: 0)], 50_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ename", mosaic: "small_business_mosaic", quantity:10000, supply: 10000, divisibility: 0)], 50_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ename", mosaic: "not_small_business_mosaic", quantity:10000, supply: 10001, divisibility: 0)], 150_000),
+
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ename", mosaic: "middle_mosaic", quantity:1, supply: 15000, divisibility: 0)], 200_000),
+                MosaicTransferFeeTestFixture([TransferMosaic(namespace: "ename", mosaic: "middle_mosaic", quantity:10000, supply: 15000, divisibility: 0)], 200_000),
+
+                MosaicTransferFeeTestFixture(
+                        [TransferMosaic(namespace: "ename", mosaic: "small_mosaic", quantity:1, supply: 200, divisibility: 0),
+                         TransferMosaic(namespace: "ename", mosaic: "middle_mosaic", quantity:100, supply: 15000, divisibility: 0)], 250_000),
             ]
         }
     }

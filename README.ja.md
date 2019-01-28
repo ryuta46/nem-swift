@@ -188,7 +188,7 @@ let transaction = TransferTransactionHelper.generateMosaicTransferRequestAnnounc
 
 モザイクの供給量や可分性は、最低手数料を計算する際に用いられます。
 
-もしそれらの値が不明な場合は、'NamespaceMosaicDefinitionPage' を使って取得することが出来ます。
+もしそれらの値が不明な場合は、'NamespaceMosaicDefinitionPage' と 'MosaicSupply' を使って取得することが出来ます。
 
 ```swift
 Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: "mosaicNameSpaceId")) { result in
@@ -196,12 +196,20 @@ Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: "mosaicNameSpaceId")
         case .success(let response):
             for mosaicDefinition in response.data {
                 if (mosaicDefinition.mosaic.id.name == "mosaicName") {
-                    // supply =  mosaicDefinition.mosaic.initialSupply
                     // divisibility = mosaicDefinition.mosaic.divisibility
                 }
             }
 
 ```
+
+```swift
+Session.send(NISAPI.NamespaceMosaicDefintionPage(mosaicId: mosaicId)) { result in
+    switch result {
+        case .success(let response):
+            // supply = response.supply
+
+```
+
 
 ### メッセージの送受信
 

@@ -187,7 +187,7 @@ let transaction = TransferTransactionHelper.generateMosaicTransferRequestAnnounc
 
 Mosaic's supply and divisibility are used to calculate minimum transaction fee.
 
-You can get these parameters of mosaic with 'namespaceMosaicDefinitionPage' if you don't know them.
+You can get these parameters of mosaic with 'NamespaceMosaicDefinitionPage' and 'MosaicSupply' if you don't know them.
 
 ```swift
 Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: "mosaicNameSpaceId")) { result in
@@ -195,10 +195,16 @@ Session.send(NISAPI.NamespaceMosaicDefintionPage(namespace: "mosaicNameSpaceId")
         case .success(let response):
             for mosaicDefinition in response.data {
                 if (mosaicDefinition.mosaic.id.name == "mosaicName") {
-                    // supply =  mosaicDefinition.mosaic.initialSupply
                     // divisibility = mosaicDefinition.mosaic.divisibility
                 }
             }
+```
+
+```swift
+Session.send(NISAPI.NamespaceMosaicDefintionPage(mosaicId: mosaicId)) { result in
+    switch result {
+        case .success(let response):
+            // supply = response.supply
 
 ```
 
