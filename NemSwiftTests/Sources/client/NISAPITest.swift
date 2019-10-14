@@ -9,7 +9,6 @@
 import Foundation
 import XCTest
 import APIKit
-import Result
 import NemSwift
 
 //extension Extension where Base: Session {
