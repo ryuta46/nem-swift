@@ -4,7 +4,7 @@ before_install:
   - carthage update --platform ios  
   - gem install xcpretty
 script:
-  - xcodebuild -project NemSwift.xcodeproj -scheme NemSwift -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' -exportPath '.' test | xcpretty -c && exit ${PIPESTATUS[0]}
+  - xcodebuild -project NemSwift.xcodeproj -scheme NemSwift -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.1' test | xcpretty -c && exit ${PIPESTATUS[0]}
 
 branches:
   only:
