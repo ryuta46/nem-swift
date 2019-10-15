@@ -30,7 +30,7 @@ Use Carthage or CocoaPods.
     Build Phases -> Press "+" -> New Run Script Phase  
     Shell `/bin/sh`  
     Script `/usr/local/bin/carthage copy-frameworks`  
-    Add "NemSwift.framework", "APIKit.framework", "Result.framework" and "CryptoSwift.framework" to input file
+    Add "NemSwift.framework", "APIKit.framework" and "CryptoSwift.framework" to input file
 
     ![Copy frameworks](../assets/carthage_setup_copy_framework.png?raw=true)
 
@@ -86,7 +86,6 @@ To get an account information,
 ```swift
 import NemSwift
 import APIKit
-import Result
 
 ...
 

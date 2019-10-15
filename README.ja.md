@@ -30,7 +30,7 @@ Carthage か CocoaPods を利用できます。
     Build Phases -> "+" をクリック -> New Run Script Phase  
     Shell `/bin/sh`  
     Script `/usr/local/bin/carthage copy-frameworks`  
-    "NemSwift.framework"、"APIKit.framework"、"Result.framework"、"CryptoSwift.framework" を input file として追加
+    "NemSwift.framework"、"APIKit.framework"、"CryptoSwift.framework" を input file として追加
 
     ![Copy frameworks](../assets/carthage_setup_copy_framework.png?raw=true)
 
@@ -86,7 +86,6 @@ let account = Account.repairAccount(privateKey, network: .testnet)
 ```swift
 import NemSwift
 import APIKit
-import Result
 
 ...
 
